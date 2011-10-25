@@ -1,0 +1,294 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B6A13118145768DB00500180 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13117145768DB00500180 /* UIKit.framework */; };
+		B6A1311A145768DB00500180 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13119145768DB00500180 /* Foundation.framework */; };
+		B6A1311C145768DB00500180 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A1311B145768DB00500180 /* CoreGraphics.framework */; };
+		B6A13122145768DB00500180 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6A13120145768DB00500180 /* InfoPlist.strings */; };
+		B6A13124145768DB00500180 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A13123145768DB00500180 /* main.m */; };
+		B6A13128145768DB00500180 /* DEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A13127145768DB00500180 /* DEAppDelegate.m */; };
+		B6A1312B145768DB00500180 /* DEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1312A145768DB00500180 /* DEViewController.m */; };
+		B6A1312E145768DB00500180 /* DEViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A1312C145768DB00500180 /* DEViewController_iPhone.xib */; };
+		B6A13131145768DB00500180 /* DEViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A1312F145768DB00500180 /* DEViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B6A13113145768DB00500180 /* DETweeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DETweeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6A13117145768DB00500180 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B6A13119145768DB00500180 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B6A1311B145768DB00500180 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B6A1311F145768DB00500180 /* DETweeter-Info.plist */ = {isa = PBXFileReference; path = "DETweeter-Info.plist"; sourceTree = "<group>"; };
+		B6A13121145768DB00500180 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B6A13123145768DB00500180 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B6A13125145768DB00500180 /* DETweeter-Prefix.pch */ = {isa = PBXFileReference; path = "DETweeter-Prefix.pch"; sourceTree = "<group>"; };
+		B6A13126145768DB00500180 /* DEAppDelegate.h */ = {isa = PBXFileReference; path = DEAppDelegate.h; sourceTree = "<group>"; };
+		B6A13127145768DB00500180 /* DEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEAppDelegate.m; sourceTree = "<group>"; };
+		B6A13129145768DB00500180 /* DEViewController.h */ = {isa = PBXFileReference; path = DEViewController.h; sourceTree = "<group>"; };
+		B6A1312A145768DB00500180 /* DEViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEViewController.m; sourceTree = "<group>"; };
+		B6A1312D145768DB00500180 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DEViewController_iPhone.xib; sourceTree = "<group>"; };
+		B6A13130145768DB00500180 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DEViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B6A13110145768DB00500180 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6A13118145768DB00500180 /* UIKit.framework in Frameworks */,
+				B6A1311A145768DB00500180 /* Foundation.framework in Frameworks */,
+				B6A1311C145768DB00500180 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B6A13108145768DB00500180 = {
+			isa = PBXGroup;
+			children = (
+				B6A1311D145768DB00500180 /* DETweeter */,
+				B6A13116145768DB00500180 /* Frameworks */,
+				B6A13114145768DB00500180 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B6A13114145768DB00500180 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6A13113145768DB00500180 /* DETweeter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6A13116145768DB00500180 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6A13117145768DB00500180 /* UIKit.framework */,
+				B6A13119145768DB00500180 /* Foundation.framework */,
+				B6A1311B145768DB00500180 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B6A1311D145768DB00500180 /* DETweeter */ = {
+			isa = PBXGroup;
+			children = (
+				B6A13126145768DB00500180 /* DEAppDelegate.h */,
+				B6A13127145768DB00500180 /* DEAppDelegate.m */,
+				B6A13129145768DB00500180 /* DEViewController.h */,
+				B6A1312A145768DB00500180 /* DEViewController.m */,
+				B6A1312C145768DB00500180 /* DEViewController_iPhone.xib */,
+				B6A1312F145768DB00500180 /* DEViewController_iPad.xib */,
+				B6A1311E145768DB00500180 /* Supporting Files */,
+			);
+			path = DETweeter;
+			sourceTree = "<group>";
+		};
+		B6A1311E145768DB00500180 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B6A1311F145768DB00500180 /* DETweeter-Info.plist */,
+				B6A13120145768DB00500180 /* InfoPlist.strings */,
+				B6A13123145768DB00500180 /* main.m */,
+				B6A13125145768DB00500180 /* DETweeter-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B6A13112145768DB00500180 /* DETweeter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6A13134145768DB00500180 /* Build configuration list for PBXNativeTarget "DETweeter" */;
+			buildPhases = (
+				B6A1310F145768DB00500180 /* Sources */,
+				B6A13110145768DB00500180 /* Frameworks */,
+				B6A13111145768DB00500180 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DETweeter;
+			productName = DETweeter;
+			productReference = B6A13113145768DB00500180 /* DETweeter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B6A1310A145768DB00500180 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Mere Mortal Software";
+			};
+			buildConfigurationList = B6A1310D145768DB00500180 /* Build configuration list for PBXProject "DETweeter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B6A13108145768DB00500180;
+			productRefGroup = B6A13114145768DB00500180 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B6A13112145768DB00500180 /* DETweeter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B6A13111145768DB00500180 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6A13122145768DB00500180 /* InfoPlist.strings in Resources */,
+				B6A1312E145768DB00500180 /* DEViewController_iPhone.xib in Resources */,
+				B6A13131145768DB00500180 /* DEViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B6A1310F145768DB00500180 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6A13124145768DB00500180 /* main.m in Sources */,
+				B6A13128145768DB00500180 /* DEAppDelegate.m in Sources */,
+				B6A1312B145768DB00500180 /* DEViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B6A13120145768DB00500180 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6A13121145768DB00500180 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B6A1312C145768DB00500180 /* DEViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6A1312D145768DB00500180 /* en */,
+			);
+			name = DEViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		B6A1312F145768DB00500180 /* DEViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6A13130145768DB00500180 /* en */,
+			);
+			name = DEViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B6A13132145768DB00500180 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B6A13133145768DB00500180 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B6A13135145768DB00500180 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DETweeter/DETweeter-Prefix.pch";
+				INFOPLIST_FILE = "DETweeter/DETweeter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B6A13136145768DB00500180 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DETweeter/DETweeter-Prefix.pch";
+				INFOPLIST_FILE = "DETweeter/DETweeter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B6A1310D145768DB00500180 /* Build configuration list for PBXProject "DETweeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6A13132145768DB00500180 /* Debug */,
+				B6A13133145768DB00500180 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6A13134145768DB00500180 /* Build configuration list for PBXNativeTarget "DETweeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6A13135145768DB00500180 /* Debug */,
+				B6A13136145768DB00500180 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B6A1310A145768DB00500180 /* Project object */;
+}
