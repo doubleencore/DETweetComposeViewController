@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B655DDEA1458B4A500F513E1 /* Buzz.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDE91458B4A500F513E1 /* Buzz.jpeg */; };
+		B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEC1458B56300F513E1 /* Woody.jpeg */; };
+		B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */; };
+		B655DDF71458C43C00F513E1 /* DETweetCardBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */; };
+		B655DDF81458C43C00F513E1 /* DETweetCancelButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF01458C43C00F513E1 /* DETweetCancelButton.png */; };
+		B655DDF91458C43C00F513E1 /* DETweetCancelButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF11458C43C00F513E1 /* DETweetCancelButton@2x.png */; };
+		B655DDFA1458C43C00F513E1 /* DETweetPaperClip.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF21458C43C00F513E1 /* DETweetPaperClip.png */; };
+		B655DDFB1458C43C00F513E1 /* DETweetPaperClip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF31458C43C00F513E1 /* DETweetPaperClip@2x.png */; };
+		B655DDFC1458C43C00F513E1 /* DETweetSendButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF41458C43C00F513E1 /* DETweetSendButton.png */; };
+		B655DDFD1458C43C00F513E1 /* DETweetSendButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF51458C43C00F513E1 /* DETweetSendButton@2x.png */; };
+		B655DE021458C5F000F513E1 /* DETweetAttachmentFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDFE1458C5F000F513E1 /* DETweetAttachmentFrame.png */; };
+		B655DE031458C5F000F513E1 /* DETweetAttachmentFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDFF1458C5F000F513E1 /* DETweetAttachmentFrame@2x.png */; };
+		B655DE041458C5F000F513E1 /* DETweetURLAttachment.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */; };
+		B655DE051458C5F000F513E1 /* DETweetURLAttachment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DE011458C5F000F513E1 /* DETweetURLAttachment@2x.png */; };
 		B6A13118145768DB00500180 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13117145768DB00500180 /* UIKit.framework */; };
 		B6A1311A145768DB00500180 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13119145768DB00500180 /* Foundation.framework */; };
 		B6A1311C145768DB00500180 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A1311B145768DB00500180 /* CoreGraphics.framework */; };
@@ -16,23 +30,47 @@
 		B6A1312B145768DB00500180 /* DEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1312A145768DB00500180 /* DEViewController.m */; };
 		B6A1312E145768DB00500180 /* DEViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A1312C145768DB00500180 /* DEViewController_iPhone.xib */; };
 		B6A13131145768DB00500180 /* DEViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A1312F145768DB00500180 /* DEViewController_iPad.xib */; };
+		B6A1313A1457696000500180 /* DETweetComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A131391457696000500180 /* DETweetComposeViewController.m */; };
+		B6A1313C14576AB600500180 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A1313B14576AB600500180 /* Twitter.framework */; };
+		B6A131421457780A00500180 /* DETweetComposeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A131411457780A00500180 /* DETweetComposeView.xib */; };
+		B6A1314814577D5A00500180 /* DETweetSheetCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1314714577D5A00500180 /* DETweetSheetCardView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B655DDE91458B4A500F513E1 /* Buzz.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Buzz.jpeg; sourceTree = "<group>"; };
+		B655DDEC1458B56300F513E1 /* Woody.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Woody.jpeg; sourceTree = "<group>"; };
+		B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardBackground.png; path = DETweetComposeViewController/Resources/DETweetCardBackground.png; sourceTree = SOURCE_ROOT; };
+		B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCardBackground@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCardBackground@2x.png"; sourceTree = SOURCE_ROOT; };
+		B655DDF01458C43C00F513E1 /* DETweetCancelButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCancelButton.png; path = DETweetComposeViewController/Resources/DETweetCancelButton.png; sourceTree = SOURCE_ROOT; };
+		B655DDF11458C43C00F513E1 /* DETweetCancelButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCancelButton@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCancelButton@2x.png"; sourceTree = SOURCE_ROOT; };
+		B655DDF21458C43C00F513E1 /* DETweetPaperClip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetPaperClip.png; path = DETweetComposeViewController/Resources/DETweetPaperClip.png; sourceTree = SOURCE_ROOT; };
+		B655DDF31458C43C00F513E1 /* DETweetPaperClip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetPaperClip@2x.png"; path = "DETweetComposeViewController/Resources/DETweetPaperClip@2x.png"; sourceTree = SOURCE_ROOT; };
+		B655DDF41458C43C00F513E1 /* DETweetSendButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetSendButton.png; path = DETweetComposeViewController/Resources/DETweetSendButton.png; sourceTree = SOURCE_ROOT; };
+		B655DDF51458C43C00F513E1 /* DETweetSendButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetSendButton@2x.png"; path = "DETweetComposeViewController/Resources/DETweetSendButton@2x.png"; sourceTree = SOURCE_ROOT; };
+		B655DDFE1458C5F000F513E1 /* DETweetAttachmentFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetAttachmentFrame.png; path = DETweetComposeViewController/Resources/DETweetAttachmentFrame.png; sourceTree = SOURCE_ROOT; };
+		B655DDFF1458C5F000F513E1 /* DETweetAttachmentFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetAttachmentFrame@2x.png"; path = "DETweetComposeViewController/Resources/DETweetAttachmentFrame@2x.png"; sourceTree = SOURCE_ROOT; };
+		B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetURLAttachment.png; path = DETweetComposeViewController/Resources/DETweetURLAttachment.png; sourceTree = SOURCE_ROOT; };
+		B655DE011458C5F000F513E1 /* DETweetURLAttachment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetURLAttachment@2x.png"; path = "DETweetComposeViewController/Resources/DETweetURLAttachment@2x.png"; sourceTree = SOURCE_ROOT; };
 		B6A13113145768DB00500180 /* DETweeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DETweeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A13117145768DB00500180 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B6A13119145768DB00500180 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B6A1311B145768DB00500180 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B6A1311F145768DB00500180 /* DETweeter-Info.plist */ = {isa = PBXFileReference; path = "DETweeter-Info.plist"; sourceTree = "<group>"; };
+		B6A1311F145768DB00500180 /* DETweeter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DETweeter-Info.plist"; sourceTree = "<group>"; };
 		B6A13121145768DB00500180 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B6A13123145768DB00500180 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B6A13125145768DB00500180 /* DETweeter-Prefix.pch */ = {isa = PBXFileReference; path = "DETweeter-Prefix.pch"; sourceTree = "<group>"; };
-		B6A13126145768DB00500180 /* DEAppDelegate.h */ = {isa = PBXFileReference; path = DEAppDelegate.h; sourceTree = "<group>"; };
+		B6A13125145768DB00500180 /* DETweeter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DETweeter-Prefix.pch"; sourceTree = "<group>"; };
+		B6A13126145768DB00500180 /* DEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEAppDelegate.h; sourceTree = "<group>"; };
 		B6A13127145768DB00500180 /* DEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEAppDelegate.m; sourceTree = "<group>"; };
-		B6A13129145768DB00500180 /* DEViewController.h */ = {isa = PBXFileReference; path = DEViewController.h; sourceTree = "<group>"; };
+		B6A13129145768DB00500180 /* DEViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEViewController.h; sourceTree = "<group>"; };
 		B6A1312A145768DB00500180 /* DEViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEViewController.m; sourceTree = "<group>"; };
 		B6A1312D145768DB00500180 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DEViewController_iPhone.xib; sourceTree = "<group>"; };
 		B6A13130145768DB00500180 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DEViewController_iPad.xib; sourceTree = "<group>"; };
+		B6A131381457696000500180 /* DETweetComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetComposeViewController.h; path = DETweetComposeViewController/DETweetComposeViewController.h; sourceTree = SOURCE_ROOT; };
+		B6A131391457696000500180 /* DETweetComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetComposeViewController.m; path = DETweetComposeViewController/DETweetComposeViewController.m; sourceTree = SOURCE_ROOT; };
+		B6A1313B14576AB600500180 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		B6A131411457780A00500180 /* DETweetComposeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DETweetComposeView.xib; sourceTree = "<group>"; };
+		B6A1314614577D5A00500180 /* DETweetSheetCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetSheetCardView.h; path = DETweetComposeViewController/DETweetSheetCardView.h; sourceTree = SOURCE_ROOT; };
+		B6A1314714577D5A00500180 /* DETweetSheetCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetSheetCardView.m; path = DETweetComposeViewController/DETweetSheetCardView.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6A1313C14576AB600500180 /* Twitter.framework in Frameworks */,
 				B6A13118145768DB00500180 /* UIKit.framework in Frameworks */,
 				B6A1311A145768DB00500180 /* Foundation.framework in Frameworks */,
 				B6A1311C145768DB00500180 /* CoreGraphics.framework in Frameworks */,
@@ -52,7 +91,8 @@
 		B6A13108145768DB00500180 = {
 			isa = PBXGroup;
 			children = (
-				B6A1311D145768DB00500180 /* DETweeter */,
+				B6A1311D145768DB00500180 /* Demo App */,
+				B6A131371457690300500180 /* DETweetComposeViewController */,
 				B6A13116145768DB00500180 /* Frameworks */,
 				B6A13114145768DB00500180 /* Products */,
 			);
@@ -69,6 +109,7 @@
 		B6A13116145768DB00500180 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B6A1313B14576AB600500180 /* Twitter.framework */,
 				B6A13117145768DB00500180 /* UIKit.framework */,
 				B6A13119145768DB00500180 /* Foundation.framework */,
 				B6A1311B145768DB00500180 /* CoreGraphics.framework */,
@@ -76,7 +117,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B6A1311D145768DB00500180 /* DETweeter */ = {
+		B6A1311D145768DB00500180 /* Demo App */ = {
 			isa = PBXGroup;
 			children = (
 				B6A13126145768DB00500180 /* DEAppDelegate.h */,
@@ -85,8 +126,11 @@
 				B6A1312A145768DB00500180 /* DEViewController.m */,
 				B6A1312C145768DB00500180 /* DEViewController_iPhone.xib */,
 				B6A1312F145768DB00500180 /* DEViewController_iPad.xib */,
+				B655DDE91458B4A500F513E1 /* Buzz.jpeg */,
+				B655DDEC1458B56300F513E1 /* Woody.jpeg */,
 				B6A1311E145768DB00500180 /* Supporting Files */,
 			);
+			name = "Demo App";
 			path = DETweeter;
 			sourceTree = "<group>";
 		};
@@ -99,6 +143,39 @@
 				B6A13125145768DB00500180 /* DETweeter-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B6A131371457690300500180 /* DETweetComposeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B6A131381457696000500180 /* DETweetComposeViewController.h */,
+				B6A131391457696000500180 /* DETweetComposeViewController.m */,
+				B6A131411457780A00500180 /* DETweetComposeView.xib */,
+				B6A1314614577D5A00500180 /* DETweetSheetCardView.h */,
+				B6A1314714577D5A00500180 /* DETweetSheetCardView.m */,
+				B6B6CCF214586015005B93A1 /* Images */,
+			);
+			name = DETweetComposeViewController;
+			path = DETweeter;
+			sourceTree = "<group>";
+		};
+		B6B6CCF214586015005B93A1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */,
+				B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */,
+				B655DDF01458C43C00F513E1 /* DETweetCancelButton.png */,
+				B655DDF11458C43C00F513E1 /* DETweetCancelButton@2x.png */,
+				B655DDF21458C43C00F513E1 /* DETweetPaperClip.png */,
+				B655DDF31458C43C00F513E1 /* DETweetPaperClip@2x.png */,
+				B655DDF41458C43C00F513E1 /* DETweetSendButton.png */,
+				B655DDF51458C43C00F513E1 /* DETweetSendButton@2x.png */,
+				B655DDFE1458C5F000F513E1 /* DETweetAttachmentFrame.png */,
+				B655DDFF1458C5F000F513E1 /* DETweetAttachmentFrame@2x.png */,
+				B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */,
+				B655DE011458C5F000F513E1 /* DETweetURLAttachment@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,7 +205,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = "Mere Mortal Software";
+				ORGANIZATIONNAME = "Double Encore, Inc";
 			};
 			buildConfigurationList = B6A1310D145768DB00500180 /* Build configuration list for PBXProject "DETweeter" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -155,6 +232,21 @@
 				B6A13122145768DB00500180 /* InfoPlist.strings in Resources */,
 				B6A1312E145768DB00500180 /* DEViewController_iPhone.xib in Resources */,
 				B6A13131145768DB00500180 /* DEViewController_iPad.xib in Resources */,
+				B6A131421457780A00500180 /* DETweetComposeView.xib in Resources */,
+				B655DDEA1458B4A500F513E1 /* Buzz.jpeg in Resources */,
+				B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */,
+				B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */,
+				B655DDF71458C43C00F513E1 /* DETweetCardBackground@2x.png in Resources */,
+				B655DDF81458C43C00F513E1 /* DETweetCancelButton.png in Resources */,
+				B655DDF91458C43C00F513E1 /* DETweetCancelButton@2x.png in Resources */,
+				B655DDFA1458C43C00F513E1 /* DETweetPaperClip.png in Resources */,
+				B655DDFB1458C43C00F513E1 /* DETweetPaperClip@2x.png in Resources */,
+				B655DDFC1458C43C00F513E1 /* DETweetSendButton.png in Resources */,
+				B655DDFD1458C43C00F513E1 /* DETweetSendButton@2x.png in Resources */,
+				B655DE021458C5F000F513E1 /* DETweetAttachmentFrame.png in Resources */,
+				B655DE031458C5F000F513E1 /* DETweetAttachmentFrame@2x.png in Resources */,
+				B655DE041458C5F000F513E1 /* DETweetURLAttachment.png in Resources */,
+				B655DE051458C5F000F513E1 /* DETweetURLAttachment@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +260,8 @@
 				B6A13124145768DB00500180 /* main.m in Sources */,
 				B6A13128145768DB00500180 /* DEAppDelegate.m in Sources */,
 				B6A1312B145768DB00500180 /* DEViewController.m in Sources */,
+				B6A1313A1457696000500180 /* DETweetComposeViewController.m in Sources */,
+				B6A1314814577D5A00500180 /* DETweetSheetCardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +346,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DETweeter/DETweeter-Prefix.pch";
 				INFOPLIST_FILE = "DETweeter/DETweeter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -263,6 +358,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DETweeter/DETweeter-Prefix.pch";
 				INFOPLIST_FILE = "DETweeter/DETweeter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -287,6 +383,7 @@
 				B6A13136145768DB00500180 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
