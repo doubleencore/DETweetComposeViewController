@@ -6,7 +6,7 @@
 //
 
 #import "DETweetComposeViewController.h"
-
+#import "DETweetPoster.h"
 
 @interface DETweetComposeViewController ()
 
@@ -249,7 +249,9 @@
 
 - (IBAction)send
 {
-    [self dismissModalViewControllerAnimated:YES];
+    DETweetPoster *tweetPoster = [[DETweetPoster alloc] init];
+    [tweetPoster postTweet:self.textView.text withImages:nil];
+//    [self dismissModalViewControllerAnimated:YES];
 }
 
 
