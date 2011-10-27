@@ -250,7 +250,7 @@
 - (IBAction)send
 {
     DETweetPoster *tweetPoster = [[DETweetPoster alloc] init];
-    [tweetPoster postTweet:self.textView.text withImages:nil];
+    [tweetPoster postTweet:self.textView.text withImages:[NSArray arrayWithObject:[UIImage imageNamed:@"Buzz.jpeg"]]];
 //    [self dismissModalViewControllerAnimated:YES];
 }
 
