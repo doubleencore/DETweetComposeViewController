@@ -2,3 +2,8 @@
 
 #define kDEConsumerKey @"njXqKBprrm9m3eYB9hSyoA"
 #define kDEConsumerSecret @"4pWLLFoTb8U0fkYOr8LAOVWCtTH8PqSAeYmT5yfDfRs"
+
+#define kConsumerKey @"kConsumerKey"
+#define kConsumerSecret @"kConsumerSecret"
+#define kOAuthToken @"kOAuthToken"
+#define kOAuthTokenSecret @"kOAuthTokenSecret"

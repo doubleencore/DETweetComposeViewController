@@ -148,8 +148,8 @@ void dumpViews(UIView* view, NSString *text, NSString *indent)
 
 - (BOOL)hasTwiterCredentials
 {
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:kDEConsumerKey] &&
-         [[NSUserDefaults standardUserDefaults] objectForKey:kDEConsumerSecret]) {
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kOAuthToken] &&
+         [[NSUserDefaults standardUserDefaults] objectForKey:kOAuthTokenSecret]) {
         return YES;
     } else {
         return NO;
@@ -193,8 +193,8 @@ void dumpViews(UIView* view, NSString *text, NSString *indent)
 
 - (void)twitterDidLogin
 {
-    [[NSUserDefaults standardUserDefaults] setObject:self.oAuth.oauth_token forKey:kDEConsumerKey];
-    [[NSUserDefaults standardUserDefaults] setObject:self.oAuth.oauth_token_secret forKey:kDEConsumerSecret];
+    [[NSUserDefaults standardUserDefaults] setObject:self.oAuth.oauth_token forKey:kOAuthToken];
+    [[NSUserDefaults standardUserDefaults] setObject:self.oAuth.oauth_token_secret forKey:kOAuthTokenSecret];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
