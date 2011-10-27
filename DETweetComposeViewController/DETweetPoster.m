@@ -15,6 +15,7 @@
 
 - (void)postTweet:(NSString *)tweetText withImages:(NSArray *)images;
 {
+    NSMutableData *postData = nil;
     NSMutableDictionary *tweetParameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:tweetText, @"status",
                                             @"t", @"trim_user", nil];
     
@@ -25,7 +26,6 @@
     }
     
     NSString *postString = [NSString stringWithFormat:@"%@", [postKeysAndValues componentsJoinedByString:@"&"]];
-    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
     NSURL *postURL = [NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"];
     if ([images count] > 0) {
@@ -35,19 +35,41 @@
     OAuth *oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
     [oAuth loadOAuthContextFromUserDefaults];
 
-    NSString *header = [oAuth oAuthHeaderForMethod:@"POST" andUrl:[postURL absoluteString] andParams:tweetParameters];
+    NSString *header = nil;
     
     NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:postURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60 * 2];
     [postRequest setHTTPMethod:@"POST"];
-    [postRequest addValue:header forHTTPHeaderField:@"Authorization"];
     
     if ([images count] > 0) {
+        header = [oAuth oAuthHeaderForMethod:@"POST" andUrl:[postURL absoluteString] andParams:nil];
+        NSString *stringBoundary = [NSString stringWithString:@"dOuBlEeNcOrEbOuNdArY"];
+        [postRequest setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", stringBoundary] forHTTPHeaderField:@"Content-Type"];
+        
+        postData = [NSMutableData data];
+        [postData appendData:[[NSString stringWithFormat:@"--%@\r\n",stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        for (NSString *key in [tweetParameters allKeys]) {
+            [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
+            [postData appendData:[[NSString stringWithFormat:@"%@", [tweetParameters objectForKey:key]] dataUsingEncoding:NSUTF8StringEncoding]];
+            [postData appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        }
+        
+        for (UIImage *image in images) {
+            [postData appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"media[]\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+            [postData appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];            
+            [postData appendData:UIImagePNGRepresentation(image)];
+            [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        }
         
     } else {
+        header = [oAuth oAuthHeaderForMethod:@"POST" andUrl:[postURL absoluteString] andParams:tweetParameters];
         [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        postData = [[postString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
         [postRequest setValue:[NSString stringWithFormat:@"%d", [postData length]] forHTTPHeaderField:@"Content-Length"];
-        [postRequest setHTTPBody:postData];
     }
+    
+    [postRequest setHTTPBody:postData];
+    [postRequest addValue:header forHTTPHeaderField:@"Authorization"];
     
     if ([NSURLConnection canHandleRequest:postRequest]) {
         NSURLConnection *postConnection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
