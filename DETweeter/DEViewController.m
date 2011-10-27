@@ -9,11 +9,15 @@
 #import "DETweetComposeViewController.h"
 #import <Twitter/Twitter.h>
 #import <QuartzCore/QuartzCore.h>  // Just for testing
-
+#import "OAuth.h"
+#import "OAuthConsumerCredentials.h"
 
 @interface DEViewController ()
 
+@property (nonatomic, retain) OAuth *oAuth;
+
 - (void)tweet;
+- (BOOL)hasTwiterCredentials;
 
 @end
 
@@ -21,13 +25,26 @@
 @implementation DEViewController
 
 
-
+@synthesize oAuth = _oAuth;
 
 #pragma mark - Class Methods
 
 
 #pragma mark - Setup & Teardown
 
+- (void)dealloc
+{
+
+    [_oAuth release], _oAuth = nil;
+    [super dealloc];
+}
+
+
+- (void)viewDidUnload
+{
+    self.oAuth = nil;
+    [super viewDidUnload];
+}
 
 #pragma mark - Superclass Overrides
 
@@ -129,6 +146,16 @@ void dumpViews(UIView* view, NSString *text, NSString *indent)
 }
 
 
+- (BOOL)hasTwiterCredentials
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kDEConsumerKey] &&
+         [[NSUserDefaults standardUserDefaults] objectForKey:kDEConsumerSecret]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 #pragma mark - Notifications
 
 
@@ -136,7 +163,17 @@ void dumpViews(UIView* view, NSString *text, NSString *indent)
 
 - (IBAction)tweetUs:(id)sender
 {    
-    [self tweetUs];
+    // check for saved credentials
+    if ([self hasTwiterCredentials]) {
+        [self tweetUs];
+    } else {
+        self.oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
+        TwitterDialog *td = [[[TwitterDialog alloc] init] autorelease];
+        td.twitterOAuth = self.oAuth;
+        td.delegate = self;
+        td.logindelegate = self;
+        [td show];
+    }
 }
 
 
@@ -149,7 +186,22 @@ void dumpViews(UIView* view, NSString *text, NSString *indent)
 #pragma mark - Accessors
 
 
+#pragma mark - TwitterDialogDelegate
 
+
+#pragma mark - TwitterLoginDialogDelegate
+
+- (void)twitterDidLogin
+{
+    [[NSUserDefaults standardUserDefaults] setObject:self.oAuth.oauth_token forKey:kDEConsumerKey];
+    [[NSUserDefaults standardUserDefaults] setObject:self.oAuth.oauth_token_secret forKey:kDEConsumerSecret];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)twitterDidNotLogin:(BOOL)cancelled
+{
+//    Show Error UIAlertView
+}
 
 
 

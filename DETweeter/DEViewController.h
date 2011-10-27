@@ -5,7 +5,9 @@
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
 //
 
-@interface DEViewController : UIViewController
+#import "TwitterDialog.h"
+
+@interface DEViewController : UIViewController <TwitterDialogDelegate, TwitterLoginDialogDelegate>
 
 - (IBAction)tweetUs:(id)sender;
 - (IBAction)tweetThem:(id)sender;
