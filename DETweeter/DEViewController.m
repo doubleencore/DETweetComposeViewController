@@ -7,26 +7,31 @@
 
 #import "DEViewController.h"
 #import "DETweetComposeViewController.h"
-#import <Twitter/Twitter.h>
-#import <QuartzCore/QuartzCore.h>  // Just for testing
 #import "OAuth.h"
 #import "OAuth+UserDefaults.h"
 #import "OAuthConsumerCredentials.h"
+#import <Twitter/Twitter.h>
+#import <QuartzCore/QuartzCore.h>  // Just for testing
+
 
 @interface DEViewController ()
 
 @property (nonatomic, retain) OAuth *oAuth;
 
-- (void)tweet;
-- (BOOL)hasTwiterCredentials;
+- (void)addTweetContent:(id)tcvc;
 
 @end
 
 
 @implementation DEViewController
 
+    // IBOutlets
+@synthesize deTweetButton = _deTweetButton;
+@synthesize twTweetButton = _twTweetButton;
 
+    // Private
 @synthesize oAuth = _oAuth;
+
 
 #pragma mark - Class Methods
 
@@ -35,19 +40,29 @@
 
 - (void)dealloc
 {
-
+        // IBOutlets
+    [_deTweetButton release], _deTweetButton = nil;
+    [_twTweetButton release], _twTweetButton = nil;
+    
+        // Private
     [_oAuth release], _oAuth = nil;
+
     [super dealloc];
 }
 
 
-- (void)viewDidUnload
+#pragma mark - Superclass Overrides
+
+- (void)viewDidLoad
 {
-    self.oAuth = nil;
-    [super viewDidUnload];
+    [super viewDidLoad];
+    
+    if ([TWTweetComposeViewController class] == nil) {
+        self.twTweetButton.enabled = NO;
+        [self.twTweetButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    }
 }
 
-#pragma mark - Superclass Overrides
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -60,103 +75,70 @@
 }
 
 
+- (void)viewDidUnload
+{
+        // IBOutlets
+    self.deTweetButton = nil;
+    self.twTweetButton = nil;
+    
+        // Private
+    self.oAuth = nil;
+    
+    [super viewDidUnload];
+}
+
+
 #pragma mark - Public
 
 
 #pragma mark - Private
 
-void dumpViews(UIView* view, NSString *text, NSString *indent)
-    // Just test code.
-{
-    if ([view isKindOfClass:[UIImageView class]]) {
-        NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *sDocumentsDir = [documentPaths objectAtIndex:0];
-        NSString *filePath = [sDocumentsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"Image %d.png", arc4random()]];
-        NSData *data = UIImagePNGRepresentation(((UIImageView *)view).image);
-        [data writeToFile:filePath atomically:YES];
-    }
-    
-    Class cl = [view class];
-    NSString *classDescription = [cl description];
-    while ([cl superclass]) 
-    {
-        cl = [cl superclass];
-        classDescription = [classDescription stringByAppendingFormat:@":%@", [cl description]];
-    }
-    
-    if ([text compare:@""] == NSOrderedSame)
-        NSLog(@"%@ %@", classDescription, NSStringFromCGRect(view.frame));
-    else
-        NSLog(@"%@ %@ %@", text, classDescription, NSStringFromCGRect(view.frame));
-    
-    for (NSUInteger i = 0; i < [view.subviews count]; i++)
-    {
-        UIView *subView = [view.subviews objectAtIndex:i];
-        NSString *newIndent = [[NSString alloc] initWithFormat:@"  %@", indent];
-        NSString *msg = [[NSString alloc] initWithFormat:@"%@%d:", newIndent, i];
-        dumpViews(subView, msg, newIndent);
-        [msg release];
-        [newIndent release];
-    }
-}
-
-
-- (void)xx:(id)tcvc
-    // More test code.
-{
-    UIView *aView = [[[tcvc view] subviews] objectAtIndex:0];
-    NSArray *subviews = aView.subviews;
-    dumpViews(aView, @"", @"");
-
-//    UIImageView *iv = [subviews lastObject];
-//    UIImage *image = iv.image;
-//    NSData *data = UIImagePNGRepresentation(image);
-//
-//    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *sDocumentsDir = [documentPaths objectAtIndex:0];
-//    NSString *filePath = [sDocumentsDir stringByAppendingPathComponent:@"IMaGE.png"];
-//    [data writeToFile:filePath atomically:YES];
-    
-}
-
-
 - (void)tweetUs
 {
     DETweetComposeViewController *tcvc = [[[DETweetComposeViewController alloc] init] autorelease];
-    [tcvc addImage:[UIImage imageNamed:@"Buzz.jpeg"]];
-    [tcvc addImage:[UIImage imageNamed:@"Woody.jpeg"]];
-    [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
-    [tcvc addURL:[NSURL URLWithString:@"http://www.Apple.com/"]];
-    [tcvc addURL:[NSURL URLWithString:@"http://www.Twitter.com/"]];
-    [tcvc setInitialText:@"This is a test of the emergency broadcast system. Don't panic."];
+    [self addTweetContent:tcvc];
     [self presentModalViewController:tcvc animated:YES];
 }
 
 
 - (void)tweetThem
 {
+    TWTweetComposeViewControllerCompletionHandler 
+    completionHandler = ^(TWTweetComposeViewControllerResult result) {
+        switch (result)
+        {
+            case TWTweetComposeViewControllerResultCancelled:
+                NSLog(@"Twitter Result: canceled");
+                [self dismissModalViewControllerAnimated:YES];
+                break;
+            case TWTweetComposeViewControllerResultDone:
+                NSLog(@"Twitter Result: sent");
+                break;
+            default:
+                NSLog(@"Twitter Result: default");
+                break;
+        }
+    };
+
     TWTweetComposeViewController *tcvc = [[[TWTweetComposeViewController alloc] init] autorelease];
+    if (tcvc) {
+        [self addTweetContent:tcvc];
+        [tcvc setCompletionHandler:completionHandler];
+        [self presentModalViewController:tcvc animated:YES];
+    }
+}
+
+
+- (void)addTweetContent:(id)tcvc
+{
     [tcvc addImage:[UIImage imageNamed:@"Buzz.jpeg"]];
-    [tcvc addImage:[UIImage imageNamed:@"Woody.jpeg"]];
+    [tcvc addImage:[UIImage imageNamed:@"Woody.jpeg"]];  // This one won't actually work. Only one image per tweet allowed.
     [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
     [tcvc addURL:[NSURL URLWithString:@"http://www.Apple.com/"]];
     [tcvc addURL:[NSURL URLWithString:@"http://www.Twitter.com/"]];
     [tcvc setInitialText:@"This is a test of the emergency broadcast system. Don't panic."];
-    [self presentModalViewController:tcvc animated:YES];
-//    [self performSelector:@selector(xx:) withObject:tcvc afterDelay:1.0f];
 }
 
-
-- (BOOL)hasTwiterCredentials
-{
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"oauth_token"] &&
-         [[NSUserDefaults standardUserDefaults] objectForKey:@"oauth_token_secret"] &&
-        [[NSUserDefaults standardUserDefaults] objectForKey:@"oauth_token_authorized"]) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
 
 #pragma mark - Notifications
 
@@ -166,9 +148,10 @@ void dumpViews(UIView* view, NSString *text, NSString *indent)
 - (IBAction)tweetUs:(id)sender
 {    
     // check for saved credentials
-    if ([self hasTwiterCredentials]) {
+    if ([DETweetComposeViewController canSendTweet]) {
         [self tweetUs];
-    } else {
+    }
+    else {
         self.oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
         TwitterDialog *td = [[[TwitterDialog alloc] init] autorelease];
         td.twitterOAuth = self.oAuth;
@@ -202,8 +185,6 @@ void dumpViews(UIView* view, NSString *text, NSString *indent)
 {
 //    Show Error UIAlertView
 }
-
-
 
 
 @end

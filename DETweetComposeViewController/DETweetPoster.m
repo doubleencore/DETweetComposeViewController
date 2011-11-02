@@ -11,9 +11,10 @@
 #import "OAuthConsumerCredentials.h"
 #import "NSString+URLEncoding.h"
 
+
 @implementation DETweetPoster
 
-- (void)postTweet:(NSString *)tweetText withImages:(NSArray *)images;
+- (void)postTweet:(NSString *)tweetText withImages:(NSArray *)images
 {
     NSMutableData *postData = nil;
     NSMutableDictionary *tweetParameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:tweetText, @"status",
@@ -88,9 +89,9 @@
 
 #pragma mark - NSURLConnectionDataDelegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
-    NSUInteger statusCode = [response statusCode];
+    NSInteger statusCode = [response statusCode];
     
     NSRange successRange = NSMakeRange(200, 204);
     if (NSLocationInRange(statusCode, successRange)) {

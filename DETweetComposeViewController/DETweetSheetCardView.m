@@ -47,6 +47,8 @@
 
 - (void)tweetSheetCardViewInit
 {
+    self.backgroundColor = [UIColor clearColor];  // So we can use any color in IB.
+    
         // Add a border and a shadow.
     self.layer.cornerRadius = 12.0f;
     self.layer.borderWidth = 1.0f;
@@ -60,7 +62,7 @@
         // edges, which we can't do if we want the shadow.
     UIView *backgroundView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
     backgroundView.layer.masksToBounds = YES;
-    backgroundView.layer.cornerRadius = self.layer.cornerRadius;
+    backgroundView.layer.cornerRadius = self.layer.cornerRadius + 1.0f;
     backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DETweetCardBackground"]];
     backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self insertSubview:backgroundView atIndex:0];

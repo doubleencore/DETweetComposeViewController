@@ -9,6 +9,9 @@
 
 @interface DEViewController : UIViewController <TwitterDialogDelegate, TwitterLoginDialogDelegate>
 
+@property (retain, nonatomic) IBOutlet UIButton *deTweetButton;
+@property (retain, nonatomic) IBOutlet UIButton *twTweetButton;
+
 - (IBAction)tweetUs:(id)sender;
 - (IBAction)tweetThem:(id)sender;
 

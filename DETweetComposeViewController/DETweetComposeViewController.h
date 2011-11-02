@@ -5,14 +5,19 @@
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
 //
 
-@interface DETweetComposeViewController : UIViewController
+@interface DETweetComposeViewController : UIViewController <UITextViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UIButton *sendButton;
 @property (retain, nonatomic) IBOutlet UITextView *textView;
 @property (retain, nonatomic) IBOutlet UIImageView *paperClipView;
-@property (retain, nonatomic) IBOutlet UIImageView *attachmentFrameView;
-@property (retain, nonatomic) IBOutlet UIImageView *attachmentImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *attachment1FrameView;
+@property (retain, nonatomic) IBOutlet UIImageView *attachment2FrameView;
+@property (retain, nonatomic) IBOutlet UIImageView *attachment3FrameView;
+@property (retain, nonatomic) IBOutlet UIImageView *attachment1ImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *attachment2ImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *attachment3ImageView;
+@property (retain, nonatomic) IBOutlet UILabel *characterCountLabel;
 
     // Public
 + (void)displayNoTwitterAccountsAlert;

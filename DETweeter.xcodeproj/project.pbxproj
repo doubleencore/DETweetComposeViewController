@@ -35,6 +35,8 @@
 		6925A82E1459104200011DA0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6925A82D1459104200011DA0 /* MobileCoreServices.framework */; };
 		6925A8301459105500011DA0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6925A82F1459105500011DA0 /* libz.dylib */; };
 		699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A29BA1459B3960046B260 /* DETweetPoster.m */; };
+		B63C1FCF1461DC2C00DF52F7 /* Buzz-small.png in Resources */ = {isa = PBXBuildFile; fileRef = B63C1FCD1461DC2C00DF52F7 /* Buzz-small.png */; };
+		B63C1FD01461DC2C00DF52F7 /* Woody-small.png in Resources */ = {isa = PBXBuildFile; fileRef = B63C1FCE1461DC2C00DF52F7 /* Woody-small.png */; };
 		B655DDEA1458B4A500F513E1 /* Buzz.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDE91458B4A500F513E1 /* Buzz.jpeg */; };
 		B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEC1458B56300F513E1 /* Woody.jpeg */; };
 		B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */; };
@@ -125,6 +127,8 @@
 		6925A82F1459105500011DA0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		699A29B91459B3960046B260 /* DETweetPoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetPoster.h; path = ../DETweetComposeViewController/DETweetPoster.h; sourceTree = "<group>"; };
 		699A29BA1459B3960046B260 /* DETweetPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetPoster.m; path = ../DETweetComposeViewController/DETweetPoster.m; sourceTree = "<group>"; };
+		B63C1FCD1461DC2C00DF52F7 /* Buzz-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzz-small.png"; sourceTree = "<group>"; };
+		B63C1FCE1461DC2C00DF52F7 /* Woody-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Woody-small.png"; sourceTree = "<group>"; };
 		B655DDE91458B4A500F513E1 /* Buzz.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Buzz.jpeg; sourceTree = "<group>"; };
 		B655DDEC1458B56300F513E1 /* Woody.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Woody.jpeg; sourceTree = "<group>"; };
 		B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardBackground.png; path = DETweetComposeViewController/Resources/DETweetCardBackground.png; sourceTree = SOURCE_ROOT; };
@@ -298,6 +302,17 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		B63C1FCB1461B68000DF52F7 /* Test Images */ = {
+			isa = PBXGroup;
+			children = (
+				B655DDE91458B4A500F513E1 /* Buzz.jpeg */,
+				B655DDEC1458B56300F513E1 /* Woody.jpeg */,
+				B63C1FCD1461DC2C00DF52F7 /* Buzz-small.png */,
+				B63C1FCE1461DC2C00DF52F7 /* Woody-small.png */,
+			);
+			name = "Test Images";
+			sourceTree = "<group>";
+		};
 		B6A13108145768DB00500180 = {
 			isa = PBXGroup;
 			children = (
@@ -334,17 +349,16 @@
 		B6A1311D145768DB00500180 /* Demo App */ = {
 			isa = PBXGroup;
 			children = (
-				6925A7D214590E6E00011DA0 /* unofficial-twitter-sdk */,
 				B6A13126145768DB00500180 /* DEAppDelegate.h */,
 				B6A13127145768DB00500180 /* DEAppDelegate.m */,
 				B6A13129145768DB00500180 /* DEViewController.h */,
 				B6A1312A145768DB00500180 /* DEViewController.m */,
 				B6A1312C145768DB00500180 /* DEViewController_iPhone.xib */,
 				B6A1312F145768DB00500180 /* DEViewController_iPad.xib */,
-				B655DDE91458B4A500F513E1 /* Buzz.jpeg */,
-				B655DDEC1458B56300F513E1 /* Woody.jpeg */,
-				B6A1311E145768DB00500180 /* Supporting Files */,
 				6925A82814590F4300011DA0 /* OAuthConsumerCredentials.h */,
+				6925A7D214590E6E00011DA0 /* unofficial-twitter-sdk */,
+				B63C1FCB1461B68000DF52F7 /* Test Images */,
+				B6A1311E145768DB00500180 /* Supporting Files */,
 			);
 			name = "Demo App";
 			path = DETweeter;
@@ -467,6 +481,8 @@
 				B655DE051458C5F000F513E1 /* DETweetURLAttachment@2x.png in Resources */,
 				6925A82514590EB400011DA0 /* tclose.png in Resources */,
 				6925A82614590EB400011DA0 /* ticon.png in Resources */,
+				B63C1FCF1461DC2C00DF52F7 /* Buzz-small.png in Resources */,
+				B63C1FD01461DC2C00DF52F7 /* Woody-small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
