@@ -394,6 +394,33 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
+#pragma mark - DETweetPosterDelegate
+
+- (void)tweetFailed
+{
+    [[[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
+                               message:[NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text]
+                              delegate:self
+                     cancelButtonTitle:@"Cancel"
+                       otherButtonTitles:@"Try Again", nil] autorelease] show];
+}
+
+
+- (void)tweetSucceeded
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self send];
+    }
+}
+
 #pragma mark - Actions
 
 - (IBAction)send
@@ -401,6 +428,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     self.sendButton.enabled = NO;
     
     DETweetPoster *tweetPoster = [[DETweetPoster alloc] init];
+    tweetPoster.delegate = self;
     [tweetPoster postTweet:self.textView.text withImages:[NSArray arrayWithObject:[UIImage imageNamed:@"Buzz.jpeg"]]];
 //    [self dismissModalViewControllerAnimated:YES];
 }

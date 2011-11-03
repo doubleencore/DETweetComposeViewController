@@ -4,8 +4,9 @@
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
 //
+#import "DETweetPoster.h"
 
-@interface DETweetComposeViewController : UIViewController <UITextViewDelegate>
+@interface DETweetComposeViewController : UIViewController <UITextViewDelegate, UIAlertViewDelegate, DETweetPosterDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UIButton *sendButton;

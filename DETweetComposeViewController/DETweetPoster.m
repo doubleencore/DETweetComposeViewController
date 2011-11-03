@@ -11,8 +11,19 @@
 #import "OAuthConsumerCredentials.h"
 #import "NSString+URLEncoding.h"
 
+@interface DETweetPoster ()
+- (void)sendFailedToDelegate;
+- (void)sendSuccessToDelegate;
+@end
 
 @implementation DETweetPoster
+
+@synthesize delegate = _delegate;
+
+- (void)dealloc {
+    _delegate = nil;
+    [super dealloc];
+}
 
 - (void)postTweet:(NSString *)tweetText withImages:(NSArray *)images
 {
@@ -76,7 +87,26 @@
         NSURLConnection *postConnection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
         [postConnection start];
     } else {
-//        Return can't handle request error
+        [self sendFailedToDelegate];
+    }
+}
+
+#pragma makr - Private methods
+
+- (void)sendFailedToDelegate
+{
+    if (self.delegate != nil &&
+        [self.delegate respondsToSelector:@selector(tweetFailed)]) {
+        [self.delegate tweetFailed];
+    }
+}
+
+
+- (void)sendSuccessToDelegate
+{
+    if (self.delegate != nil &&
+        [self.delegate respondsToSelector:@selector(tweetSucceeded)]) {
+        [self.delegate tweetSucceeded];
     }
 }
 
@@ -84,7 +114,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"didFailWithError: %@", error);
+    [self sendFailedToDelegate];
 }
 
 #pragma mark - NSURLConnectionDataDelegate
@@ -95,19 +125,10 @@
     
     NSRange successRange = NSMakeRange(200, 204);
     if (NSLocationInRange(statusCode, successRange)) {
-//      Tell the delegate we had a success.
-        NSLog(@"success");
+        [self sendSuccessToDelegate];
     } else {
-//      Tell the delegate we had a failuer.
-        NSLog(@"failure");
+        [self sendFailedToDelegate];
     }
-    
-    NSLog(@"%d", statusCode);
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSLog(@"didFinishLoading: %@", connection);
 }
 
 @end
