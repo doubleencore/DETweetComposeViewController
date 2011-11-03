@@ -5,8 +5,11 @@
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
 //
 
+@class DETweetSheetCardView;
+
 @interface DETweetComposeViewController : UIViewController <UITextViewDelegate>
 
+@property (retain, nonatomic) IBOutlet DETweetSheetCardView *cardView;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UIButton *sendButton;
 @property (retain, nonatomic) IBOutlet UITextView *textView;

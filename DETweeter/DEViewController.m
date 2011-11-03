@@ -132,10 +132,10 @@
 - (void)addTweetContent:(id)tcvc
 {
     [tcvc addImage:[UIImage imageNamed:@"Buzz.jpeg"]];
-    [tcvc addImage:[UIImage imageNamed:@"Woody.jpeg"]];  // This one won't actually work. Only one image per tweet allowed.
+//    [tcvc addImage:[UIImage imageNamed:@"Woody.jpeg"]];  // This one won't actually work. Only one image per tweet allowed.
     [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
     [tcvc addURL:[NSURL URLWithString:@"http://www.Apple.com/"]];
-    [tcvc addURL:[NSURL URLWithString:@"http://www.Twitter.com/"]];
+//    [tcvc addURL:[NSURL URLWithString:@"http://www.Twitter.com/"]];
     [tcvc setInitialText:@"This is a test of the emergency broadcast system. Don't panic."];
 }
 

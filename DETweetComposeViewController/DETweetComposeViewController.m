@@ -7,6 +7,7 @@
 
 #import "DETweetComposeViewController.h"
 #import "DETweetPoster.h"
+#import "DETweetSheetCardView.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -22,6 +23,7 @@
 - (BOOL)isPresented;
 - (NSInteger)charactersAvailable;
 - (void)updateCharacterCount;
+- (BOOL)hasAttachments;
 - (void)updateAttachments;
 
 @end
@@ -30,6 +32,7 @@
 @implementation DETweetComposeViewController
 
     // IBOutlets
+@synthesize cardView = _cardView;
 @synthesize cancelButton = _cancelButton;
 @synthesize sendButton = _sendButton;
 @synthesize textView = _textView;
@@ -148,11 +151,14 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [_attachmentFrameViews release], _attachmentFrameViews = nil;
     [_attachmentImageViews release], _attachmentImageViews = nil;
     
+    [_cardView release];
     [super dealloc];
 }
 
 
 #pragma mark - Superclass Overrides
+
+#define degreesToRadians(x) (M_PI * x / 180.0)
 
 - (void)viewDidLoad
 {
@@ -179,6 +185,12 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
                                  self.attachment2ImageView,
                                  self.attachment3ImageView,
                                  nil];
+
+        // Now add some angle to attachments 2 and 3.
+    self.attachment2FrameView.transform = CGAffineTransformMakeRotation(degreesToRadians(-5.0f));
+    self.attachment2ImageView.transform = CGAffineTransformMakeRotation(degreesToRadians(-5.0f));
+    self.attachment3FrameView.transform = CGAffineTransformMakeRotation(degreesToRadians(-10.0f));
+    self.attachment3ImageView.transform = CGAffineTransformMakeRotation(degreesToRadians(-10.0f));
     
         // Mask the corners on the image views so they don't stick out of the frame.
     [self.self.attachmentImageViews enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
@@ -232,6 +244,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     self.attachmentFrameViews = nil;
     self.attachmentImageViews = nil;
 
+    [self setCardView:nil];
     [super viewDidUnload];
 }
 
@@ -353,8 +366,24 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
+- (BOOL)hasAttachments
+{
+    return [self.images count] > 0 || [self.urls count] > 0;
+}
+
+
 - (void)updateAttachments
 {
+    CGRect frame = self.textView.frame;
+    if ([self hasAttachments]) {
+        frame.size.width = self.cardView.frame.size.width - self.attachment1FrameView.frame.size.width;
+    }
+    else {
+        frame.size.width = self.cardView.frame.size.width;
+    }
+    self.textView.frame = frame;
+    self.textView.backgroundColor = [UIColor yellowColor];
+    
         // Create a array of attachment images to display.
     NSMutableArray *attachmentImages = [NSMutableArray arrayWithArray:self.images];
     for (NSInteger index = 0; index < [self.urls count]; index++) {
