@@ -41,12 +41,12 @@
 		B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEC1458B56300F513E1 /* Woody.jpeg */; };
 		B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */; };
 		B655DDF71458C43C00F513E1 /* DETweetCardBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */; };
-		B655DDF81458C43C00F513E1 /* DETweetCancelButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF01458C43C00F513E1 /* DETweetCancelButton.png */; };
-		B655DDF91458C43C00F513E1 /* DETweetCancelButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF11458C43C00F513E1 /* DETweetCancelButton@2x.png */; };
+		B655DDF81458C43C00F513E1 /* DETweetCancelButtonPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF01458C43C00F513E1 /* DETweetCancelButtonPortrait.png */; };
+		B655DDF91458C43C00F513E1 /* DETweetCancelButtonPortrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF11458C43C00F513E1 /* DETweetCancelButtonPortrait@2x.png */; };
 		B655DDFA1458C43C00F513E1 /* DETweetPaperClip.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF21458C43C00F513E1 /* DETweetPaperClip.png */; };
 		B655DDFB1458C43C00F513E1 /* DETweetPaperClip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF31458C43C00F513E1 /* DETweetPaperClip@2x.png */; };
-		B655DDFC1458C43C00F513E1 /* DETweetSendButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF41458C43C00F513E1 /* DETweetSendButton.png */; };
-		B655DDFD1458C43C00F513E1 /* DETweetSendButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF51458C43C00F513E1 /* DETweetSendButton@2x.png */; };
+		B655DDFC1458C43C00F513E1 /* DETweetSendButtonPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF41458C43C00F513E1 /* DETweetSendButtonPortrait.png */; };
+		B655DDFD1458C43C00F513E1 /* DETweetSendButtonPortrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF51458C43C00F513E1 /* DETweetSendButtonPortrait@2x.png */; };
 		B655DE021458C5F000F513E1 /* DETweetAttachmentFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDFE1458C5F000F513E1 /* DETweetAttachmentFrame.png */; };
 		B655DE031458C5F000F513E1 /* DETweetAttachmentFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDFF1458C5F000F513E1 /* DETweetAttachmentFrame@2x.png */; };
 		B655DE041458C5F000F513E1 /* DETweetURLAttachment.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */; };
@@ -64,6 +64,12 @@
 		B6A1313C14576AB600500180 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A1313B14576AB600500180 /* Twitter.framework */; };
 		B6A131421457780A00500180 /* DETweetComposeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A131411457780A00500180 /* DETweetComposeView.xib */; };
 		B6A1314814577D5A00500180 /* DETweetSheetCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1314714577D5A00500180 /* DETweetSheetCardView.m */; };
+		B6DEB61214630B2E009FD33C /* DETweetCancelButtonLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DEB60E14630B2E009FD33C /* DETweetCancelButtonLandscape.png */; };
+		B6DEB61314630B2E009FD33C /* DETweetCancelButtonLandscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DEB60F14630B2E009FD33C /* DETweetCancelButtonLandscape@2x.png */; };
+		B6DEB61414630B2E009FD33C /* DETweetSendButtonLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DEB61014630B2E009FD33C /* DETweetSendButtonLandscape.png */; };
+		B6DEB61514630B2E009FD33C /* DETweetSendButtonLandscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DEB61114630B2E009FD33C /* DETweetSendButtonLandscape@2x.png */; };
+		B6DEB61914631499009FD33C /* DETweetCardHeaderLine.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DEB61714631499009FD33C /* DETweetCardHeaderLine.png */; };
+		B6DEB61A14631499009FD33C /* DETweetCardHeaderLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DEB61814631499009FD33C /* DETweetCardHeaderLine@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,12 +139,12 @@
 		B655DDEC1458B56300F513E1 /* Woody.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Woody.jpeg; sourceTree = "<group>"; };
 		B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardBackground.png; path = DETweetComposeViewController/Resources/DETweetCardBackground.png; sourceTree = SOURCE_ROOT; };
 		B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCardBackground@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCardBackground@2x.png"; sourceTree = SOURCE_ROOT; };
-		B655DDF01458C43C00F513E1 /* DETweetCancelButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCancelButton.png; path = DETweetComposeViewController/Resources/DETweetCancelButton.png; sourceTree = SOURCE_ROOT; };
-		B655DDF11458C43C00F513E1 /* DETweetCancelButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCancelButton@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCancelButton@2x.png"; sourceTree = SOURCE_ROOT; };
+		B655DDF01458C43C00F513E1 /* DETweetCancelButtonPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCancelButtonPortrait.png; path = DETweetComposeViewController/Resources/DETweetCancelButtonPortrait.png; sourceTree = SOURCE_ROOT; };
+		B655DDF11458C43C00F513E1 /* DETweetCancelButtonPortrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCancelButtonPortrait@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCancelButtonPortrait@2x.png"; sourceTree = SOURCE_ROOT; };
 		B655DDF21458C43C00F513E1 /* DETweetPaperClip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetPaperClip.png; path = DETweetComposeViewController/Resources/DETweetPaperClip.png; sourceTree = SOURCE_ROOT; };
 		B655DDF31458C43C00F513E1 /* DETweetPaperClip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetPaperClip@2x.png"; path = "DETweetComposeViewController/Resources/DETweetPaperClip@2x.png"; sourceTree = SOURCE_ROOT; };
-		B655DDF41458C43C00F513E1 /* DETweetSendButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetSendButton.png; path = DETweetComposeViewController/Resources/DETweetSendButton.png; sourceTree = SOURCE_ROOT; };
-		B655DDF51458C43C00F513E1 /* DETweetSendButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetSendButton@2x.png"; path = "DETweetComposeViewController/Resources/DETweetSendButton@2x.png"; sourceTree = SOURCE_ROOT; };
+		B655DDF41458C43C00F513E1 /* DETweetSendButtonPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetSendButtonPortrait.png; path = DETweetComposeViewController/Resources/DETweetSendButtonPortrait.png; sourceTree = SOURCE_ROOT; };
+		B655DDF51458C43C00F513E1 /* DETweetSendButtonPortrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetSendButtonPortrait@2x.png"; path = "DETweetComposeViewController/Resources/DETweetSendButtonPortrait@2x.png"; sourceTree = SOURCE_ROOT; };
 		B655DDFE1458C5F000F513E1 /* DETweetAttachmentFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetAttachmentFrame.png; path = DETweetComposeViewController/Resources/DETweetAttachmentFrame.png; sourceTree = SOURCE_ROOT; };
 		B655DDFF1458C5F000F513E1 /* DETweetAttachmentFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetAttachmentFrame@2x.png"; path = "DETweetComposeViewController/Resources/DETweetAttachmentFrame@2x.png"; sourceTree = SOURCE_ROOT; };
 		B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetURLAttachment.png; path = DETweetComposeViewController/Resources/DETweetURLAttachment.png; sourceTree = SOURCE_ROOT; };
@@ -163,6 +169,12 @@
 		B6A131411457780A00500180 /* DETweetComposeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DETweetComposeView.xib; sourceTree = "<group>"; };
 		B6A1314614577D5A00500180 /* DETweetSheetCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetSheetCardView.h; path = DETweetComposeViewController/DETweetSheetCardView.h; sourceTree = SOURCE_ROOT; };
 		B6A1314714577D5A00500180 /* DETweetSheetCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetSheetCardView.m; path = DETweetComposeViewController/DETweetSheetCardView.m; sourceTree = SOURCE_ROOT; };
+		B6DEB60E14630B2E009FD33C /* DETweetCancelButtonLandscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCancelButtonLandscape.png; path = DETweetComposeViewController/Resources/DETweetCancelButtonLandscape.png; sourceTree = SOURCE_ROOT; };
+		B6DEB60F14630B2E009FD33C /* DETweetCancelButtonLandscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCancelButtonLandscape@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCancelButtonLandscape@2x.png"; sourceTree = SOURCE_ROOT; };
+		B6DEB61014630B2E009FD33C /* DETweetSendButtonLandscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetSendButtonLandscape.png; path = DETweetComposeViewController/Resources/DETweetSendButtonLandscape.png; sourceTree = SOURCE_ROOT; };
+		B6DEB61114630B2E009FD33C /* DETweetSendButtonLandscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetSendButtonLandscape@2x.png"; path = "DETweetComposeViewController/Resources/DETweetSendButtonLandscape@2x.png"; sourceTree = SOURCE_ROOT; };
+		B6DEB61714631499009FD33C /* DETweetCardHeaderLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardHeaderLine.png; path = DETweetComposeViewController/Resources/DETweetCardHeaderLine.png; sourceTree = SOURCE_ROOT; };
+		B6DEB61814631499009FD33C /* DETweetCardHeaderLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCardHeaderLine@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCardHeaderLine@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,12 +408,18 @@
 			children = (
 				B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */,
 				B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */,
-				B655DDF01458C43C00F513E1 /* DETweetCancelButton.png */,
-				B655DDF11458C43C00F513E1 /* DETweetCancelButton@2x.png */,
+				B6DEB61714631499009FD33C /* DETweetCardHeaderLine.png */,
+				B6DEB61814631499009FD33C /* DETweetCardHeaderLine@2x.png */,
+				B655DDF01458C43C00F513E1 /* DETweetCancelButtonPortrait.png */,
+				B655DDF11458C43C00F513E1 /* DETweetCancelButtonPortrait@2x.png */,
+				B6DEB60E14630B2E009FD33C /* DETweetCancelButtonLandscape.png */,
+				B6DEB60F14630B2E009FD33C /* DETweetCancelButtonLandscape@2x.png */,
+				B655DDF41458C43C00F513E1 /* DETweetSendButtonPortrait.png */,
+				B655DDF51458C43C00F513E1 /* DETweetSendButtonPortrait@2x.png */,
+				B6DEB61014630B2E009FD33C /* DETweetSendButtonLandscape.png */,
+				B6DEB61114630B2E009FD33C /* DETweetSendButtonLandscape@2x.png */,
 				B655DDF21458C43C00F513E1 /* DETweetPaperClip.png */,
 				B655DDF31458C43C00F513E1 /* DETweetPaperClip@2x.png */,
-				B655DDF41458C43C00F513E1 /* DETweetSendButton.png */,
-				B655DDF51458C43C00F513E1 /* DETweetSendButton@2x.png */,
 				B655DDFE1458C5F000F513E1 /* DETweetAttachmentFrame.png */,
 				B655DDFF1458C5F000F513E1 /* DETweetAttachmentFrame@2x.png */,
 				B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */,
@@ -469,12 +487,12 @@
 				B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */,
 				B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */,
 				B655DDF71458C43C00F513E1 /* DETweetCardBackground@2x.png in Resources */,
-				B655DDF81458C43C00F513E1 /* DETweetCancelButton.png in Resources */,
-				B655DDF91458C43C00F513E1 /* DETweetCancelButton@2x.png in Resources */,
+				B655DDF81458C43C00F513E1 /* DETweetCancelButtonPortrait.png in Resources */,
+				B655DDF91458C43C00F513E1 /* DETweetCancelButtonPortrait@2x.png in Resources */,
 				B655DDFA1458C43C00F513E1 /* DETweetPaperClip.png in Resources */,
 				B655DDFB1458C43C00F513E1 /* DETweetPaperClip@2x.png in Resources */,
-				B655DDFC1458C43C00F513E1 /* DETweetSendButton.png in Resources */,
-				B655DDFD1458C43C00F513E1 /* DETweetSendButton@2x.png in Resources */,
+				B655DDFC1458C43C00F513E1 /* DETweetSendButtonPortrait.png in Resources */,
+				B655DDFD1458C43C00F513E1 /* DETweetSendButtonPortrait@2x.png in Resources */,
 				B655DE021458C5F000F513E1 /* DETweetAttachmentFrame.png in Resources */,
 				B655DE031458C5F000F513E1 /* DETweetAttachmentFrame@2x.png in Resources */,
 				B655DE041458C5F000F513E1 /* DETweetURLAttachment.png in Resources */,
@@ -483,6 +501,12 @@
 				6925A82614590EB400011DA0 /* ticon.png in Resources */,
 				B63C1FCF1461DC2C00DF52F7 /* Buzz-small.png in Resources */,
 				B63C1FD01461DC2C00DF52F7 /* Woody-small.png in Resources */,
+				B6DEB61214630B2E009FD33C /* DETweetCancelButtonLandscape.png in Resources */,
+				B6DEB61314630B2E009FD33C /* DETweetCancelButtonLandscape@2x.png in Resources */,
+				B6DEB61414630B2E009FD33C /* DETweetSendButtonLandscape.png in Resources */,
+				B6DEB61514630B2E009FD33C /* DETweetSendButtonLandscape@2x.png in Resources */,
+				B6DEB61914631499009FD33C /* DETweetCardHeaderLine.png in Resources */,
+				B6DEB61A14631499009FD33C /* DETweetCardHeaderLine@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

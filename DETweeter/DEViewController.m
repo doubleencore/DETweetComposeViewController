@@ -33,9 +33,6 @@
 @synthesize oAuth = _oAuth;
 
 
-#pragma mark - Class Methods
-
-
 #pragma mark - Setup & Teardown
 
 - (void)dealloc
@@ -109,7 +106,6 @@
         {
             case TWTweetComposeViewControllerResultCancelled:
                 NSLog(@"Twitter Result: canceled");
-                [self dismissModalViewControllerAnimated:YES];
                 break;
             case TWTweetComposeViewControllerResultDone:
                 NSLog(@"Twitter Result: sent");
@@ -118,6 +114,7 @@
                 NSLog(@"Twitter Result: default");
                 break;
         }
+        [self dismissModalViewControllerAnimated:YES];
     };
 
     TWTweetComposeViewController *tcvc = [[[TWTweetComposeViewController alloc] init] autorelease];
@@ -131,11 +128,10 @@
 
 - (void)addTweetContent:(id)tcvc
 {
-    [tcvc addImage:[UIImage imageNamed:@"Buzz.jpeg"]];
+//    [tcvc addImage:[UIImage imageNamed:@"Buzz.jpeg"]];
 //    [tcvc addImage:[UIImage imageNamed:@"Woody.jpeg"]];  // This one won't actually work. Only one image per tweet allowed.
-    [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
-    [tcvc addURL:[NSURL URLWithString:@"http://www.Apple.com/"]];
-//    [tcvc addURL:[NSURL URLWithString:@"http://www.Twitter.com/"]];
+//    [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
+//    [tcvc addURL:[NSURL URLWithString:@"http://www.Apple.com/"]];
     [tcvc setInitialText:@"This is a test of the emergency broadcast system. Don't panic."];
 }
 

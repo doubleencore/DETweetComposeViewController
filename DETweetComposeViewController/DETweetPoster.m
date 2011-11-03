@@ -11,25 +11,39 @@
 #import "OAuthConsumerCredentials.h"
 #import "NSString+URLEncoding.h"
 
+
 @interface DETweetPoster ()
+
 - (void)sendFailedToDelegate;
 - (void)sendSuccessToDelegate;
+
 @end
+
 
 @implementation DETweetPoster
 
 @synthesize delegate = _delegate;
 
-- (void)dealloc {
+
+#pragma mark - Setup & Teardown
+
+- (void)dealloc
+{
     _delegate = nil;
+    
     [super dealloc];
 }
+
+
+#pragma mark - Public
 
 - (void)postTweet:(NSString *)tweetText withImages:(NSArray *)images
 {
     NSMutableData *postData = nil;
-    NSMutableDictionary *tweetParameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:tweetText, @"status",
-                                            @"t", @"trim_user", nil];
+    NSMutableDictionary *tweetParameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                            tweetText, @"status",
+                                            @"t", @"trim_user",
+                                            nil];
     
     NSMutableArray *postKeysAndValues = [NSMutableArray array];
     
@@ -72,8 +86,8 @@
             [postData appendData:UIImagePNGRepresentation(image)];
             [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
         }
-        
-    } else {
+    }
+    else {
         header = [oAuth oAuthHeaderForMethod:@"POST" andUrl:[postURL absoluteString] andParams:tweetParameters];
         [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         postData = [[postString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
@@ -86,17 +100,18 @@
     if ([NSURLConnection canHandleRequest:postRequest]) {
         NSURLConnection *postConnection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
         [postConnection start];
-    } else {
+    }
+    else {
         [self sendFailedToDelegate];
     }
 }
 
-#pragma makr - Private methods
+
+#pragma mark - Private methods
 
 - (void)sendFailedToDelegate
 {
-    if (self.delegate != nil &&
-        [self.delegate respondsToSelector:@selector(tweetFailed)]) {
+    if ([self.delegate respondsToSelector:@selector(tweetFailed)]) {
         [self.delegate tweetFailed];
     }
 }
@@ -104,11 +119,11 @@
 
 - (void)sendSuccessToDelegate
 {
-    if (self.delegate != nil &&
-        [self.delegate respondsToSelector:@selector(tweetSucceeded)]) {
+    if ([self.delegate respondsToSelector:@selector(tweetSucceeded)]) {
         [self.delegate tweetSucceeded];
     }
 }
+
 
 #pragma mark - NSURLConnectionDelegate
 
@@ -116,6 +131,7 @@
 {
     [self sendFailedToDelegate];
 }
+
 
 #pragma mark - NSURLConnectionDataDelegate
 
@@ -126,9 +142,11 @@
     NSRange successRange = NSMakeRange(200, 204);
     if (NSLocationInRange(statusCode, successRange)) {
         [self sendSuccessToDelegate];
-    } else {
+    }
+    else {
         [self sendFailedToDelegate];
     }
 }
+
 
 @end

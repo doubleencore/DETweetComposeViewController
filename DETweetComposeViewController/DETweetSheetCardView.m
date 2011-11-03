@@ -11,6 +11,8 @@
 
 @interface DETweetSheetCardView ()
 
+@property (nonatomic, retain) UIView *backgroundView;
+
 - (void)tweetSheetCardViewInit;
 
 @end
@@ -18,9 +20,7 @@
 
 @implementation DETweetSheetCardView
 
-
-
-#pragma mark - Class Methods
+@synthesize backgroundView = _backgroundView;
 
 
 #pragma mark - Setup & Teardown
@@ -60,33 +60,31 @@
         // Add the background image.
         // We can't put the image on the root view because we need to clip the
         // edges, which we can't do if we want the shadow.
-    UIView *backgroundView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
-    backgroundView.layer.masksToBounds = YES;
-    backgroundView.layer.cornerRadius = self.layer.cornerRadius + 1.0f;
-    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DETweetCardBackground"]];
-    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self insertSubview:backgroundView atIndex:0];
+    self.backgroundView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
+    self.backgroundView.layer.masksToBounds = YES;
+    self.backgroundView.layer.cornerRadius = self.layer.cornerRadius + 1.0f;
+    self.backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DETweetCardBackground"]];
+    self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self insertSubview:self.backgroundView atIndex:0];
+}
+
+
+- (void)dealloc
+{
+    [_backgroundView release], _backgroundView = nil;
+    
+    [super dealloc];
 }
 
 
 #pragma mark - Superclass Overrides
 
-
-#pragma mark - Public
-
-
-#pragma mark - Private
-
-
-#pragma mark - Notifications
-
-
-#pragma mark - Actions
-
-
-#pragma mark - Accessors
-
-
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    
+    self.backgroundView.frame = self.bounds;    
+}
 
 
 @end

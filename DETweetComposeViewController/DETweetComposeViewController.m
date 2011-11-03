@@ -33,8 +33,10 @@
 
     // IBOutlets
 @synthesize cardView = _cardView;
+@synthesize titleLabel = _titleLabel;
 @synthesize cancelButton = _cancelButton;
 @synthesize sendButton = _sendButton;
+@synthesize cardHeaderLineView = _cardHeaderLineView;
 @synthesize textView = _textView;
 @synthesize paperClipView = _paperClipView;
 @synthesize attachment1FrameView = _attachment1FrameView;
@@ -59,6 +61,8 @@
 NSInteger const DETweetMaxLength = 140;
 NSInteger const DETweetURLLength = 21;    // https://dev.twitter.com/docs/tco-url-wrapper
 NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but not today.
+
+#define degreesToRadians(x) (M_PI * x / 180.0)
 
 
 #pragma mark - Class Methods
@@ -152,26 +156,20 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [_attachmentImageViews release], _attachmentImageViews = nil;
     
     [_cardView release];
+    [_cardHeaderLineView release];
+    [_titleLabel release];
     [super dealloc];
 }
 
 
 #pragma mark - Superclass Overrides
 
-#define degreesToRadians(x) (M_PI * x / 180.0)
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.cardHeaderLineView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DETweetCardHeaderLine"]];
     
-    UIImage *image = [self.sendButton backgroundImageForState:UIControlStateNormal];
-    image = [image stretchableImageWithLeftCapWidth:trunc(image.size.width / 2) topCapHeight:0];
-    [self.sendButton setBackgroundImage:image forState:UIControlStateNormal];
-
-    image = [self.cancelButton backgroundImageForState:UIControlStateNormal];
-    image = [image stretchableImageWithLeftCapWidth:trunc(image.size.width / 2) topCapHeight:0];
-    [self.cancelButton setBackgroundImage:image forState:UIControlStateNormal];
-
         // Put the attachment frames and image views into arrays so they're easier to work with.
         // Order is important, so we can't use IB object arrays. Or at least this is easier.
     self.attachmentFrameViews = [NSArray arrayWithObjects:
@@ -187,10 +185,10 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
                                  nil];
 
         // Now add some angle to attachments 2 and 3.
-    self.attachment2FrameView.transform = CGAffineTransformMakeRotation(degreesToRadians(-5.0f));
-    self.attachment2ImageView.transform = CGAffineTransformMakeRotation(degreesToRadians(-5.0f));
-    self.attachment3FrameView.transform = CGAffineTransformMakeRotation(degreesToRadians(-10.0f));
-    self.attachment3ImageView.transform = CGAffineTransformMakeRotation(degreesToRadians(-10.0f));
+    self.attachment2FrameView.transform = CGAffineTransformMakeRotation(degreesToRadians(-6.0f));
+    self.attachment2ImageView.transform = CGAffineTransformMakeRotation(degreesToRadians(-6.0f));
+    self.attachment3FrameView.transform = CGAffineTransformMakeRotation(degreesToRadians(-12.0f));
+    self.attachment3ImageView.transform = CGAffineTransformMakeRotation(degreesToRadians(-12.0f));
     
         // Mask the corners on the image views so they don't stick out of the frame.
     [self.self.attachmentImageViews enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
@@ -205,7 +203,15 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [self updateAttachments];
 }
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
+    [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0.0f];
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -217,6 +223,86 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+{
+    CGFloat cardHorizontalMargin = 4.0f;
+    CGFloat buttonHorizontalMargin = 8.0f;
+    CGFloat cardTopMargin, cardHeight, cardHeaderLineTop, buttonTop;
+    UIImage *cancelButtonImage, *sendButtonImage;
+    CGFloat titleLabelFontSize, titleLabelTop;
+    CGFloat characterCountLeft, characterCountTop;
+    
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        cardTopMargin = 25.0f;
+        cardHeight = 189.0f;
+        buttonTop = 7.0f;
+        cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
+        sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
+        cardHeaderLineTop = 41.0f;
+        titleLabelFontSize = 20.0f;
+        titleLabelTop = 9.0f;
+    }
+    else {
+        cardTopMargin = -1.0f;
+        cardHeight = 150.0f;
+        buttonTop = 6.0f;
+        cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
+        sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
+        cardHeaderLineTop = 32.0f;
+        titleLabelFontSize = 17.0f;
+        titleLabelTop = 5.0f;
+    }
+    
+    self.cardView.frame = CGRectMake(cardHorizontalMargin, cardTopMargin, CGRectGetWidth(self.view.bounds) - (2 * cardHorizontalMargin), cardHeight);
+
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:titleLabelFontSize];
+    self.titleLabel.frame = CGRectMake(0.0f, titleLabelTop, self.view.bounds.size.width, self.titleLabel.frame.size.height);
+    
+    [self.cancelButton setBackgroundImage:cancelButtonImage forState:UIControlStateNormal];
+    self.cancelButton.frame = CGRectMake(buttonHorizontalMargin, buttonTop, self.cancelButton.frame.size.width, cancelButtonImage.size.height);
+
+    [self.sendButton setBackgroundImage:sendButtonImage forState:UIControlStateNormal];
+    self.sendButton.frame = CGRectMake(self.cardView.bounds.size.width - buttonHorizontalMargin - self.sendButton.frame.size.width, buttonTop, self.sendButton.frame.size.width, sendButtonImage.size.height);
+
+    self.cardHeaderLineView.frame = CGRectMake(0.0f, cardHeaderLineTop, self.cardView.bounds.size.width, self.cardHeaderLineView.frame.size.height);
+    
+    CGFloat textWidth = CGRectGetWidth(self.cardView.bounds);
+    if ([self hasAttachments]) {
+        textWidth -= CGRectGetWidth(self.attachment3FrameView.frame) + 4.0f;
+    }
+    CGFloat textTop = CGRectGetMaxY(self.cardHeaderLineView.frame) - 2.0f;
+    CGFloat textHeight = self.cardView.bounds.size.height - textTop - 30.0f;
+    self.textView.frame = CGRectMake(0.0f, textTop, textWidth, textHeight);
+    
+    self.paperClipView.frame = CGRectMake(CGRectGetMaxX(self.cardView.frame) - self.paperClipView.frame.size.width + 5.0f,
+                                          CGRectGetMinY(self.cardView.frame) + CGRectGetMaxY(self.cardHeaderLineView.frame) - 1.0f,
+                                          self.paperClipView.frame.size.width,
+                                          self.paperClipView.frame.size.height);
+    
+        // We need to position the rotated views by their center, not their frame.
+        // This isn't elegant, but it is correct. Half-points are required because
+        // some frame sizes aren't evenly divisible by 2.
+    self.attachment1FrameView.center = CGPointMake(self.cardView.bounds.size.width - 45.0f, CGRectGetMaxY(self.paperClipView.frame) - cardTopMargin + 18.0f);
+    self.attachment1ImageView.center = CGPointMake(self.cardView.bounds.size.width - 45.5, self.attachment1FrameView.center.y - 2.0f);
+    
+    self.attachment2FrameView.center = CGPointMake(self.attachment1FrameView.center.x - 4.0f, self.attachment1FrameView.center.y + 5.0f);
+    self.attachment2ImageView.center = CGPointMake(self.attachment1ImageView.center.x - 4.0f, self.attachment1ImageView.center.y + 5.0f);
+
+    self.attachment3FrameView.center = CGPointMake(self.attachment2FrameView.center.x - 4.0f, self.attachment2FrameView.center.y + 5.0f);
+    self.attachment3ImageView.center = CGPointMake(self.attachment2ImageView.center.x - 4.0f, self.attachment2ImageView.center.y + 5.0f);
+    
+    characterCountLeft = CGRectGetWidth(self.cardView.frame) - CGRectGetWidth(self.characterCountLabel.frame) - 12.0f;
+    characterCountTop = CGRectGetHeight(self.cardView.frame) - CGRectGetHeight(self.characterCountLabel.frame) - 8.0f;
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+        characterCountTop -= 5.0f;
+        if ([self hasAttachments]) {
+            characterCountLeft -= CGRectGetWidth(self.attachment3FrameView.frame) - 15.0f;
+        }
+    }
+    self.characterCountLabel.frame = CGRectMake(characterCountLeft, characterCountTop, self.characterCountLabel.frame.size.width, self.characterCountLabel.frame.size.height);
+}
+
+
 - (void)viewDidUnload
 {
         // Keep:
@@ -225,9 +311,11 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         //  _images
         //  _urls
 
+        // Save the text.
     self.text = self.textView.text;
     
         // IBOutlets
+    self.cardView = nil;
     self.cancelButton = nil;
     self.sendButton = nil;
     self.textView = nil;
@@ -244,7 +332,8 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     self.attachmentFrameViews = nil;
     self.attachmentImageViews = nil;
 
-    [self setCardView:nil];
+    [self setCardHeaderLineView:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 
@@ -261,7 +350,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         return NO;
     }
         
-    self.text = initialText;
+    self.text = initialText;  // Keep a copy in case the view isn't loaded yet.
     self.textView.text = self.text;
 
     return YES;
@@ -359,9 +448,11 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
     if (available >= 0) {
         self.characterCountLabel.textColor = [UIColor grayColor];
+        self.sendButton.enabled = (available != DETweetMaxLength);  // At least one character is required.
     }
     else {
         self.characterCountLabel.textColor = [UIColor colorWithRed:0.64f green:0.32f blue:0.32f alpha:1.0f];
+        self.sendButton.enabled = NO;
     }
 }
 
@@ -427,9 +518,9 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 - (void)tweetFailed
 {
     [[[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
-                               message:[NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text]
-                              delegate:self
-                     cancelButtonTitle:@"Cancel"
+                                 message:[NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text]
+                                delegate:self
+                       cancelButtonTitle:@"Cancel"
                        otherButtonTitles:@"Try Again", nil] autorelease] show];
 }
 
@@ -440,24 +531,16 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
-#pragma mark - UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [self send];
-    }
-}
-
 #pragma mark - Actions
 
 - (IBAction)send
 {
     self.sendButton.enabled = NO;
+    [self.textView resignFirstResponder];
     
     DETweetPoster *tweetPoster = [[DETweetPoster alloc] init];
     tweetPoster.delegate = self;
-    [tweetPoster postTweet:self.textView.text withImages:[NSArray arrayWithObject:[UIImage imageNamed:@"Buzz.jpeg"]]];
+    [tweetPoster postTweet:self.textView.text withImages:self.images];
 }
 
 
@@ -477,6 +560,16 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 {
     if (buttonIndex == 0) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs://Twitter"]];
+    }
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+    // This gets called if there's an error sending the tweet.
+{
+    if (buttonIndex == 1) {
+            // The user wants to try again.
+        [self send];
     }
 }
 

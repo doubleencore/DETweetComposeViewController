@@ -12,8 +12,10 @@
 @interface DETweetComposeViewController : UIViewController <UITextViewDelegate, UIAlertViewDelegate, DETweetPosterDelegate>
 
 @property (retain, nonatomic) IBOutlet DETweetSheetCardView *cardView;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UIButton *sendButton;
+@property (retain, nonatomic) IBOutlet UIView *cardHeaderLineView;
 @property (retain, nonatomic) IBOutlet UITextView *textView;
 @property (retain, nonatomic) IBOutlet UIImageView *paperClipView;
 @property (retain, nonatomic) IBOutlet UIImageView *attachment1FrameView;
