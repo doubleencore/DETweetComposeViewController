@@ -5,9 +5,11 @@
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
 //
 
+#import "DETweetPoster.h"
+
 @class DETweetSheetCardView;
 
-@interface DETweetComposeViewController : UIViewController <UITextViewDelegate>
+@interface DETweetComposeViewController : UIViewController <UITextViewDelegate, UIAlertViewDelegate, DETweetPosterDelegate>
 
 @property (retain, nonatomic) IBOutlet DETweetSheetCardView *cardView;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
@@ -28,9 +30,6 @@
 
 - (IBAction)send;
 - (IBAction)cancel;
-
-
-
 
 enum DETweetComposeViewControllerResult {
     DETweetComposeViewControllerResultCancelled,
