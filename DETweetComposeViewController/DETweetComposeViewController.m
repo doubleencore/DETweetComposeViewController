@@ -430,7 +430,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     DETweetPoster *tweetPoster = [[DETweetPoster alloc] init];
     tweetPoster.delegate = self;
     [tweetPoster postTweet:self.textView.text withImages:[NSArray arrayWithObject:[UIImage imageNamed:@"Buzz.jpeg"]]];
-//    [self dismissModalViewControllerAnimated:YES];
 }
 
 
