@@ -548,7 +548,13 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
     DETweetPoster *tweetPoster = [[DETweetPoster alloc] init];
     tweetPoster.delegate = self;
-    [tweetPoster postTweet:self.textView.text withImages:self.images];
+    
+    NSMutableString *tweetBody = [[self.textView.text mutableCopy] autorelease];
+    [self.urls enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [tweetBody appendFormat:@" %@", obj]; 
+    }];
+    
+    [tweetPoster postTweet:tweetBody withImages:self.images];
 }
 
 
