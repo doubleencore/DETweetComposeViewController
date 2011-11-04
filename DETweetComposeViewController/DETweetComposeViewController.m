@@ -587,7 +587,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         tweet = [tweet stringByAppendingString:urlString];
     }
     
-    DETweetPoster *tweetPoster = [[DETweetPoster alloc] init];
+    DETweetPoster *tweetPoster = [[[DETweetPoster alloc] init] autorelease];
     tweetPoster.delegate = self;
     [tweetPoster postTweet:tweet withImages:self.images];
 }
