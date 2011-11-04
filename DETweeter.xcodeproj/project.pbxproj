@@ -70,6 +70,7 @@
 		B6DEB61514630B2E009FD33C /* DETweetSendButtonLandscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DEB61114630B2E009FD33C /* DETweetSendButtonLandscape@2x.png */; };
 		B6DEB61914631499009FD33C /* DETweetCardHeaderLine.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DEB61714631499009FD33C /* DETweetCardHeaderLine.png */; };
 		B6DEB61A14631499009FD33C /* DETweetCardHeaderLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DEB61814631499009FD33C /* DETweetCardHeaderLine@2x.png */; };
+		B6FD55AD1463A6E100739469 /* DETweetTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD55AC1463A6E100739469 /* DETweetTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +176,8 @@
 		B6DEB61114630B2E009FD33C /* DETweetSendButtonLandscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetSendButtonLandscape@2x.png"; path = "DETweetComposeViewController/Resources/DETweetSendButtonLandscape@2x.png"; sourceTree = SOURCE_ROOT; };
 		B6DEB61714631499009FD33C /* DETweetCardHeaderLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardHeaderLine.png; path = DETweetComposeViewController/Resources/DETweetCardHeaderLine.png; sourceTree = SOURCE_ROOT; };
 		B6DEB61814631499009FD33C /* DETweetCardHeaderLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCardHeaderLine@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCardHeaderLine@2x.png"; sourceTree = SOURCE_ROOT; };
+		B6FD55AB1463A6E100739469 /* DETweetTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetTextView.h; path = DETweetComposeViewController/DETweetTextView.h; sourceTree = SOURCE_ROOT; };
+		B6FD55AC1463A6E100739469 /* DETweetTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetTextView.m; path = DETweetComposeViewController/DETweetTextView.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +398,8 @@
 				B6A131411457780A00500180 /* DETweetComposeView.xib */,
 				B6A1314614577D5A00500180 /* DETweetSheetCardView.h */,
 				B6A1314714577D5A00500180 /* DETweetSheetCardView.m */,
+				B6FD55AB1463A6E100739469 /* DETweetTextView.h */,
+				B6FD55AC1463A6E100739469 /* DETweetTextView.m */,
 				699A29B91459B3960046B260 /* DETweetPoster.h */,
 				699A29BA1459B3960046B260 /* DETweetPoster.m */,
 				B6B6CCF214586015005B93A1 /* Images */,
@@ -544,6 +549,7 @@
 				6925A82414590EB400011DA0 /* OAuth.m in Sources */,
 				6925A82714590EB400011DA0 /* TwitterDialog.m in Sources */,
 				699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */,
+				B6FD55AD1463A6E100739469 /* DETweetTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
