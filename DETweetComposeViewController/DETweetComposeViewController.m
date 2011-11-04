@@ -359,6 +359,10 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (BOOL)addImage:(UIImage *)image
 {
+    if (image == nil) {
+        return NO;
+    }
+    
     if ([self isPresented]) {
         return NO;
     }
@@ -398,6 +402,10 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (BOOL)addURL:(NSURL *)url
 {
+    if (url == nil) {
+        return NO;
+    }
+    
     if ([self isPresented]) {
         return NO;
     }
