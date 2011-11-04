@@ -546,15 +546,19 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     self.sendButton.enabled = NO;
     [self.textView resignFirstResponder];
     
+    NSString *tweet = self.textView.text;
+    
+    for (NSURL *url in self.urls) {
+        NSString *urlString = [url absoluteString];
+        if ([tweet length] > 0) {
+            tweet = [tweet stringByAppendingString:@" "];
+        }
+        tweet = [tweet stringByAppendingString:urlString];
+    }
+    
     DETweetPoster *tweetPoster = [[DETweetPoster alloc] init];
     tweetPoster.delegate = self;
-    
-    NSMutableString *tweetBody = [[self.textView.text mutableCopy] autorelease];
-    [self.urls enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [tweetBody appendFormat:@" %@", obj]; 
-    }];
-    
-    [tweetPoster postTweet:tweetBody withImages:self.images];
+    [tweetPoster postTweet:tweet withImages:self.images];
 }
 
 
