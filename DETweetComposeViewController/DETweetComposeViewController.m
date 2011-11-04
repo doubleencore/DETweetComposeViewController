@@ -167,8 +167,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.cardHeaderLineView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DETweetCardHeaderLine"]];
     
         // Put the attachment frames and image views into arrays so they're easier to work with.
         // Order is important, so we can't use IB object arrays. Or at least this is easier.

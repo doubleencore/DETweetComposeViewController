@@ -123,7 +123,7 @@
 								<int key="NSvFlags">289</int>
 								<string key="NSFrame">{{250, 7}, {53, 30}}</string>
 								<reference key="NSSuperview" ref="947069124"/>
-								<reference key="NSNextKeyView" ref="240185371"/>
+								<reference key="NSNextKeyView" ref="292559536"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -144,20 +144,21 @@
 								<reference key="IBUIFontDescription" ref="754671443"/>
 								<reference key="IBUIFont" ref="949925071"/>
 							</object>
-							<object class="IBUIView" id="240185371">
+							<object class="IBUIImageView" id="292559536">
 								<reference key="NSNextResponder" ref="947069124"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{0, 41}, {312, 3}}</string>
 								<reference key="NSSuperview" ref="947069124"/>
 								<reference key="NSNextKeyView" ref="460695988"/>
-								<string key="NSReuseIdentifierKey">_NS:196</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAwLjQ0NjYwMTk0MTcgMC40NDY2MDE5NDE3AA</bytes>
-								</object>
 								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">DETweetCardHeaderLine.png</string>
+								</object>
 							</object>
 							<object class="IBUITextView" id="460695988">
 								<reference key="NSNextResponder" ref="947069124"/>
@@ -437,19 +438,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">cardHeaderLineView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="240185371"/>
-					</object>
-					<int key="connectionID">49</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">titleLabel</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="683436776"/>
 					</object>
 					<int key="connectionID">50</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">cardHeaderLineView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="292559536"/>
+					</object>
+					<int key="connectionID">52</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -521,7 +522,7 @@
 							<reference ref="352681246"/>
 							<reference ref="866301756"/>
 							<reference ref="346448275"/>
-							<reference ref="240185371"/>
+							<reference ref="292559536"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -592,10 +593,9 @@
 						<string key="objectName">Attachment 3 Frame</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">48</int>
-						<reference key="object" ref="240185371"/>
+						<int key="objectID">51</int>
+						<reference key="object" ref="292559536"/>
 						<reference key="parent" ref="947069124"/>
-						<string key="objectName">Card Header Line</string>
 					</object>
 				</array>
 			</object>
@@ -618,16 +618,16 @@
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.CustomClassName">DETweetSheetCardView</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="48.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="51.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">50</int>
+			<int key="maxID">52</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -637,6 +637,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="DETweetAttachmentFrame.png">{84, 79}</string>
 			<string key="DETweetCancelButtonPortrait.png">{12, 30}</string>
+			<string key="DETweetCardHeaderLine.png">{480, 3}</string>
 			<string key="DETweetPaperClip.png">{79, 34}</string>
 			<string key="DETweetSendButtonPortrait.png">{12, 30}</string>
 		</dictionary>
