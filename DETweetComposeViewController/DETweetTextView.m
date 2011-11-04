@@ -15,7 +15,6 @@
 @property (nonatomic, retain) UIColor *lineColor;
 
 - (void)textViewInit;
-- (BOOL)isRetinaDisplay;
 
 @end
 
@@ -25,9 +24,6 @@
 @synthesize rowHeight = _rowHeight;
 @synthesize lineWidth = _lineWidth;
 @synthesize lineColor = _lineColor;
-
-
-#pragma mark - Class Methods
 
 
 #pragma mark - Setup & Teardown
@@ -56,22 +52,11 @@
 
 - (void)textViewInit
 {
+    self.contentMode = UIViewContentModeRedraw;
+    
     _rowHeight = self.font.lineHeight;
     _lineWidth = 1.0f;
     _lineColor = [[UIColor colorWithWhite:0.5f alpha:0.15f] retain];
-    
-    if ([self isRetinaDisplay]) {
-        _lineWidth = 1.0f;  // Retina display.
-    }
-    else {
-        _lineWidth = 1.0f;
-    }
-}
-
-
-- (BOOL)isRetinaDisplay
-{
-    return ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale == 2.0));
 }
 
 
@@ -90,6 +75,7 @@
     [super setFont:font];
     
     self.rowHeight = self.font.lineHeight;
+    [self setNeedsDisplay];
 }
 
 
@@ -114,30 +100,6 @@
         }
     }
 }
-
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    [self setNeedsDisplay];
-}
-
-
-#pragma mark - Public
-
-
-#pragma mark - Private
-
-
-#pragma mark - Notifications
-
-
-#pragma mark - Actions
-
-
-#pragma mark - Accessors
-
-
 
 
 @end

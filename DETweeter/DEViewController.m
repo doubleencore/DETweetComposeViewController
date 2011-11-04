@@ -127,10 +127,10 @@
 {
     BOOL accepted;  // Just interesting to watch in the debugger.
     accepted = [tcvc addImage:[UIImage imageNamed:@"Buzz.jpeg"]];
-    accepted = [tcvc addImage:[UIImage imageNamed:@"Woody.jpeg"]];  // This one won't actually work. Only one image per tweet allowed currently by Twitter.
-    accepted = [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
-    accepted = [tcvc addURL:[NSURL URLWithString:@"http://www.apple.com/ios/features.html#twitter"]];
-    accepted = [tcvc addURL:[NSURL URLWithString:@"http://www.twitter.com/"]];  // This won't work either. Only three URLs allowed, just like Apple's implementation.
+//    accepted = [tcvc addImage:[UIImage imageNamed:@"Woody.jpeg"]];  // This one won't actually work. Only one image per tweet allowed currently by Twitter.
+//    accepted = [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
+//    accepted = [tcvc addURL:[NSURL URLWithString:@"http://www.apple.com/ios/features.html#twitter"]];
+//    accepted = [tcvc addURL:[NSURL URLWithString:@"http://www.twitter.com/"]];  // This won't work either. Only three URLs allowed, just like Apple's implementation.
     accepted = [tcvc setInitialText:@"This is a test of the emergency broadcast system. Don't panic."];
 }
 

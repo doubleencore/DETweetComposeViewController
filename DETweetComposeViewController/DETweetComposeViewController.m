@@ -133,8 +133,11 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 - (void)dealloc
 {
         // IBOutlets
+    [_cardView release], _cardView = nil;
+    [_titleLabel release], _titleLabel = nil;
     [_cancelButton release], _cancelButton = nil;
     [_sendButton release], _sendButton = nil;
+    [_cardHeaderLineView release], _cardHeaderLineView = nil;
     [_textView release], _textView = nil;
     [_paperClipView release], _paperClipView = nil;
     [_attachment1FrameView release], _attachment1FrameView = nil;
@@ -155,9 +158,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [_attachmentFrameViews release], _attachmentFrameViews = nil;
     [_attachmentImageViews release], _attachmentImageViews = nil;
     
-    [_cardView release];
-    [_cardHeaderLineView release];
-    [_titleLabel release];
     [super dealloc];
 }
 
@@ -266,13 +266,17 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
     self.cardHeaderLineView.frame = CGRectMake(0.0f, cardHeaderLineTop, self.cardView.bounds.size.width, self.cardHeaderLineView.frame.size.height);
     
+    CGSize size = self.textView.contentSize;
+    
     CGFloat textWidth = CGRectGetWidth(self.cardView.bounds);
     if ([self attachmentsCount] > 0) {
-        textWidth -= CGRectGetWidth(self.attachment3FrameView.frame) + 4.0f;
+        textWidth -= CGRectGetWidth(self.attachment1FrameView.frame);  // Got to measure frame 1, because it's not rotated. Other frames are funky.
     }
     CGFloat textTop = CGRectGetMaxY(self.cardHeaderLineView.frame) - 2.0f;
     CGFloat textHeight = self.cardView.bounds.size.height - textTop - 30.0f;
     self.textView.frame = CGRectMake(0.0f, textTop, textWidth, textHeight);
+    
+    size = self.textView.contentSize;
     
     self.paperClipView.frame = CGRectMake(CGRectGetMaxX(self.cardView.frame) - self.paperClipView.frame.size.width + 5.0f,
                                           CGRectGetMinY(self.cardView.frame) + CGRectGetMaxY(self.cardHeaderLineView.frame) - 1.0f,
