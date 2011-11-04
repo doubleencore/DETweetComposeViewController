@@ -223,15 +223,37 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
-    CGFloat cardHorizontalMargin = 4.0f;
     CGFloat buttonHorizontalMargin = 8.0f;
-    CGFloat cardTopMargin, cardHeight, cardHeaderLineTop, buttonTop;
+    CGFloat cardWidth, cardTop, cardHeight, cardHeaderLineTop, buttonTop;
     UIImage *cancelButtonImage, *sendButtonImage;
     CGFloat titleLabelFontSize, titleLabelTop;
     CGFloat characterCountLeft, characterCountTop;
-    
-    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-        cardTopMargin = 25.0f;
+
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        cardWidth = CGRectGetWidth(self.view.bounds) - 8.0f;
+        if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+            cardTop = 25.0f;
+            cardHeight = 189.0f;
+            buttonTop = 7.0f;
+            cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
+            sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
+            cardHeaderLineTop = 41.0f;
+            titleLabelFontSize = 20.0f;
+            titleLabelTop = 9.0f;
+        }
+        else {
+            cardTop = -1.0f;
+            cardHeight = 150.0f;
+            buttonTop = 6.0f;
+            cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
+            sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
+            cardHeaderLineTop = 32.0f;
+            titleLabelFontSize = 17.0f;
+            titleLabelTop = 5.0f;
+        }
+    }
+    else {  // iPad. Similar to iPhone portrait.
+        cardWidth = 550.0f;
         cardHeight = 189.0f;
         buttonTop = 7.0f;
         cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
@@ -239,22 +261,19 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         cardHeaderLineTop = 41.0f;
         titleLabelFontSize = 20.0f;
         titleLabelTop = 9.0f;
+        if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+            cardTop = 280.0f;
+        }
+        else {
+            cardTop = 110.0f;
+        }
     }
-    else {
-        cardTopMargin = -1.0f;
-        cardHeight = 150.0f;
-        buttonTop = 6.0f;
-        cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
-        sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
-        cardHeaderLineTop = 32.0f;
-        titleLabelFontSize = 17.0f;
-        titleLabelTop = 5.0f;
-    }
-    
-    self.cardView.frame = CGRectMake(cardHorizontalMargin, cardTopMargin, CGRectGetWidth(self.view.bounds) - (2 * cardHorizontalMargin), cardHeight);
+
+    CGFloat cardLeft = trunc((CGRectGetWidth(self.view.bounds) - cardWidth) / 2);
+    self.cardView.frame = CGRectMake(cardLeft, cardTop, cardWidth, cardHeight);
 
     self.titleLabel.font = [UIFont boldSystemFontOfSize:titleLabelFontSize];
-    self.titleLabel.frame = CGRectMake(0.0f, titleLabelTop, self.view.bounds.size.width, self.titleLabel.frame.size.height);
+    self.titleLabel.frame = CGRectMake(0.0f, titleLabelTop, cardWidth, self.titleLabel.frame.size.height);
     
     [self.cancelButton setBackgroundImage:cancelButtonImage forState:UIControlStateNormal];
     self.cancelButton.frame = CGRectMake(buttonHorizontalMargin, buttonTop, self.cancelButton.frame.size.width, cancelButtonImage.size.height);
@@ -284,7 +303,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         // We need to position the rotated views by their center, not their frame.
         // This isn't elegant, but it is correct. Half-points are required because
         // some frame sizes aren't evenly divisible by 2.
-    self.attachment1FrameView.center = CGPointMake(self.cardView.bounds.size.width - 45.0f, CGRectGetMaxY(self.paperClipView.frame) - cardTopMargin + 18.0f);
+    self.attachment1FrameView.center = CGPointMake(self.cardView.bounds.size.width - 45.0f, CGRectGetMaxY(self.paperClipView.frame) - cardTop + 18.0f);
     self.attachment1ImageView.center = CGPointMake(self.cardView.bounds.size.width - 45.5, self.attachment1FrameView.center.y - 2.0f);
     
     self.attachment2FrameView.center = CGPointMake(self.attachment1FrameView.center.x - 4.0f, self.attachment1FrameView.center.y + 5.0f);
@@ -295,10 +314,12 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
     characterCountLeft = CGRectGetWidth(self.cardView.frame) - CGRectGetWidth(self.characterCountLabel.frame) - 12.0f;
     characterCountTop = CGRectGetHeight(self.cardView.frame) - CGRectGetHeight(self.characterCountLabel.frame) - 8.0f;
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-        characterCountTop -= 5.0f;
-        if ([self attachmentsCount] > 0) {
-            characterCountLeft -= CGRectGetWidth(self.attachment3FrameView.frame) - 15.0f;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+            characterCountTop -= 5.0f;
+            if ([self attachmentsCount] > 0) {
+                characterCountLeft -= CGRectGetWidth(self.attachment3FrameView.frame) - 15.0f;
+            }
         }
     }
     self.characterCountLabel.frame = CGRectMake(characterCountLeft, characterCountTop, self.characterCountLabel.frame.size.width, self.characterCountLabel.frame.size.height);
