@@ -23,7 +23,7 @@
 - (BOOL)isPresented;
 - (NSInteger)charactersAvailable;
 - (void)updateCharacterCount;
-- (BOOL)hasAttachments;
+- (NSInteger)attachmentsCount;
 - (void)updateAttachments;
 
 @end
@@ -267,7 +267,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     self.cardHeaderLineView.frame = CGRectMake(0.0f, cardHeaderLineTop, self.cardView.bounds.size.width, self.cardHeaderLineView.frame.size.height);
     
     CGFloat textWidth = CGRectGetWidth(self.cardView.bounds);
-    if ([self hasAttachments]) {
+    if ([self attachmentsCount] > 0) {
         textWidth -= CGRectGetWidth(self.attachment3FrameView.frame) + 4.0f;
     }
     CGFloat textTop = CGRectGetMaxY(self.cardHeaderLineView.frame) - 2.0f;
@@ -295,7 +295,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     characterCountTop = CGRectGetHeight(self.cardView.frame) - CGRectGetHeight(self.characterCountLabel.frame) - 8.0f;
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
         characterCountTop -= 5.0f;
-        if ([self hasAttachments]) {
+        if ([self attachmentsCount] > 0) {
             characterCountLeft -= CGRectGetWidth(self.attachment3FrameView.frame) - 15.0f;
         }
     }
@@ -367,6 +367,10 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         return NO;
     }
     
+    if ([self attachmentsCount] >= 3) {
+        return NO;  // Only three allowed.
+    }
+    
     if (([self charactersAvailable] - DETweetURLLength) < 0) {
         return NO;
     }
@@ -402,6 +406,10 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         return NO;
     }
     
+    if ([self attachmentsCount] >= 3) {
+        return NO;  // Only three allowed.
+    }
+
     if (([self charactersAvailable] - DETweetURLLength) < 0) {
         return NO;
     }
@@ -457,16 +465,16 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
-- (BOOL)hasAttachments
+- (NSInteger)attachmentsCount
 {
-    return [self.images count] > 0 || [self.urls count] > 0;
+    return [self.images count] + [self.urls count];
 }
 
 
 - (void)updateAttachments
 {
     CGRect frame = self.textView.frame;
-    if ([self hasAttachments]) {
+    if ([self attachmentsCount] > 0) {
         frame.size.width = self.cardView.frame.size.width - self.attachment1FrameView.frame.size.width;
     }
     else {
@@ -559,8 +567,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [self dismissModalViewControllerAnimated:YES];
 }
 
-
-#pragma mark - Accessors
 
 #pragma mark - UIAlertViewDelegate
 
