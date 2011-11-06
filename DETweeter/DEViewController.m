@@ -58,6 +58,9 @@
         self.twTweetButton.enabled = NO;
         [self.twTweetButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     }
+    UIImage *buttonImage = [[UIImage imageNamed:@"DETweetSendButtonPortrait.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
+    [self.twTweetButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [self.deTweetButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
 }
 
 
