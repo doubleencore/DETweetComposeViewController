@@ -7,7 +7,7 @@
 
 #import "DETweetPoster.h"
 #import "OAuth.h"
-#import "OAuth+UserDefaults.h"
+#import "OAuth+DEExtensions.h"
 #import "OAuthConsumerCredentials.h"
 #import "NSString+URLEncoding.h"
 
@@ -15,6 +15,7 @@
 @interface DETweetPoster ()
 
 - (void)sendFailedToDelegate;
+- (void)sendFailedAuthenticationToDelegate;
 - (void)sendSuccessToDelegate;
 
 @end
@@ -59,7 +60,7 @@
     }
     
     OAuth *oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
-    [oAuth loadOAuthContextFromUserDefaults];
+    [oAuth loadOAuthContext];
 
     NSString *header = nil;
     
@@ -117,6 +118,14 @@
 }
 
 
+- (void)sendFailedAuthenticationToDelegate
+{
+    if ([self.delegate respondsToSelector:@selector(tweetFailedAuthentication)]) {
+        [self.delegate tweetFailedAuthentication];
+    }
+}
+
+
 - (void)sendSuccessToDelegate
 {
     if ([self.delegate respondsToSelector:@selector(tweetSucceeded)]) {
@@ -139,11 +148,13 @@
 {
     NSInteger statusCode = [response statusCode];
     
-    NSRange successRange = NSMakeRange(200, 204);
+    NSRange successRange = NSMakeRange(200, 5);
     if (NSLocationInRange(statusCode, successRange)) {
         [self sendSuccessToDelegate];
-    }
-    else {
+    } else if (statusCode == 401) {
+        // Failed authentication
+        [self sendFailedAuthenticationToDelegate];
+    } else {
         [self sendFailedToDelegate];
     }
 }

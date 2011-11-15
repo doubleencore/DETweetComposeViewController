@@ -21,5 +21,6 @@
 @optional
 - (void)tweetSucceeded;
 - (void)tweetFailed;
+- (void)tweetFailedAuthentication;
 
 @end

@@ -8,8 +8,9 @@
 #import "DETweetComposeViewController.h"
 #import "DETweetPoster.h"
 #import "DETweetSheetCardView.h"
+#import "OAuth.h"
+#import "OAuth+DEExtensions.h"
 #import <QuartzCore/QuartzCore.h>
-
 
 @interface DETweetComposeViewController ()
 
@@ -69,13 +70,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 + (BOOL)canSendTweet
 {
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"oauth_token"] &&
-        [[NSUserDefaults standardUserDefaults] objectForKey:@"oauth_token_secret"] &&
-        [[NSUserDefaults standardUserDefaults] objectForKey:@"oauth_token_authorized"]) {
-        return YES;
-    }
-    
-    return NO;
+    return [OAuth isTwitterAuthorized];
 }
 
 
@@ -561,6 +556,20 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
                                 delegate:self
                        cancelButtonTitle:@"Cancel"
                        otherButtonTitles:@"Try Again", nil] autorelease] show];
+}
+
+
+- (void)tweetFailedAuthentication
+{
+    // Clear existing credentials
+    [OAuth clearCrendentials];
+    [self dismissModalViewControllerAnimated:YES];
+
+    [[[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
+                                 message:[NSString stringWithFormat:@"Unable to login to Twitter with existing credentials.  Try again with new credentials", self.textView.text]
+                                delegate:nil
+                       cancelButtonTitle:nil
+                       otherButtonTitles:@"OK", nil] autorelease] show];
 }
 
 

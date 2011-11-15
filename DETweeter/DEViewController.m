@@ -8,7 +8,7 @@
 #import "DEViewController.h"
 #import "DETweetComposeViewController.h"
 #import "OAuth.h"
-#import "OAuth+UserDefaults.h"
+#import "OAuth+DEExtensions.h"
 #import "OAuthConsumerCredentials.h"
 #import <Twitter/Twitter.h>
 #import <QuartzCore/QuartzCore.h>  // Just for testing
@@ -28,6 +28,8 @@
     // IBOutlets
 @synthesize deTweetButton = _deTweetButton;
 @synthesize twTweetButton = _twTweetButton;
+@synthesize backgroundView = _backgroundView;
+@synthesize buttonView = _buttonView;
 
     // Private
 @synthesize oAuth = _oAuth;
@@ -40,6 +42,8 @@
         // IBOutlets
     [_deTweetButton release], _deTweetButton = nil;
     [_twTweetButton release], _twTweetButton = nil;
+    [_backgroundView release], _backgroundView = nil;
+    [_buttonView release], _buttonView = nil;
     
         // Private
     [_oAuth release], _oAuth = nil;
@@ -75,11 +79,32 @@
 }
 
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+{
+    CGRect buttonFrame = self.buttonView.frame;
+
+    if (interfaceOrientation == UIInterfaceOrientationPortrait ||
+        interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        
+        self.backgroundView.image = [UIImage imageNamed:@"Default.png"];
+        buttonFrame.origin.y = 222.0f;
+    }
+    else {
+        self.backgroundView.image = [UIImage imageNamed:@"Default-Landscape.png"];
+        buttonFrame.origin.y = 185.0f;
+    }
+    
+    self.buttonView.frame = buttonFrame;
+}
+
+
 - (void)viewDidUnload
 {
         // IBOutlets
     self.deTweetButton = nil;
     self.twTweetButton = nil;
+    self.backgroundView = nil;
+    self.buttonView = nil;
     
         // Private
     self.oAuth = nil;
@@ -167,8 +192,10 @@
 
 - (void)twitterDidLogin
 {
-    [self.oAuth saveOAuthContextToUserDefaults];
+    [self.oAuth saveOAuthContext];
+    [self tweetUs:nil];
 }
+
 
 - (void)twitterDidNotLogin:(BOOL)cancelled
 {
