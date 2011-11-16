@@ -12,6 +12,7 @@ The iOS 5 TWTweetComposeViewController makes it really simple to integrate Twitt
 
 ## What does it look like?
 ![DETweetComposeViewController](https://github.com/downloads/doubleencore/DETweetComposeViewController/DETweetComposeViewController.png) ![TWTweetComposeViewController](https://github.com/downloads/doubleencore/DETweetComposeViewController/TWTweetComposeViewController.png)
+
 As you can see they look very similar.  
   
 ## How do you use it?
@@ -34,9 +35,11 @@ DETweetComposeViewController *tcvc = [[[DETweetComposeViewController alloc] init
 ## What if I don't want to use the unofficial-twitter-sdk?
 
 Just save the necessary OAuth credentils to NSUserDefaults as:
-* detwitter_oauth_token
-* detwitter_oauth_token_secret
-* detwitter_oauth_token_authorized
+
+ * detwitter_oauth_token
+ * detwitter_oauth_token_secret
+ * detwitter_oauth_token_authorized
+
 Then call the OAuth ```- (void) loadOAuthContextFromUserDefaults;``` method.
 
 ## What's next?
