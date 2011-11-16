@@ -189,6 +189,11 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         ((UIImageView *)obj).layer.masksToBounds = YES;
     }];
     
+        //    iOS 5 check.
+    if (NSClassFromString(@"NSJSONSerialization")) {
+        self.textView.keyboardType = UIKeyboardTypeTwitter;
+    }
+    
     self.textView.text = self.text;
     [self.textView becomeFirstResponder];
     
