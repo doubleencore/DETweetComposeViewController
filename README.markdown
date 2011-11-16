@@ -19,7 +19,8 @@ As you can see they look very similar.
 
 1. Add all the files from the DETweetComposeViewController to your project.
 2. Add all the files from the unofficial-twitter-sdk to your project. Thanks [lloydsparkes](https://github.com/lloydsparkes)
-3. Use it almost just like you would a TWTweetComposeViewController
+3. Set your Twitter OAuth Consumer Key and Secret in OAuthConsumerCredentials.h
+4. Use it almost just like you would a TWTweetComposeViewController
 
 ```
 #import "DETweetComposeViewController.h"
