@@ -47,6 +47,7 @@
 @synthesize attachment2ImageView = _attachment2ImageView;
 @synthesize attachment3ImageView = _attachment3ImageView;
 @synthesize characterCountLabel = _characterCountLabel;
+@synthesize previousStatusBarStyle = _previousStatusBarStyle;
 
     // Public
 @synthesize completionHandler = _completionHandler;
@@ -206,8 +207,19 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 {
     [super viewWillAppear:animated];
     
+    self.previousStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES]; 
+    
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0.0f];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:self.previousStatusBarStyle animated:YES];
+}
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

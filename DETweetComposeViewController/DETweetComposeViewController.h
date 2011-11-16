@@ -25,6 +25,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *attachment2ImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *attachment3ImageView;
 @property (retain, nonatomic) IBOutlet UILabel *characterCountLabel;
+@property (nonatomic) UIStatusBarStyle previousStatusBarStyle;
 
     // Public
 + (void)displayNoTwitterAccountsAlert;
