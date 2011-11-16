@@ -150,6 +150,7 @@
 		695D6579146609350002D720 /* de-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "de-icon@2x.png"; path = "../de-icon@2x.png"; sourceTree = "<group>"; };
 		695D657B1466093D0002D720 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		695D657D146609430002D720 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		6980DB8714738CF4002282CB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		699A29B91459B3960046B260 /* DETweetPoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetPoster.h; path = ../DETweetComposeViewController/DETweetPoster.h; sourceTree = "<group>"; };
 		699A29BA1459B3960046B260 /* DETweetPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetPoster.m; path = ../DETweetComposeViewController/DETweetPoster.m; sourceTree = "<group>"; };
 		B63C1FCD1461DC2C00DF52F7 /* Buzz-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzz-small.png"; sourceTree = "<group>"; };
@@ -349,6 +350,7 @@
 		B6A13108145768DB00500180 = {
 			isa = PBXGroup;
 			children = (
+				6980DB8714738CF4002282CB /* README.markdown */,
 				B6A1311D145768DB00500180 /* Demo App */,
 				B6A131371457690300500180 /* DETweetComposeViewController */,
 				B6A13116145768DB00500180 /* Frameworks */,
