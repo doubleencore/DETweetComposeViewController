@@ -38,3 +38,7 @@ Just save the necessary OAuth credentils to NSUserDefaults as:
 * detwitter_oauth_token_secret
 * detwitter_oauth_token_authorized
 Then call the OAuth ```- (void) loadOAuthContextFromUserDefaults;``` method.
+
+## What's next?
+
+We have some TODO items in [github Issues](https://github.com/doubleencore/DETweetComposeViewController/issues). Please send us your feature requests, patches and pull requests.
