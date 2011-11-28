@@ -19,9 +19,11 @@
 @property (nonatomic, retain) NSMutableArray *urls;
 @property (nonatomic, retain) NSArray *attachmentFrameViews;
 @property (nonatomic, retain) NSArray *attachmentImageViews;
+@property (nonatomic) UIStatusBarStyle previousStatusBarStyle;
 
 - (void)tweetComposeViewControllerInit;
 - (BOOL)isPresented;
+- (BOOL)isIOS5;
 - (NSInteger)charactersAvailable;
 - (void)updateCharacterCount;
 - (NSInteger)attachmentsCount;
@@ -61,10 +63,10 @@
 
 
 NSInteger const DETweetMaxLength = 140;
-NSInteger const DETweetURLLength = 21;    // https://dev.twitter.com/docs/tco-url-wrapper
+NSInteger const DETweetURLLength = 21;  // https://dev.twitter.com/docs/tco-url-wrapper
 NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but not today.
 
-#define degreesToRadians(x) (M_PI * x / 180.0)
+#define degreesToRadians(x) (M_PI * x / 180.0f)
 
 
 #pragma mark - Class Methods
@@ -163,7 +165,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
         // Put the attachment frames and image views into arrays so they're easier to work with.
         // Order is important, so we can't use IB object arrays. Or at least this is easier.
     self.attachmentFrameViews = [NSArray arrayWithObjects:
@@ -190,8 +192,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         ((UIImageView *)obj).layer.masksToBounds = YES;
     }];
     
-        //    iOS 5 check.
-    if (NSClassFromString(@"NSJSONSerialization")) {
+    if ([self isIOS5]) {
         self.textView.keyboardType = UIKeyboardTypeTwitter;
     }
     
@@ -213,13 +214,13 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0.0f];
 }
 
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
     [[UIApplication sharedApplication] setStatusBarStyle:self.previousStatusBarStyle animated:YES];
 }
-
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -351,8 +352,10 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
         // IBOutlets
     self.cardView = nil;
+    self.titleLabel = nil;
     self.cancelButton = nil;
     self.sendButton = nil;
+    self.cardHeaderLineView = nil;
     self.textView = nil;
     self.paperClipView = nil;
     self.attachment1FrameView = nil;
@@ -367,8 +370,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     self.attachmentFrameViews = nil;
     self.attachmentImageViews = nil;
 
-    [self setCardHeaderLineView:nil];
-    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 
@@ -479,6 +480,11 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 {
     return [self isViewLoaded];
 }
+         
+- (BOOL)isIOS5
+ {
+     return (NSClassFromString(@"NSJSONSerialization") != nil);
+ }
 
 
 - (NSInteger)charactersAvailable
