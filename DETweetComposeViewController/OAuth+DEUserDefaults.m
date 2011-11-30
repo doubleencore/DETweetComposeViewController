@@ -32,6 +32,7 @@
 	[[NSUserDefaults standardUserDefaults] setObject:_oAuth.oauth_token forKey:@"detwitter_oauth_token"];
 	[[NSUserDefaults standardUserDefaults] setObject:_oAuth.oauth_token_secret forKey:@"detwitter_oauth_token_secret"];
 	[[NSUserDefaults standardUserDefaults] setInteger:_oAuth.oauth_token_authorized forKey:@"detwitter_oauth_token_authorized"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -40,7 +41,7 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"detwitter_oauth_token"] &&
         [[NSUserDefaults standardUserDefaults] objectForKey:@"detwitter_oauth_token_secret"] &&
         [[NSUserDefaults standardUserDefaults] boolForKey:@"detwitter_oauth_token_authorized"]) {
-        
+        [[NSUserDefaults standardUserDefaults] synchronize];
         return YES;
     } else {
         return NO;
@@ -53,7 +54,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"detwitter_oauth_token"];
 	[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"detwitter_oauth_token_secret"];
 	[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"detwitter_oauth_token_authorized"];
-    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     OAuth *oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
     [oAuth forget];
 }
