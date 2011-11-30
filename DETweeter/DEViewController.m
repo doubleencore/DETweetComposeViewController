@@ -65,6 +65,9 @@
     UIImage *buttonImage = [[UIImage imageNamed:@"DETweetSendButtonPortrait.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
     [self.twTweetButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [self.deTweetButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    
+    self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    self.backgroundView.image = nil;
 }
 
 
@@ -86,14 +89,14 @@
     if (interfaceOrientation == UIInterfaceOrientationPortrait ||
         interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         
-        self.backgroundView.image = [UIImage imageNamed:@"Default.png"];
+            // self.backgroundView.image = [UIImage imageNamed:@"Default"];
         buttonFrame.origin.y = 222.0f;
     }
     else {
-        self.backgroundView.image = [UIImage imageNamed:@"Default-Landscape.png"];
+            // self.backgroundView.image = [UIImage imageNamed:@"Default-Landscape"];
         buttonFrame.origin.y = 185.0f;
     }
-    
+
     self.buttonView.frame = buttonFrame;
 }
 
@@ -118,6 +121,7 @@
 - (void)tweetUs
 {
     DETweetComposeViewController *tcvc = [[[DETweetComposeViewController alloc] init] autorelease];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self addTweetContent:tcvc];
     [self presentModalViewController:tcvc animated:YES];
 }
@@ -127,8 +131,7 @@
 {
     TWTweetComposeViewControllerCompletionHandler 
     completionHandler = ^(TWTweetComposeViewControllerResult result) {
-        switch (result)
-        {
+        switch (result) {
             case TWTweetComposeViewControllerResultCancelled:
                 NSLog(@"Twitter Result: canceled");
                 break;

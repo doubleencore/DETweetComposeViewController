@@ -8,9 +8,11 @@
 #import "DETweetComposeViewController.h"
 #import "DETweetPoster.h"
 #import "DETweetSheetCardView.h"
+#import "DETweetGradientView.h"
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
 #import <QuartzCore/QuartzCore.h>
+
 
 @interface DETweetComposeViewController ()
 
@@ -20,6 +22,7 @@
 @property (nonatomic, retain) NSArray *attachmentFrameViews;
 @property (nonatomic, retain) NSArray *attachmentImageViews;
 @property (nonatomic) UIStatusBarStyle previousStatusBarStyle;
+@property (nonatomic, retain) DETweetGradientView *backgroundView;
 
 - (void)tweetComposeViewControllerInit;
 - (BOOL)isPresented;
@@ -49,7 +52,6 @@
 @synthesize attachment2ImageView = _attachment2ImageView;
 @synthesize attachment3ImageView = _attachment3ImageView;
 @synthesize characterCountLabel = _characterCountLabel;
-@synthesize previousStatusBarStyle = _previousStatusBarStyle;
 
     // Public
 @synthesize completionHandler = _completionHandler;
@@ -60,6 +62,8 @@
 @synthesize urls = _urls;
 @synthesize attachmentFrameViews = _attachmentFrameViews;
 @synthesize attachmentImageViews = _attachmentImageViews;
+@synthesize previousStatusBarStyle = _previousStatusBarStyle;
+@synthesize backgroundView = _backgroundView;
 
 
 NSInteger const DETweetMaxLength = 140;
@@ -155,6 +159,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [_urls release], _urls = nil;
     [_attachmentFrameViews release], _attachmentFrameViews = nil;
     [_attachmentImageViews release], _attachmentImageViews = nil;
+    [_backgroundView release], _backgroundView = nil;
     
     [super dealloc];
 }
@@ -165,6 +170,8 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor clearColor];
 
         // Put the attachment frames and image views into arrays so they're easier to work with.
         // Order is important, so we can't use IB object arrays. Or at least this is easier.
@@ -208,9 +215,27 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 {
     [super viewWillAppear:animated];
     
+        // Now let's fade in a gradient view over the presenting view.
+    UIView *presentingView = [self isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
+    CGRect frame = CGRectMake(0.0f,
+                              0.0f,
+                              presentingView.bounds.size.width,
+                              presentingView.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height);
+    self.backgroundView = [[DETweetGradientView alloc] initWithFrame:frame];
+    self.backgroundView.transform = presentingView.transform;
+    self.backgroundView.alpha = 0.0f;
+    self.backgroundView.center = [UIApplication sharedApplication].keyWindow.center;
+    self.backgroundView.layer.borderColor = [UIColor yellowColor].CGColor;
+    [presentingView addSubview:self.backgroundView];
+    [UIView animateWithDuration:0.3f
+                     animations:^ {
+                         self.backgroundView.alpha = 1.0f;
+                     }];
+    
     self.previousStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES]; 
     
+        // This updates the rects of all of our objects.
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0.0f];
 }
 
@@ -218,6 +243,14 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    [UIView animateWithDuration:0.3f
+                     animations:^ {
+                         self.backgroundView.alpha = 0.0f;
+                     }
+                     completion:^(BOOL finished) {
+                         [self.backgroundView removeFromSuperview];
+                     }];
     
     [[UIApplication sharedApplication] setStatusBarStyle:self.previousStatusBarStyle animated:YES];
 }
@@ -241,12 +274,14 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     UIImage *cancelButtonImage, *sendButtonImage;
     CGFloat titleLabelFontSize, titleLabelTop;
     CGFloat characterCountLeft, characterCountTop;
+    CGSize backgroundOffset;
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         cardWidth = CGRectGetWidth(self.view.bounds) - 8.0f;
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
             cardTop = 25.0f;
             cardHeight = 189.0f;
+            backgroundOffset = CGSizeMake(0.0f, -150.0f);
             buttonTop = 7.0f;
             cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
             sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
@@ -257,6 +292,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         else {
             cardTop = -1.0f;
             cardHeight = 150.0f;
+            backgroundOffset = CGSizeMake(0.0f, -150.0f);
             buttonTop = 6.0f;
             cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
             sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
@@ -276,14 +312,18 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         titleLabelTop = 9.0f;
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
             cardTop = 280.0f;
+            backgroundOffset = CGSizeMake(0.0f, -150.0f);
         }
         else {
             cardTop = 110.0f;
+            backgroundOffset = CGSizeMake(100.0f, 0.0f);
         }
     }
 
     CGFloat cardLeft = trunc((CGRectGetWidth(self.view.bounds) - cardWidth) / 2);
     self.cardView.frame = CGRectMake(cardLeft, cardTop, cardWidth, cardHeight);
+
+//    self.backgroundView.centerOffset = backgroundOffset;
 
     self.titleLabel.font = [UIFont boldSystemFontOfSize:titleLabelFontSize];
     self.titleLabel.frame = CGRectMake(0.0f, titleLabelTop, cardWidth, self.titleLabel.frame.size.height);
@@ -369,6 +409,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         // Private
     self.attachmentFrameViews = nil;
     self.attachmentImageViews = nil;
+    self.backgroundView = nil;
 
     [super viewDidUnload];
 }
@@ -598,6 +639,14 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (void)tweetSucceeded
 {
+    CGFloat yOffset = -(self.view.bounds.size.height + CGRectGetMaxY(self.cardView.frame) + 10.0f);
+    
+    [UIView animateWithDuration:0.35f
+                     animations:^ {
+                         self.cardView.frame = CGRectOffset(self.cardView.frame, 0.0f, yOffset);
+                         self.paperClipView.frame = CGRectOffset(self.paperClipView.frame, 0.0f, yOffset);
+                     }];
+    
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -607,7 +656,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 - (IBAction)send
 {
     self.sendButton.enabled = NO;
-    [self.textView resignFirstResponder];
     
     NSString *tweet = self.textView.text;
     
