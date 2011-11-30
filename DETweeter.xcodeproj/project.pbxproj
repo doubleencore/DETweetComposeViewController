@@ -17,13 +17,6 @@
 		6925A81414590EB400011DA0 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7DD14590EB400011DA0 /* SBJsonBase.m */; };
 		6925A81514590EB400011DA0 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7DF14590EB400011DA0 /* SBJsonParser.m */; };
 		6925A81614590EB400011DA0 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7E114590EB400011DA0 /* SBJsonWriter.m */; };
-		6925A81714590EB400011DA0 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7E614590EB400011DA0 /* ASIAuthenticationDialog.m */; };
-		6925A81814590EB400011DA0 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7E914590EB400011DA0 /* ASIDownloadCache.m */; };
-		6925A81914590EB400011DA0 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7EB14590EB400011DA0 /* ASIFormDataRequest.m */; };
-		6925A81A14590EB400011DA0 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7ED14590EB400011DA0 /* ASIHTTPRequest.m */; };
-		6925A81B14590EB400011DA0 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7F114590EB400011DA0 /* ASIInputStream.m */; };
-		6925A81C14590EB400011DA0 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7F314590EB400011DA0 /* ASINetworkQueue.m */; };
-		6925A81D14590EB400011DA0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7F714590EB400011DA0 /* Reachability.m */; };
 		6925A81E14590EB400011DA0 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7F914590EB400011DA0 /* Base64Transcoder.c */; };
 		6925A81F14590EB400011DA0 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7FB14590EB400011DA0 /* hmac.c */; };
 		6925A82014590EB400011DA0 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7FE14590EB400011DA0 /* OAHMAC_SHA1SignatureProvider.m */; };
@@ -43,6 +36,9 @@
 		695D657C1466093D0002D720 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D657B1466093D0002D720 /* Default.png */; };
 		695D657E146609430002D720 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D657D146609430002D720 /* Default@2x.png */; };
 		699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A29BA1459B3960046B260 /* DETweetPoster.m */; };
+		69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E70E891484BAD5004A66CA /* DEHTTPRequest.m */; };
+		B63C1FCF1461DC2C00DF52F7 /* Buzz-small.png in Resources */ = {isa = PBXBuildFile; fileRef = B63C1FCD1461DC2C00DF52F7 /* Buzz-small.png */; };
+		B63C1FD01461DC2C00DF52F7 /* Woody-small.png in Resources */ = {isa = PBXBuildFile; fileRef = B63C1FCE1461DC2C00DF52F7 /* Woody-small.png */; };
 		B655DDEA1458B4A500F513E1 /* Buzz.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDE91458B4A500F513E1 /* Buzz.jpeg */; };
 		B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEC1458B56300F513E1 /* Woody.jpeg */; };
 		B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */; };
@@ -57,7 +53,6 @@
 		B655DE031458C5F000F513E1 /* DETweetAttachmentFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDFF1458C5F000F513E1 /* DETweetAttachmentFrame@2x.png */; };
 		B655DE041458C5F000F513E1 /* DETweetURLAttachment.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */; };
 		B655DE051458C5F000F513E1 /* DETweetURLAttachment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DE011458C5F000F513E1 /* DETweetURLAttachment@2x.png */; };
-		B66E0B7914848A850082B022 /* DETweetGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B66E0B7814848A850082B022 /* DETweetGradientView.m */; };
 		B6A13118145768DB00500180 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13117145768DB00500180 /* UIKit.framework */; };
 		B6A1311A145768DB00500180 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13119145768DB00500180 /* Foundation.framework */; };
 		B6A1311C145768DB00500180 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A1311B145768DB00500180 /* CoreGraphics.framework */; };
@@ -100,24 +95,6 @@
 		6925A7DF14590EB400011DA0 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		6925A7E014590EB400011DA0 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		6925A7E114590EB400011DA0 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		6925A7E514590EB400011DA0 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
-		6925A7E614590EB400011DA0 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
-		6925A7E714590EB400011DA0 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
-		6925A7E814590EB400011DA0 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
-		6925A7E914590EB400011DA0 /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDownloadCache.m; sourceTree = "<group>"; };
-		6925A7EA14590EB400011DA0 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
-		6925A7EB14590EB400011DA0 /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIFormDataRequest.m; sourceTree = "<group>"; };
-		6925A7EC14590EB400011DA0 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
-		6925A7ED14590EB400011DA0 /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIHTTPRequest.m; sourceTree = "<group>"; };
-		6925A7EE14590EB400011DA0 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
-		6925A7EF14590EB400011DA0 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
-		6925A7F014590EB400011DA0 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
-		6925A7F114590EB400011DA0 /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIInputStream.m; sourceTree = "<group>"; };
-		6925A7F214590EB400011DA0 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
-		6925A7F314590EB400011DA0 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
-		6925A7F414590EB400011DA0 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
-		6925A7F614590EB400011DA0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		6925A7F714590EB400011DA0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6925A7F914590EB400011DA0 /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
 		6925A7FA14590EB400011DA0 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
 		6925A7FB14590EB400011DA0 /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac.c; sourceTree = "<group>"; };
@@ -152,6 +129,10 @@
 		6980DB8714738CF4002282CB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		699A29B91459B3960046B260 /* DETweetPoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetPoster.h; path = ../DETweetComposeViewController/DETweetPoster.h; sourceTree = "<group>"; };
 		699A29BA1459B3960046B260 /* DETweetPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetPoster.m; path = ../DETweetComposeViewController/DETweetPoster.m; sourceTree = "<group>"; };
+		69E70E881484BAD5004A66CA /* DEHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEHTTPRequest.h; sourceTree = "<group>"; };
+		69E70E891484BAD5004A66CA /* DEHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHTTPRequest.m; sourceTree = "<group>"; };
+		B63C1FCD1461DC2C00DF52F7 /* Buzz-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzz-small.png"; sourceTree = "<group>"; };
+		B63C1FCE1461DC2C00DF52F7 /* Woody-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Woody-small.png"; sourceTree = "<group>"; };
 		B655DDE91458B4A500F513E1 /* Buzz.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Buzz.jpeg; sourceTree = "<group>"; };
 		B655DDEC1458B56300F513E1 /* Woody.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Woody.jpeg; sourceTree = "<group>"; };
 		B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardBackground.png; path = DETweetComposeViewController/Resources/DETweetCardBackground.png; sourceTree = SOURCE_ROOT; };
@@ -166,8 +147,6 @@
 		B655DDFF1458C5F000F513E1 /* DETweetAttachmentFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetAttachmentFrame@2x.png"; path = "DETweetComposeViewController/Resources/DETweetAttachmentFrame@2x.png"; sourceTree = SOURCE_ROOT; };
 		B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetURLAttachment.png; path = DETweetComposeViewController/Resources/DETweetURLAttachment.png; sourceTree = SOURCE_ROOT; };
 		B655DE011458C5F000F513E1 /* DETweetURLAttachment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetURLAttachment@2x.png"; path = "DETweetComposeViewController/Resources/DETweetURLAttachment@2x.png"; sourceTree = SOURCE_ROOT; };
-		B66E0B7714848A850082B022 /* DETweetGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetGradientView.h; path = DETweetComposeViewController/DETweetGradientView.h; sourceTree = SOURCE_ROOT; };
-		B66E0B7814848A850082B022 /* DETweetGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetGradientView.m; path = DETweetComposeViewController/DETweetGradientView.m; sourceTree = SOURCE_ROOT; };
 		B6A13113145768DB00500180 /* DETweeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DETweeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A13117145768DB00500180 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B6A13119145768DB00500180 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -264,7 +243,8 @@
 		6925A7E314590EB400011DA0 /* Guts */ = {
 			isa = PBXGroup;
 			children = (
-				6925A7E414590EB400011DA0 /* ASIHTTPRequest */,
+				69E70E881484BAD5004A66CA /* DEHTTPRequest.h */,
+				69E70E891484BAD5004A66CA /* DEHTTPRequest.m */,
 				6925A7F814590EB400011DA0 /* Crypto */,
 				6925A80214590EB400011DA0 /* NSString+URLEncoding.h */,
 				6925A80314590EB400011DA0 /* NSString+URLEncoding.m */,
@@ -274,39 +254,6 @@
 				6925A80714590EB400011DA0 /* OAuth.m */,
 			);
 			path = Guts;
-			sourceTree = "<group>";
-		};
-		6925A7E414590EB400011DA0 /* ASIHTTPRequest */ = {
-			isa = PBXGroup;
-			children = (
-				6925A7E514590EB400011DA0 /* ASIAuthenticationDialog.h */,
-				6925A7E614590EB400011DA0 /* ASIAuthenticationDialog.m */,
-				6925A7E714590EB400011DA0 /* ASICacheDelegate.h */,
-				6925A7E814590EB400011DA0 /* ASIDownloadCache.h */,
-				6925A7E914590EB400011DA0 /* ASIDownloadCache.m */,
-				6925A7EA14590EB400011DA0 /* ASIFormDataRequest.h */,
-				6925A7EB14590EB400011DA0 /* ASIFormDataRequest.m */,
-				6925A7EC14590EB400011DA0 /* ASIHTTPRequest.h */,
-				6925A7ED14590EB400011DA0 /* ASIHTTPRequest.m */,
-				6925A7EE14590EB400011DA0 /* ASIHTTPRequestConfig.h */,
-				6925A7EF14590EB400011DA0 /* ASIHTTPRequestDelegate.h */,
-				6925A7F014590EB400011DA0 /* ASIInputStream.h */,
-				6925A7F114590EB400011DA0 /* ASIInputStream.m */,
-				6925A7F214590EB400011DA0 /* ASINetworkQueue.h */,
-				6925A7F314590EB400011DA0 /* ASINetworkQueue.m */,
-				6925A7F414590EB400011DA0 /* ASIProgressDelegate.h */,
-				6925A7F514590EB400011DA0 /* Reachability */,
-			);
-			path = ASIHTTPRequest;
-			sourceTree = "<group>";
-		};
-		6925A7F514590EB400011DA0 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				6925A7F614590EB400011DA0 /* Reachability.h */,
-				6925A7F714590EB400011DA0 /* Reachability.m */,
-			);
-			path = Reachability;
 			sourceTree = "<group>";
 		};
 		6925A7F814590EB400011DA0 /* Crypto */ = {
@@ -340,6 +287,8 @@
 			children = (
 				B655DDE91458B4A500F513E1 /* Buzz.jpeg */,
 				B655DDEC1458B56300F513E1 /* Woody.jpeg */,
+				B63C1FCD1461DC2C00DF52F7 /* Buzz-small.png */,
+				B63C1FCE1461DC2C00DF52F7 /* Woody-small.png */,
 			);
 			name = "Test Images";
 			sourceTree = "<group>";
@@ -419,8 +368,6 @@
 				B6A131381457696000500180 /* DETweetComposeViewController.h */,
 				B6A131391457696000500180 /* DETweetComposeViewController.m */,
 				B6A131411457780A00500180 /* DETweetComposeView.xib */,
-				B66E0B7714848A850082B022 /* DETweetGradientView.h */,
-				B66E0B7814848A850082B022 /* DETweetGradientView.m */,
 				B6A1314614577D5A00500180 /* DETweetSheetCardView.h */,
 				B6A1314714577D5A00500180 /* DETweetSheetCardView.m */,
 				B6FD55AB1463A6E100739469 /* DETweetTextView.h */,
@@ -533,6 +480,8 @@
 				B655DE051458C5F000F513E1 /* DETweetURLAttachment@2x.png in Resources */,
 				6925A82514590EB400011DA0 /* tclose.png in Resources */,
 				6925A82614590EB400011DA0 /* ticon.png in Resources */,
+				B63C1FCF1461DC2C00DF52F7 /* Buzz-small.png in Resources */,
+				B63C1FD01461DC2C00DF52F7 /* Woody-small.png in Resources */,
 				B6DEB61214630B2E009FD33C /* DETweetCancelButtonLandscape.png in Resources */,
 				B6DEB61314630B2E009FD33C /* DETweetCancelButtonLandscape@2x.png in Resources */,
 				B6DEB61414630B2E009FD33C /* DETweetSendButtonLandscape.png in Resources */,
@@ -566,13 +515,6 @@
 				6925A81414590EB400011DA0 /* SBJsonBase.m in Sources */,
 				6925A81514590EB400011DA0 /* SBJsonParser.m in Sources */,
 				6925A81614590EB400011DA0 /* SBJsonWriter.m in Sources */,
-				6925A81714590EB400011DA0 /* ASIAuthenticationDialog.m in Sources */,
-				6925A81814590EB400011DA0 /* ASIDownloadCache.m in Sources */,
-				6925A81914590EB400011DA0 /* ASIFormDataRequest.m in Sources */,
-				6925A81A14590EB400011DA0 /* ASIHTTPRequest.m in Sources */,
-				6925A81B14590EB400011DA0 /* ASIInputStream.m in Sources */,
-				6925A81C14590EB400011DA0 /* ASINetworkQueue.m in Sources */,
-				6925A81D14590EB400011DA0 /* Reachability.m in Sources */,
 				6925A81E14590EB400011DA0 /* Base64Transcoder.c in Sources */,
 				6925A81F14590EB400011DA0 /* hmac.c in Sources */,
 				6925A82014590EB400011DA0 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
@@ -585,7 +527,7 @@
 				B6FD55AD1463A6E100739469 /* DETweetTextView.m in Sources */,
 				60C6B2EB1471CBEE0090278C /* OAuth+DEUserDefaults.m in Sources */,
 				60C6B2EE1471D47D0090278C /* OAuth+DEExtensions.m in Sources */,
-				B66E0B7914848A850082B022 /* DETweetGradientView.m in Sources */,
+				69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
