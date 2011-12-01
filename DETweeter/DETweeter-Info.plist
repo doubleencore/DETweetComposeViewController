@@ -12,6 +12,9 @@
 	<array>
 		<string>de-icon.png</string>
 		<string>de-icon@2x.png</string>
+		<string>icon.png</string>
+		<string>icon@2x.png</string>
+		<string>icon~ipad.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -21,6 +24,9 @@
 			<array>
 				<string>de-icon.png</string>
 				<string>de-icon@2x.png</string>
+				<string>icon.png</string>
+				<string>icon@2x.png</string>
+				<string>icon~ipad.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<false/>

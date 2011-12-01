@@ -66,8 +66,7 @@
     [self.twTweetButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [self.deTweetButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     
-    self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-    self.backgroundView.image = nil;
+    [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0.0f];
 }
 
 
@@ -84,20 +83,20 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
-    CGRect buttonFrame = self.buttonView.frame;
-
-    if (interfaceOrientation == UIInterfaceOrientationPortrait ||
-        interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-        
-            // self.backgroundView.image = [UIImage imageNamed:@"Default"];
-        buttonFrame.origin.y = 222.0f;
+    CGRect frame = self.buttonView.frame;
+    frame.origin.x = trunc((self.view.bounds.size.width - frame.size.width) / 2);
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 306.0f : 210.0f;
     }
     else {
-            // self.backgroundView.image = [UIImage imageNamed:@"Default-Landscape"];
-        buttonFrame.origin.y = 185.0f;
+        frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 722.0f : 535.0f;
     }
-
-    self.buttonView.frame = buttonFrame;
+    self.buttonView.frame = frame;
+        
+    frame = self.backgroundView.frame;
+    frame.origin.x = trunc((self.view.bounds.size.width - frame.size.width) / 2);
+    frame.origin.y = trunc((self.view.bounds.size.height - frame.size.height) / 2) - 10.0f;
+    self.backgroundView.frame = frame;
 }
 
 

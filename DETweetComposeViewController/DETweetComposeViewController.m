@@ -214,7 +214,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
         // Now let's fade in a gradient view over the presenting view.
     UIView *presentingView = [self isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
     CGRect frame = CGRectMake(0.0f,

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		609210761471DAFD005B7E87 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 609210741471DAFD005B7E87 /* Default-Landscape.png */; };
-		609210771471DAFD005B7E87 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 609210751471DAFD005B7E87 /* Default-Landscape@2x.png */; };
 		60C6B2EB1471CBEE0090278C /* OAuth+DEUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C6B2EA1471CBEE0090278C /* OAuth+DEUserDefaults.m */; };
 		60C6B2EE1471D47D0090278C /* OAuth+DEExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C6B2ED1471D47D0090278C /* OAuth+DEExtensions.m */; };
 		6925A81114590EB400011DA0 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7D714590EB400011DA0 /* NSObject+SBJSON.m */; };
@@ -31,12 +29,16 @@
 		6925A82C1459103700011DA0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6925A82B1459103700011DA0 /* SystemConfiguration.framework */; };
 		6925A82E1459104200011DA0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6925A82D1459104200011DA0 /* MobileCoreServices.framework */; };
 		6925A8301459105500011DA0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6925A82F1459105500011DA0 /* libz.dylib */; };
-		695D65771466092D0002D720 /* de-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D65761466092D0002D720 /* de-icon.png */; };
-		695D657A146609350002D720 /* de-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D6579146609350002D720 /* de-icon@2x.png */; };
 		695D657C1466093D0002D720 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D657B1466093D0002D720 /* Default.png */; };
 		695D657E146609430002D720 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D657D146609430002D720 /* Default@2x.png */; };
 		699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A29BA1459B3960046B260 /* DETweetPoster.m */; };
 		69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E70E891484BAD5004A66CA /* DEHTTPRequest.m */; };
+		B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F06981486F0C000CE3BD6 /* icon@2x.png */; };
+		B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */; };
+		B639E5261486D2DA0054AE8F /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E5251486D2DA0054AE8F /* background.png */; };
+		B639E5291486EF9B0054AE8F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E5281486EF9B0054AE8F /* icon.png */; };
+		B639E52B1486F04A0054AE8F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E52A1486F04A0054AE8F /* Default-Landscape~ipad.png */; };
+		B639E52D1486F04F0054AE8F /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E52C1486F04F0054AE8F /* Default-Portrait~ipad.png */; };
 		B655DDEA1458B4A500F513E1 /* Buzz.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDE91458B4A500F513E1 /* Buzz.jpeg */; };
 		B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEC1458B56300F513E1 /* Woody.jpeg */; };
 		B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */; };
@@ -75,8 +77,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		609210741471DAFD005B7E87 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = SOURCE_ROOT; };
-		609210751471DAFD005B7E87 /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = SOURCE_ROOT; };
 		60C6B2E81471CBD90090278C /* OAuth+DEUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OAuth+DEUserDefaults.h"; path = "DETweetComposeViewController/OAuth+DEUserDefaults.h"; sourceTree = SOURCE_ROOT; };
 		60C6B2EA1471CBEE0090278C /* OAuth+DEUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OAuth+DEUserDefaults.m"; path = "DETweetComposeViewController/OAuth+DEUserDefaults.m"; sourceTree = SOURCE_ROOT; };
 		60C6B2EC1471D4700090278C /* OAuth+DEExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OAuth+DEExtensions.h"; path = "DETweetComposeViewController/OAuth+DEExtensions.h"; sourceTree = SOURCE_ROOT; };
@@ -121,8 +121,6 @@
 		6925A82B1459103700011DA0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6925A82D1459104200011DA0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6925A82F1459105500011DA0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		695D65761466092D0002D720 /* de-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "de-icon.png"; path = "../de-icon.png"; sourceTree = "<group>"; };
-		695D6579146609350002D720 /* de-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "de-icon@2x.png"; path = "../de-icon@2x.png"; sourceTree = "<group>"; };
 		695D657B1466093D0002D720 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		695D657D146609430002D720 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		6980DB8714738CF4002282CB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
@@ -130,6 +128,12 @@
 		699A29BA1459B3960046B260 /* DETweetPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetPoster.m; path = ../DETweetComposeViewController/DETweetPoster.m; sourceTree = "<group>"; };
 		69E70E881484BAD5004A66CA /* DEHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEHTTPRequest.h; sourceTree = "<group>"; };
 		69E70E891484BAD5004A66CA /* DEHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHTTPRequest.m; sourceTree = "<group>"; };
+		B60F06981486F0C000CE3BD6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
+		B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon~ipad.png"; path = "../icon~ipad.png"; sourceTree = "<group>"; };
+		B639E5251486D2DA0054AE8F /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B639E5281486EF9B0054AE8F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		B639E52A1486F04A0054AE8F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		B639E52C1486F04F0054AE8F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		B655DDE91458B4A500F513E1 /* Buzz.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Buzz.jpeg; sourceTree = "<group>"; };
 		B655DDEC1458B56300F513E1 /* Woody.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Woody.jpeg; sourceTree = "<group>"; };
 		B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardBackground.png; path = DETweetComposeViewController/Resources/DETweetCardBackground.png; sourceTree = SOURCE_ROOT; };
@@ -345,12 +349,14 @@
 		B6A1311E145768DB00500180 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B639E5281486EF9B0054AE8F /* icon.png */,
+				B60F06981486F0C000CE3BD6 /* icon@2x.png */,
+				B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */,
 				695D657B1466093D0002D720 /* Default.png */,
 				695D657D146609430002D720 /* Default@2x.png */,
-				609210741471DAFD005B7E87 /* Default-Landscape.png */,
-				609210751471DAFD005B7E87 /* Default-Landscape@2x.png */,
-				695D65761466092D0002D720 /* de-icon.png */,
-				695D6579146609350002D720 /* de-icon@2x.png */,
+				B639E52C1486F04F0054AE8F /* Default-Portrait~ipad.png */,
+				B639E52A1486F04A0054AE8F /* Default-Landscape~ipad.png */,
+				B639E5251486D2DA0054AE8F /* background.png */,
 				B6A1311F145768DB00500180 /* DETweeter-Info.plist */,
 				B6A13120145768DB00500180 /* InfoPlist.strings */,
 				B6A13123145768DB00500180 /* main.m */,
@@ -362,11 +368,11 @@
 		B6A131371457690300500180 /* DETweetComposeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B69AB9B214869A5C00652DDF /* DETweetGradientView.h */,
-				B69AB9B314869A5C00652DDF /* DETweetGradientView.m */,
 				B6A131381457696000500180 /* DETweetComposeViewController.h */,
 				B6A131391457696000500180 /* DETweetComposeViewController.m */,
 				B6A131411457780A00500180 /* DETweetComposeView.xib */,
+				B69AB9B214869A5C00652DDF /* DETweetGradientView.h */,
+				B69AB9B314869A5C00652DDF /* DETweetGradientView.m */,
 				B6A1314614577D5A00500180 /* DETweetSheetCardView.h */,
 				B6A1314714577D5A00500180 /* DETweetSheetCardView.m */,
 				B6FD55AB1463A6E100739469 /* DETweetTextView.h */,
@@ -485,12 +491,14 @@
 				B6DEB61514630B2E009FD33C /* DETweetSendButtonLandscape@2x.png in Resources */,
 				B6DEB61914631499009FD33C /* DETweetCardHeaderLine.png in Resources */,
 				B6DEB61A14631499009FD33C /* DETweetCardHeaderLine@2x.png in Resources */,
-				695D65771466092D0002D720 /* de-icon.png in Resources */,
-				695D657A146609350002D720 /* de-icon@2x.png in Resources */,
 				695D657C1466093D0002D720 /* Default.png in Resources */,
 				695D657E146609430002D720 /* Default@2x.png in Resources */,
-				609210761471DAFD005B7E87 /* Default-Landscape.png in Resources */,
-				609210771471DAFD005B7E87 /* Default-Landscape@2x.png in Resources */,
+				B639E5261486D2DA0054AE8F /* background.png in Resources */,
+				B639E5291486EF9B0054AE8F /* icon.png in Resources */,
+				B639E52B1486F04A0054AE8F /* Default-Landscape~ipad.png in Resources */,
+				B639E52D1486F04F0054AE8F /* Default-Portrait~ipad.png in Resources */,
+				B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */,
+				B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
