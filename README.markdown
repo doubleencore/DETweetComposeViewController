@@ -30,6 +30,7 @@ DETweetComposeViewController *tcvc = [[[DETweetComposeViewController alloc] init
 [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
 [tcvc addURL:[NSURL URLWithString:@"http://www.apple.com/ios/features.html#twitter"]];
 [tcvc addURL:[NSURL URLWithString:@"http://www.twitter.com/"]];
+self.modalPresentationStyle = UIModalPresentationCurrentContext;
 [self presentModalViewController:tcvc animated:YES];
 ```
 
