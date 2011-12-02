@@ -10,7 +10,6 @@
 
 @interface DETweetTextView ()
 
-@property (nonatomic) CGFloat rowHeight;
 @property (nonatomic) CGFloat lineWidth;
 @property (nonatomic, retain) UIColor *lineColor;
 
@@ -21,7 +20,6 @@
 
 @implementation DETweetTextView
 
-@synthesize rowHeight = _rowHeight;
 @synthesize lineWidth = _lineWidth;
 @synthesize lineColor = _lineColor;
 
@@ -54,7 +52,6 @@
 {
     self.contentMode = UIViewContentModeRedraw;
     
-    _rowHeight = self.font.lineHeight;
     _lineWidth = 1.0f;
     _lineColor = [[UIColor colorWithWhite:0.5f alpha:0.15f] retain];
 }
@@ -73,8 +70,6 @@
 - (void)setFont:(UIFont *)font
 {
     [super setFont:font];
-    
-    self.rowHeight = self.font.lineHeight;
     [self setNeedsDisplay];
 }
 
@@ -87,15 +82,16 @@
     CGContextSetLineWidth(context, self.lineWidth);
     CGFloat strokeOffset = (self.lineWidth / 2);  // Because lines are drawn between pixels. This moves it back onto the pixel.
 
-    if (self.rowHeight > 0) {
-        CGRect rowRect = CGRectMake(self.contentOffset.x, - 97.0f, self.contentSize.width, self.rowHeight);  // Note we start drawing with the second (index=1) row.
+    CGFloat rowHeight = self.font.lineHeight;
+    if (rowHeight > 0) {
+        CGRect rowRect = CGRectMake(self.contentOffset.x, - 97.0f, self.contentSize.width, rowHeight);  // Note we start drawing with the second (index=1) row.
         NSInteger rowNumber = 1;
         while (rowRect.origin.y < self.frame.size.height + 100.0f) {            
             CGContextMoveToPoint(context, rowRect.origin.x + strokeOffset, rowRect.origin.y + strokeOffset);
             CGContextAddLineToPoint(context, rowRect.origin.x + rowRect.size.width + strokeOffset, rowRect.origin.y + strokeOffset);
             CGContextDrawPath(context, kCGPathStroke);
             
-            rowRect.origin.y += self.rowHeight;
+            rowRect.origin.y += rowHeight;
             rowNumber++;
         }
     }
