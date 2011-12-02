@@ -339,10 +339,9 @@
 					<object class="IBUIImageView" id="283953837">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{242, 68}, {79, 34}}</string>
+						<string key="NSFrame">{{244, 68}, {79, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -810,7 +809,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="DETweetAttachmentFrame.png">{84, 79}</string>
 			<string key="DETweetCancelButtonPortrait.png">{12, 30}</string>
-			<string key="DETweetCardHeaderLine.png">{480, 3}</string>
+			<string key="DETweetCardHeaderLine.png">{600, 3}</string>
 			<string key="DETweetPaperClip.png">{79, 34}</string>
 			<string key="DETweetSendButtonPortrait.png">{12, 30}</string>
 		</dictionary>

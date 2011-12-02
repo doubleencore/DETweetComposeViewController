@@ -281,7 +281,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     CGSize backgroundOffset;
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        cardWidth = CGRectGetWidth(self.view.bounds) - 8.0f;
+        cardWidth = CGRectGetWidth(self.view.bounds) - 10.0f;
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
             cardTop = 25.0f;
             cardHeight = 189.0f;
@@ -348,7 +348,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     self.textView.frame = CGRectMake(0.0f, 0.0f, textWidth, self.textViewContainer.frame.size.height);
     self.textView.scrollIndicatorInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, -(self.cardView.bounds.size.width - textWidth - 1.0f));
 
-    self.paperClipView.frame = CGRectMake(CGRectGetMaxX(self.cardView.frame) - self.paperClipView.frame.size.width + 5.0f,
+    self.paperClipView.frame = CGRectMake(CGRectGetMaxX(self.cardView.frame) - self.paperClipView.frame.size.width + 6.0f,
                                           CGRectGetMinY(self.cardView.frame) + CGRectGetMaxY(self.cardHeaderLineView.frame) - 1.0f,
                                           self.paperClipView.frame.size.width,
                                           self.paperClipView.frame.size.height);
