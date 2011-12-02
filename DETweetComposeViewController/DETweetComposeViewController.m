@@ -11,8 +11,8 @@
 #import "DETweetGradientView.h"
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
-#import <QuartzCore/QuartzCore.h>
-
+#import <QuartzCore/QuartzCore.h>"
+#import "UIApplication+DETweetComposeViewController.h"
 
 @interface DETweetComposeViewController ()
 
@@ -26,7 +26,6 @@
 
 - (void)tweetComposeViewControllerInit;
 - (BOOL)isPresented;
-- (BOOL)isIOS5;
 - (NSInteger)charactersAvailable;
 - (void)updateCharacterCount;
 - (NSInteger)attachmentsCount;
@@ -199,7 +198,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         ((UIImageView *)obj).layer.masksToBounds = YES;
     }];
     
-    if ([self isIOS5]) {
+    if ([UIApplication isIOS5]) {
         self.textView.keyboardType = UIKeyboardTypeTwitter;
     }
     
@@ -216,7 +215,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [super viewWillAppear:animated];
 
         // Now let's fade in a gradient view over the presenting view.
-    UIView *presentingView = [self isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
+    UIView *presentingView = [UIApplication isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
     CGRect frame = CGRectMake(0.0f,
                               0.0f,
                               presentingView.bounds.size.width,
@@ -521,11 +520,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 {
     return [self isViewLoaded];
 }
-         
-- (BOOL)isIOS5
- {
-     return (NSClassFromString(@"NSJSONSerialization") != nil);
- }
 
 
 - (NSInteger)charactersAvailable
