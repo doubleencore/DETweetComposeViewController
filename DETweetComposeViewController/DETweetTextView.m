@@ -6,22 +6,23 @@
 //
 
 #import "DETweetTextView.h"
+#import "DETweetRuledView.h"
 
 
 @interface DETweetTextView ()
 
-@property (nonatomic) CGFloat lineWidth;
-@property (nonatomic, retain) UIColor *lineColor;
+@property (nonatomic, retain) DETweetRuledView *ruledView;
 
 - (void)textViewInit;
+- (CGRect)ruledViewFrame;
 
 @end
 
 
 @implementation DETweetTextView
 
-@synthesize lineWidth = _lineWidth;
-@synthesize lineColor = _lineColor;
+    // Private
+@synthesize ruledView = _ruledView;
 
 
 #pragma mark - Setup & Teardown
@@ -49,17 +50,21 @@
 
 
 - (void)textViewInit
-{
-    self.contentMode = UIViewContentModeRedraw;
-    
-    _lineWidth = 1.0f;
-    _lineColor = [[UIColor colorWithWhite:0.5f alpha:0.15f] retain];
+{   
+    self.clipsToBounds = NO;  // So the rules can extend outside of the view.
+
+    self.ruledView = [[DETweetRuledView alloc] initWithFrame:[self ruledViewFrame]];
+    self.ruledView.lineColor = [[UIColor colorWithWhite:0.5f alpha:0.15f] retain];
+    self.ruledView.lineWidth = 1.0f;
+    self.ruledView.rowHeight = self.font.lineHeight;
+    [self insertSubview:self.ruledView atIndex:0];
 }
 
 
 - (void)dealloc
-{
-    [_lineColor release], _lineColor = nil;
+{    
+        // Private
+    [_ruledView release], _ruledView = nil;
     
     [super dealloc];
 }
@@ -67,34 +72,28 @@
 
 #pragma mark - Superclass Overrides
 
-- (void)setFont:(UIFont *)font
+- (void)setContentSize:(CGSize)contentSize
 {
-    [super setFont:font];
-    [self setNeedsDisplay];
+    [super setContentSize:contentSize];
+    self.ruledView.frame = [self ruledViewFrame];
 }
 
 
-- (void)drawRect:(CGRect)rect
-{    
-    CGContextRef context = UIGraphicsGetCurrentContext();
+- (void)setFont:(UIFont *)font
+{
+    [super setFont:font];
     
-    CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
-    CGContextSetLineWidth(context, self.lineWidth);
-    CGFloat strokeOffset = (self.lineWidth / 2);  // Because lines are drawn between pixels. This moves it back onto the pixel.
+    self.ruledView.rowHeight = self.font.lineHeight;
+}
 
-    CGFloat rowHeight = self.font.lineHeight;
-    if (rowHeight > 0) {
-        CGRect rowRect = CGRectMake(self.contentOffset.x, - 97.0f, self.contentSize.width, rowHeight);  // Note we start drawing with the second (index=1) row.
-        NSInteger rowNumber = 1;
-        while (rowRect.origin.y < self.frame.size.height + 100.0f) {            
-            CGContextMoveToPoint(context, rowRect.origin.x + strokeOffset, rowRect.origin.y + strokeOffset);
-            CGContextAddLineToPoint(context, rowRect.origin.x + rowRect.size.width + strokeOffset, rowRect.origin.y + strokeOffset);
-            CGContextDrawPath(context, kCGPathStroke);
-            
-            rowRect.origin.y += rowHeight;
-            rowNumber++;
-        }
-    }
+
+#pragma mark - Private
+
+- (CGRect)ruledViewFrame
+{
+    CGFloat extraForBounce = 200.0f;
+    CGFloat textAlignmentOffset = -2.0f;  // To center the text between the lines. May want to find a way to determine this procedurally eventually.
+    return CGRectMake(0.0f, -extraForBounce + textAlignmentOffset, 500.0f, self.contentSize.height + (2 * extraForBounce));
 }
 
 

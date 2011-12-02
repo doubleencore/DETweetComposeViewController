@@ -17,6 +17,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *sendButton;
 @property (retain, nonatomic) IBOutlet UIView *cardHeaderLineView;
 @property (retain, nonatomic) IBOutlet UITextView *textView;
+@property (retain, nonatomic) IBOutlet UIView *textViewContainer;
 @property (retain, nonatomic) IBOutlet UIImageView *paperClipView;
 @property (retain, nonatomic) IBOutlet UIImageView *attachment1FrameView;
 @property (retain, nonatomic) IBOutlet UIImageView *attachment2FrameView;
