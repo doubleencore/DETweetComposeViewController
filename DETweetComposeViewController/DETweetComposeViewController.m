@@ -11,8 +11,11 @@
 #import "DETweetGradientView.h"
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
-#import <QuartzCore/QuartzCore.h>"
+#import <QuartzCore/QuartzCore.h>
+#import <Accounts/Accounts.h>
 #import "UIApplication+DETweetComposeViewController.h"
+
+static BOOL waitingForAccess = NO;
 
 @interface DETweetComposeViewController ()
 
@@ -76,7 +79,25 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 + (BOOL)canSendTweet
 {
-    return [OAuth isTwitterAuthorized];
+    if ([UIApplication isIOS5]) {
+        ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
+        ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        
+        [accountStore requestAccessToAccountsWithType:twitterAccountType withCompletionHandler:^(BOOL granted, NSError *error) {
+            waitingForAccess = NO;
+        }];
+        waitingForAccess = YES;
+        
+        while (waitingForAccess) {
+            sleep(1);
+        }
+        
+        NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
+        return [twitterAccounts count] < 1 ? NO : YES;
+    }
+    else {
+        return [OAuth isTwitterAuthorized];
+    }
 }
 
 

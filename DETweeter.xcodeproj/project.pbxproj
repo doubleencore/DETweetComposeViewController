@@ -34,6 +34,7 @@
 		699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A29BA1459B3960046B260 /* DETweetPoster.m */; };
 		69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E70E891484BAD5004A66CA /* DEHTTPRequest.m */; };
 		69EC1CC114885748002DB78F /* UIApplication+DETweetComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */; };
+		69EC1CC31488583E002DB78F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69EC1CC21488583E002DB78F /* Accounts.framework */; };
 		B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F06981486F0C000CE3BD6 /* icon@2x.png */; };
 		B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */; };
 		B639E5261486D2DA0054AE8F /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E5251486D2DA0054AE8F /* background.png */; };
@@ -131,6 +132,7 @@
 		69E70E891484BAD5004A66CA /* DEHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHTTPRequest.m; sourceTree = "<group>"; };
 		69EC1CBF14885748002DB78F /* UIApplication+DETweetComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+DETweetComposeViewController.h"; path = "DETweetComposeViewController/UIApplication+DETweetComposeViewController.h"; sourceTree = SOURCE_ROOT; };
 		69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+DETweetComposeViewController.m"; path = "DETweetComposeViewController/UIApplication+DETweetComposeViewController.m"; sourceTree = SOURCE_ROOT; };
+		69EC1CC21488583E002DB78F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B60F06981486F0C000CE3BD6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon~ipad.png"; path = "../icon~ipad.png"; sourceTree = "<group>"; };
 		B639E5251486D2DA0054AE8F /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69EC1CC31488583E002DB78F /* Accounts.framework in Frameworks */,
 				6925A8301459105500011DA0 /* libz.dylib in Frameworks */,
 				6925A82E1459104200011DA0 /* MobileCoreServices.framework in Frameworks */,
 				6925A82C1459103700011DA0 /* SystemConfiguration.framework in Frameworks */,
@@ -319,6 +322,7 @@
 		B6A13116145768DB00500180 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				69EC1CC21488583E002DB78F /* Accounts.framework */,
 				6925A82F1459105500011DA0 /* libz.dylib */,
 				6925A82D1459104200011DA0 /* MobileCoreServices.framework */,
 				6925A82B1459103700011DA0 /* SystemConfiguration.framework */,
