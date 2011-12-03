@@ -33,14 +33,14 @@
 		695D657E146609430002D720 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D657D146609430002D720 /* Default@2x.png */; };
 		699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A29BA1459B3960046B260 /* DETweetPoster.m */; };
 		69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E70E891484BAD5004A66CA /* DEHTTPRequest.m */; };
+		69F126411489A81C00343C3D /* Yawkey_business_dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69F126401489A81C00343C3D /* Yawkey_business_dog.jpg */; };
+		69F126441489A84E00343C3D /* YawkeyCleanTeeth.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 69F126431489A84E00343C3D /* YawkeyCleanTeeth.JPG */; };
 		B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F06981486F0C000CE3BD6 /* icon@2x.png */; };
 		B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */; };
 		B639E5261486D2DA0054AE8F /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E5251486D2DA0054AE8F /* background.png */; };
 		B639E5291486EF9B0054AE8F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E5281486EF9B0054AE8F /* icon.png */; };
 		B639E52B1486F04A0054AE8F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E52A1486F04A0054AE8F /* Default-Landscape~ipad.png */; };
 		B639E52D1486F04F0054AE8F /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E52C1486F04F0054AE8F /* Default-Portrait~ipad.png */; };
-		B655DDEA1458B4A500F513E1 /* Buzz.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDE91458B4A500F513E1 /* Buzz.jpeg */; };
-		B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEC1458B56300F513E1 /* Woody.jpeg */; };
 		B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */; };
 		B655DDF71458C43C00F513E1 /* DETweetCardBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */; };
 		B655DDF81458C43C00F513E1 /* DETweetCancelButtonPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF01458C43C00F513E1 /* DETweetCancelButtonPortrait.png */; };
@@ -129,14 +129,14 @@
 		699A29BA1459B3960046B260 /* DETweetPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetPoster.m; path = ../DETweetComposeViewController/DETweetPoster.m; sourceTree = "<group>"; };
 		69E70E881484BAD5004A66CA /* DEHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEHTTPRequest.h; sourceTree = "<group>"; };
 		69E70E891484BAD5004A66CA /* DEHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHTTPRequest.m; sourceTree = "<group>"; };
+		69F126401489A81C00343C3D /* Yawkey_business_dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yawkey_business_dog.jpg; sourceTree = "<group>"; };
+		69F126431489A84E00343C3D /* YawkeyCleanTeeth.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyCleanTeeth.JPG; sourceTree = "<group>"; };
 		B60F06981486F0C000CE3BD6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon~ipad.png"; path = "../icon~ipad.png"; sourceTree = "<group>"; };
 		B639E5251486D2DA0054AE8F /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B639E5281486EF9B0054AE8F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		B639E52A1486F04A0054AE8F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		B639E52C1486F04F0054AE8F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		B655DDE91458B4A500F513E1 /* Buzz.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Buzz.jpeg; sourceTree = "<group>"; };
-		B655DDEC1458B56300F513E1 /* Woody.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Woody.jpeg; sourceTree = "<group>"; };
 		B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardBackground.png; path = DETweetComposeViewController/Resources/DETweetCardBackground.png; sourceTree = SOURCE_ROOT; };
 		B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCardBackground@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCardBackground@2x.png"; sourceTree = SOURCE_ROOT; };
 		B655DDF01458C43C00F513E1 /* DETweetCancelButtonPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCancelButtonPortrait.png; path = DETweetComposeViewController/Resources/DETweetCancelButtonPortrait.png; sourceTree = SOURCE_ROOT; };
@@ -291,8 +291,8 @@
 		B63C1FCB1461B68000DF52F7 /* Test Images */ = {
 			isa = PBXGroup;
 			children = (
-				B655DDE91458B4A500F513E1 /* Buzz.jpeg */,
-				B655DDEC1458B56300F513E1 /* Woody.jpeg */,
+				69F126401489A81C00343C3D /* Yawkey_business_dog.jpg */,
+				69F126431489A84E00343C3D /* YawkeyCleanTeeth.JPG */,
 			);
 			name = "Test Images";
 			sourceTree = "<group>";
@@ -474,8 +474,6 @@
 				B6A1312E145768DB00500180 /* DEViewController_iPhone.xib in Resources */,
 				B6A13131145768DB00500180 /* DEViewController_iPad.xib in Resources */,
 				B6A131421457780A00500180 /* DETweetComposeView.xib in Resources */,
-				B655DDEA1458B4A500F513E1 /* Buzz.jpeg in Resources */,
-				B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */,
 				B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */,
 				B655DDF71458C43C00F513E1 /* DETweetCardBackground@2x.png in Resources */,
 				B655DDF81458C43C00F513E1 /* DETweetCancelButtonPortrait.png in Resources */,
@@ -504,6 +502,8 @@
 				B639E52D1486F04F0054AE8F /* Default-Portrait~ipad.png in Resources */,
 				B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */,
 				B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */,
+				69F126411489A81C00343C3D /* Yawkey_business_dog.jpg in Resources */,
+				69F126441489A84E00343C3D /* YawkeyCleanTeeth.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
