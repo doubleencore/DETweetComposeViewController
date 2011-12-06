@@ -225,7 +225,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
                               0.0f,
                               presentingView.bounds.size.width,
                               presentingView.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height);
-    self.backgroundView = [[DETweetGradientView alloc] initWithFrame:frame];
+    self.backgroundView = [[[DETweetGradientView alloc] initWithFrame:frame] autorelease];
     self.backgroundView.transform = presentingView.transform;
     self.backgroundView.alpha = 0.0f;
     self.backgroundView.center = [UIApplication sharedApplication].keyWindow.center;
@@ -278,14 +278,12 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     UIImage *cancelButtonImage, *sendButtonImage;
     CGFloat titleLabelFontSize, titleLabelTop;
     CGFloat characterCountLeft, characterCountTop;
-    CGSize backgroundOffset;
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         cardWidth = CGRectGetWidth(self.view.bounds) - 10.0f;
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
             cardTop = 25.0f;
             cardHeight = 189.0f;
-            backgroundOffset = CGSizeMake(0.0f, -150.0f);
             buttonTop = 7.0f;
             cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
             sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
@@ -296,7 +294,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         else {
             cardTop = -1.0f;
             cardHeight = 150.0f;
-            backgroundOffset = CGSizeMake(0.0f, -150.0f);
             buttonTop = 6.0f;
             cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
             sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
@@ -316,11 +313,9 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         titleLabelTop = 9.0f;
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
             cardTop = 280.0f;
-            backgroundOffset = CGSizeMake(0.0f, -150.0f);
         }
         else {
             cardTop = 110.0f;
-            backgroundOffset = CGSizeMake(100.0f, 0.0f);
         }
     }
 

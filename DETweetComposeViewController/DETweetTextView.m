@@ -53,10 +53,10 @@
 {   
     self.clipsToBounds = NO;  // So the rules can extend outside of the view.
 
-    self.ruledView = [[DETweetRuledView alloc] initWithFrame:[self ruledViewFrame]];
-    self.ruledView.lineColor = [[UIColor colorWithWhite:0.5f alpha:0.15f] retain];
-    self.ruledView.lineWidth = 1.0f;
-    self.ruledView.rowHeight = self.font.lineHeight;
+    _ruledView = [[DETweetRuledView alloc] initWithFrame:[self ruledViewFrame]];
+    _ruledView.lineColor = [UIColor colorWithWhite:0.5f alpha:0.15f];
+    _ruledView.lineWidth = 1.0f;
+    _ruledView.rowHeight = self.font.lineHeight;
     [self insertSubview:self.ruledView atIndex:0];
 }
 
