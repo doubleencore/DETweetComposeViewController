@@ -224,6 +224,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="526610094"/>
 								<string key="NSReuseIdentifierKey">_NS:567</string>
+								<int key="IBUIContentMode">2</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -250,6 +251,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="717117467"/>
 								<string key="NSReuseIdentifierKey">_NS:567</string>
+								<int key="IBUIContentMode">2</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -273,6 +275,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="866301756"/>
 								<string key="NSReuseIdentifierKey">_NS:567</string>
+								<int key="IBUIContentMode">2</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -810,7 +813,7 @@
 			<string key="DETweetAttachmentFrame.png">{84, 79}</string>
 			<string key="DETweetCancelButtonPortrait.png">{12, 30}</string>
 			<string key="DETweetCardHeaderLine.png">{600, 3}</string>
-			<string key="DETweetPaperClip.png">{79, 34}</string>
+			<string key="DETweetPaperClip.png">{78, 34}</string>
 			<string key="DETweetSendButtonPortrait.png">{12, 30}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
