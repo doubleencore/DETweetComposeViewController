@@ -4,6 +4,16 @@
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
 //
+//  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+//  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+//  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer 
+//  in the documentation and/or other materials provided with the distribution. Neither the name of the Double Encore Inc. nor the names of its 
+//  contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+//  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS 
+//  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
+//  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+//  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "DETweetComposeViewController.h"
 #import "DETweetPoster.h"
@@ -12,7 +22,12 @@
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
 #import <QuartzCore/QuartzCore.h>
+#import <Accounts/Accounts.h>
+#import "UIApplication+DETweetComposeViewController.h"
+#import "UIDevice+DETweetComposeViewController.h"
+#import <Twitter/TWRequest.h>
 
+static BOOL waitingForAccess = NO;
 
 @interface DETweetComposeViewController ()
 
@@ -26,7 +41,6 @@
 
 - (void)tweetComposeViewControllerInit;
 - (BOOL)isPresented;
-- (BOOL)isIOS5;
 - (NSInteger)charactersAvailable;
 - (void)updateCharacterCount;
 - (NSInteger)attachmentsCount;
@@ -66,7 +80,6 @@
 @synthesize previousStatusBarStyle = _previousStatusBarStyle;
 @synthesize backgroundView = _backgroundView;
 
-
 NSInteger const DETweetMaxLength = 140;
 NSInteger const DETweetURLLength = 21;  // https://dev.twitter.com/docs/tco-url-wrapper
 NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but not today.
@@ -78,7 +91,25 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 + (BOOL)canSendTweet
 {
-    return [OAuth isTwitterAuthorized];
+    if ([UIApplication isIOS5]) {
+        ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
+        ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        
+        [accountStore requestAccessToAccountsWithType:twitterAccountType withCompletionHandler:^(BOOL granted, NSError *error) {
+            waitingForAccess = NO;
+        }];
+        waitingForAccess = YES;
+        
+        while (waitingForAccess) {
+            sleep(1);
+        }
+        
+        NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
+        return [twitterAccounts count] < 1 ? NO : YES;
+    }
+    else {
+        return [OAuth isTwitterAuthorized];
+    }
 }
 
 
@@ -203,7 +234,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         ((UIImageView *)obj).layer.masksToBounds = YES;
     }];
     
-    if ([self isIOS5]) {
+    if ([UIApplication isIOS5]) {
         self.textView.keyboardType = UIKeyboardTypeTwitter;
     }
     
@@ -220,7 +251,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [super viewWillAppear:animated];
 
         // Now let's fade in a gradient view over the presenting view.
-    UIView *presentingView = [self isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
+    UIView *presentingView = [UIApplication isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
     CGRect frame = CGRectMake(0.0f,
                               0.0f,
                               presentingView.bounds.size.width,
@@ -262,7 +293,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([UIDevice isPhone]) {
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     }
     else {
@@ -279,7 +310,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     CGFloat titleLabelFontSize, titleLabelTop;
     CGFloat characterCountLeft, characterCountTop;
 
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([UIDevice isPhone]) {
         cardWidth = CGRectGetWidth(self.view.bounds) - 10.0f;
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
             cardTop = 25.0f;
@@ -362,7 +393,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
     characterCountLeft = CGRectGetWidth(self.cardView.frame) - CGRectGetWidth(self.characterCountLabel.frame) - 12.0f;
     characterCountTop = CGRectGetHeight(self.cardView.frame) - CGRectGetHeight(self.characterCountLabel.frame) - 8.0f;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([UIDevice isPhone]) {
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
             characterCountTop -= 5.0f;
             if ([self attachmentsCount] > 0) {
@@ -517,11 +548,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 {
     return [self isViewLoaded];
 }
-         
-- (BOOL)isIOS5
- {
-     return (NSClassFromString(@"NSJSONSerialization") != nil);
- }
 
 
 - (NSInteger)charactersAvailable
@@ -609,17 +635,19 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 #pragma mark - DETweetPosterDelegate
 
-- (void)tweetFailed
+- (void)tweetFailed:(DETweetPoster *)tweetPoster
 {
     [[[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
                                  message:[NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text]
                                 delegate:self
                        cancelButtonTitle:@"Cancel"
                        otherButtonTitles:@"Try Again", nil] autorelease] show];
+
+    self.sendButton.enabled = YES;
 }
 
 
-- (void)tweetFailedAuthentication
+- (void)tweetFailedAuthentication:(DETweetPoster *)tweetPoster
 {
     // Clear existing credentials
     [OAuth clearCrendentials];
@@ -633,7 +661,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
-- (void)tweetSucceeded
+- (void)tweetSucceeded:(DETweetPoster *)tweetPoster
 {
     CGFloat yOffset = -(self.view.bounds.size.height + CGRectGetMaxY(self.cardView.frame) + 10.0f);
     

@@ -4,16 +4,29 @@
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
 //
+//  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+//  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+//  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer 
+//  in the documentation and/or other materials provided with the distribution. Neither the name of the Double Encore Inc. nor the names of its 
+//  contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+//  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS 
+//  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
+//  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+//  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "DETweetPoster.h"
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
 #import "OAuthConsumerCredentials.h"
 #import "NSString+URLEncoding.h"
-
+#import "UIApplication+DETweetComposeViewController.h"
+#import <Accounts/Accounts.h>
+#import <Twitter/TWRequest.h>
 
 @interface DETweetPoster ()
 
+- (NSURLRequest *)NSURLRequestForTweet:(NSString *)tweetText withImages:(NSArray *)images;
 - (void)sendFailedToDelegate;
 - (void)sendFailedAuthenticationToDelegate;
 - (void)sendSuccessToDelegate;
@@ -23,8 +36,11 @@
 
 @implementation DETweetPoster
 
-@synthesize delegate = _delegate;
+NSString * const twitterPostURLString = @"https://api.twitter.com/1/statuses/update.json";
+NSString * const twitterPostWithImagesURLString = @"https://upload.twitter.com/1/statuses/update_with_media.json";
+NSString * const twitterStatusKey = @"status";
 
+@synthesize delegate = _delegate;
 
 #pragma mark - Setup & Teardown
 
@@ -40,9 +56,57 @@
 
 - (void)postTweet:(NSString *)tweetText withImages:(NSArray *)images
 {
+    NSURLRequest *postRequest = nil;
+    if ([UIApplication isIOS5]) {
+        ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
+        ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
+        
+        TWRequest *twRequest = nil;
+        if ([twitterAccounts count] > 0) {
+            if ([images count] > 0) {
+                twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostWithImagesURLString]
+                                                parameters:nil requestMethod:TWRequestMethodPOST];
+                
+                [images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    UIImage *image = (UIImage *)obj;
+                    [twRequest addMultiPartData:UIImagePNGRepresentation(image) withName:@"media[]" type:@"multipart/form-data"];
+                }];
+                
+                [twRequest addMultiPartData:[tweetText dataUsingEncoding:NSUTF8StringEncoding] 
+                                 withName:twitterStatusKey type:@"multipart/form-data"];
+            }
+            else {
+                NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:tweetText, twitterStatusKey, nil];
+                twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostURLString]
+                                                parameters:parameters requestMethod:TWRequestMethodPOST];
+            }
+            // Just use the first account until we get the UI to choose accounts in place.n
+            twRequest.account = [twitterAccounts objectAtIndex:0];
+            postRequest = [twRequest signedURLRequest];
+        }
+        else {
+            postRequest = [self NSURLRequestForTweet:tweetText withImages:images];
+        }
+    }
+    else {
+        postRequest = [self NSURLRequestForTweet:tweetText withImages:images];
+    }
+    
+    if ([NSURLConnection canHandleRequest:postRequest]) {
+        NSURLConnection *postConnection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
+        [postConnection start];
+    }
+    else {
+        [self sendFailedToDelegate];
+    }
+}
+
+- (NSURLRequest *)NSURLRequestForTweet:(NSString *)tweetText withImages:(NSArray *)images
+{
     NSMutableData *postData = nil;
     NSMutableDictionary *tweetParameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                            tweetText, @"status",
+                                            tweetText, twitterStatusKey,
                                             @"t", @"trim_user",
                                             nil];
     
@@ -54,9 +118,9 @@
     
     NSString *postString = [NSString stringWithFormat:@"%@", [postKeysAndValues componentsJoinedByString:@"&"]];
     
-    NSURL *postURL = [NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"];
+    NSURL *postURL = [NSURL URLWithString:twitterPostURLString];
     if ([images count] > 0) {
-        postURL = [NSURL URLWithString:@"https://upload.twitter.com/1/statuses/update_with_media.json"];
+        postURL = [NSURL URLWithString:twitterPostWithImagesURLString];
     }
     
     OAuth *oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
@@ -98,13 +162,7 @@
     [postRequest setHTTPBody:postData];
     [postRequest addValue:header forHTTPHeaderField:@"Authorization"];
     
-    if ([NSURLConnection canHandleRequest:postRequest]) {
-        NSURLConnection *postConnection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
-        [postConnection start];
-    }
-    else {
-        [self sendFailedToDelegate];
-    }
+    return postRequest;
 }
 
 
@@ -112,24 +170,24 @@
 
 - (void)sendFailedToDelegate
 {
-    if ([self.delegate respondsToSelector:@selector(tweetFailed)]) {
-        [self.delegate tweetFailed];
+    if ([self.delegate respondsToSelector:@selector(tweetFailed:)]) {
+        [self.delegate tweetFailed:self];
     }
 }
 
 
 - (void)sendFailedAuthenticationToDelegate
 {
-    if ([self.delegate respondsToSelector:@selector(tweetFailedAuthentication)]) {
-        [self.delegate tweetFailedAuthentication];
+    if ([self.delegate respondsToSelector:@selector(tweetFailedAuthentication:)]) {
+        [self.delegate tweetFailedAuthentication:self];
     }
 }
 
 
 - (void)sendSuccessToDelegate
 {
-    if ([self.delegate respondsToSelector:@selector(tweetSucceeded)]) {
-        [self.delegate tweetSucceeded];
+    if ([self.delegate respondsToSelector:@selector(tweetSucceeded:)]) {
+        [self.delegate tweetSucceeded:self];
     }
 }
 
