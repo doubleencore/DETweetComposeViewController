@@ -14,6 +14,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Accounts/Accounts.h>
 #import "UIApplication+DETweetComposeViewController.h"
+#import "UIDevice+DETweetComposeViewController.h"
+#import <Twitter/TWRequest.h>
 
 static BOOL waitingForAccess = NO;
 
@@ -33,6 +35,7 @@ static BOOL waitingForAccess = NO;
 - (void)updateCharacterCount;
 - (NSInteger)attachmentsCount;
 - (void)updateAttachments;
+- (void)deTweetPost:(NSString *)tweet withImage:(NSArray *)images;
 
 @end
 
@@ -46,6 +49,7 @@ static BOOL waitingForAccess = NO;
 @synthesize sendButton = _sendButton;
 @synthesize cardHeaderLineView = _cardHeaderLineView;
 @synthesize textView = _textView;
+@synthesize textViewContainer = _textViewContainer;
 @synthesize paperClipView = _paperClipView;
 @synthesize attachment1FrameView = _attachment1FrameView;
 @synthesize attachment2FrameView = _attachment2FrameView;
@@ -66,7 +70,6 @@ static BOOL waitingForAccess = NO;
 @synthesize attachmentImageViews = _attachmentImageViews;
 @synthesize previousStatusBarStyle = _previousStatusBarStyle;
 @synthesize backgroundView = _backgroundView;
-
 
 NSInteger const DETweetMaxLength = 140;
 NSInteger const DETweetURLLength = 21;  // https://dev.twitter.com/docs/tco-url-wrapper
@@ -161,6 +164,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [_sendButton release], _sendButton = nil;
     [_cardHeaderLineView release], _cardHeaderLineView = nil;
     [_textView release], _textView = nil;
+    [_textViewContainer release], _textViewContainer = nil;
     [_paperClipView release], _paperClipView = nil;
     [_attachment1FrameView release], _attachment1FrameView = nil;
     [_attachment2FrameView release], _attachment2FrameView = nil;
@@ -192,6 +196,8 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor clearColor];
+    self.textViewContainer.backgroundColor = [UIColor clearColor];
+    self.textView.backgroundColor = [UIColor clearColor];
 
         // Put the attachment frames and image views into arrays so they're easier to work with.
         // Order is important, so we can't use IB object arrays. Or at least this is easier.
@@ -241,7 +247,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
                               0.0f,
                               presentingView.bounds.size.width,
                               presentingView.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height);
-    self.backgroundView = [[DETweetGradientView alloc] initWithFrame:frame];
+    self.backgroundView = [[[DETweetGradientView alloc] initWithFrame:frame] autorelease];
     self.backgroundView.transform = presentingView.transform;
     self.backgroundView.alpha = 0.0f;
     self.backgroundView.center = [UIApplication sharedApplication].keyWindow.center;
@@ -278,7 +284,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([UIDevice isPhone]) {
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     }
     else {
@@ -294,14 +300,12 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     UIImage *cancelButtonImage, *sendButtonImage;
     CGFloat titleLabelFontSize, titleLabelTop;
     CGFloat characterCountLeft, characterCountTop;
-    CGSize backgroundOffset;
 
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        cardWidth = CGRectGetWidth(self.view.bounds) - 8.0f;
+    if ([UIDevice isPhone]) {
+        cardWidth = CGRectGetWidth(self.view.bounds) - 10.0f;
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
             cardTop = 25.0f;
             cardHeight = 189.0f;
-            backgroundOffset = CGSizeMake(0.0f, -150.0f);
             buttonTop = 7.0f;
             cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
             sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
@@ -312,7 +316,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         else {
             cardTop = -1.0f;
             cardHeight = 150.0f;
-            backgroundOffset = CGSizeMake(0.0f, -150.0f);
             buttonTop = 6.0f;
             cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
             sendButtonImage = [[UIImage imageNamed:@"DETweetSendButtonLandscape"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
@@ -322,7 +325,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         }
     }
     else {  // iPad. Similar to iPhone portrait.
-        cardWidth = 550.0f;
+        cardWidth = 543.0f;
         cardHeight = 189.0f;
         buttonTop = 7.0f;
         cancelButtonImage = [[UIImage imageNamed:@"DETweetCancelButtonPortrait"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
@@ -332,18 +335,14 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         titleLabelTop = 9.0f;
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
             cardTop = 280.0f;
-            backgroundOffset = CGSizeMake(0.0f, -150.0f);
         }
         else {
             cardTop = 110.0f;
-            backgroundOffset = CGSizeMake(100.0f, 0.0f);
         }
     }
 
     CGFloat cardLeft = trunc((CGRectGetWidth(self.view.bounds) - cardWidth) / 2);
     self.cardView.frame = CGRectMake(cardLeft, cardTop, cardWidth, cardHeight);
-
-//    self.backgroundView.centerOffset = backgroundOffset;
 
     self.titleLabel.font = [UIFont boldSystemFontOfSize:titleLabelFontSize];
     self.titleLabel.frame = CGRectMake(0.0f, titleLabelTop, cardWidth, self.titleLabel.frame.size.height);
@@ -355,20 +354,18 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     self.sendButton.frame = CGRectMake(self.cardView.bounds.size.width - buttonHorizontalMargin - self.sendButton.frame.size.width, buttonTop, self.sendButton.frame.size.width, sendButtonImage.size.height);
 
     self.cardHeaderLineView.frame = CGRectMake(0.0f, cardHeaderLineTop, self.cardView.bounds.size.width, self.cardHeaderLineView.frame.size.height);
-    
-    CGSize size = self.textView.contentSize;
-    
+
     CGFloat textWidth = CGRectGetWidth(self.cardView.bounds);
     if ([self attachmentsCount] > 0) {
         textWidth -= CGRectGetWidth(self.attachment1FrameView.frame);  // Got to measure frame 1, because it's not rotated. Other frames are funky.
     }
-    CGFloat textTop = CGRectGetMaxY(self.cardHeaderLineView.frame) - 2.0f;
+    CGFloat textTop = CGRectGetMaxY(self.cardHeaderLineView.frame) - 1.0f;
     CGFloat textHeight = self.cardView.bounds.size.height - textTop - 30.0f;
-    self.textView.frame = CGRectMake(0.0f, textTop, textWidth, textHeight);
-    
-    size = self.textView.contentSize;
-    
-    self.paperClipView.frame = CGRectMake(CGRectGetMaxX(self.cardView.frame) - self.paperClipView.frame.size.width + 5.0f,
+    self.textViewContainer.frame = CGRectMake(0.0f, textTop, self.cardView.bounds.size.width, textHeight);
+    self.textView.frame = CGRectMake(0.0f, 0.0f, textWidth, self.textViewContainer.frame.size.height);
+    self.textView.scrollIndicatorInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, -(self.cardView.bounds.size.width - textWidth - 1.0f));
+
+    self.paperClipView.frame = CGRectMake(CGRectGetMaxX(self.cardView.frame) - self.paperClipView.frame.size.width + 6.0f,
                                           CGRectGetMinY(self.cardView.frame) + CGRectGetMaxY(self.cardHeaderLineView.frame) - 1.0f,
                                           self.paperClipView.frame.size.width,
                                           self.paperClipView.frame.size.height);
@@ -387,7 +384,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
     characterCountLeft = CGRectGetWidth(self.cardView.frame) - CGRectGetWidth(self.characterCountLabel.frame) - 12.0f;
     characterCountTop = CGRectGetHeight(self.cardView.frame) - CGRectGetHeight(self.characterCountLabel.frame) - 8.0f;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([UIDevice isPhone]) {
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
             characterCountTop -= 5.0f;
             if ([self attachmentsCount] > 0) {
@@ -417,6 +414,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     self.sendButton = nil;
     self.cardHeaderLineView = nil;
     self.textView = nil;
+    self.textViewContainer = nil;
     self.paperClipView = nil;
     self.attachment1FrameView = nil;
     self.attachment2FrameView = nil;
@@ -628,7 +626,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 #pragma mark - DETweetPosterDelegate
 
-- (void)tweetFailed
+- (void)tweetFailed:(DETweetPoster *)tweetPoster
 {
     [[[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
                                  message:[NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text]
@@ -638,7 +636,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
-- (void)tweetFailedAuthentication
+- (void)tweetFailedAuthentication:(DETweetPoster *)tweetPoster
 {
     // Clear existing credentials
     [OAuth clearCrendentials];
@@ -652,7 +650,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
-- (void)tweetSucceeded
+- (void)tweetSucceeded:(DETweetPoster *)tweetPoster
 {
     CGFloat yOffset = -(self.view.bounds.size.height + CGRectGetMaxY(self.cardView.frame) + 10.0f);
     
@@ -682,11 +680,48 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         tweet = [tweet stringByAppendingString:urlString];
     }
     
+    if ([UIApplication isIOS5]) {
+        ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
+        ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
+        
+        TWRequest *twRequest = nil;
+        if ([twitterAccounts count] > 0) {
+            // Just use the first account until we get the UI to choose accounts in place.
+            twRequest.account = [twitterAccounts objectAtIndex:0];
+            if ([self.images count] > 0) {
+                twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:@"https://upload.twitter.com/1/statuses/update_with_media.json"]
+                                                parameters:nil requestMethod:TWRequestMethodPOST];
+                
+                [self.images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    UIImage *image = (UIImage *)obj;
+                    [twRequest addMultiPartData:UIImagePNGRepresentation(image) withName:@"DETweetComposeViewController" type:@"photo"];
+                }];
+            }
+            else {
+                twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"]
+                                                parameters:nil requestMethod:TWRequestMethodPOST];
+            }
+            [twRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                NSLog(@"%@", urlResponse);
+            }];
+        }
+        else {
+            [self deTweetPost:tweet withImage:self.images];
+        }
+    }
+    else {
+        [self deTweetPost:tweet withImage:self.images];
+    }
+}
+
+
+- (void)deTweetPost:(NSString *)tweet withImage:(NSArray *)images
+{
     DETweetPoster *tweetPoster = [[[DETweetPoster alloc] init] autorelease];
     tweetPoster.delegate = self;
     [tweetPoster postTweet:tweet withImages:self.images];
 }
-
 
 - (IBAction)cancel
 {

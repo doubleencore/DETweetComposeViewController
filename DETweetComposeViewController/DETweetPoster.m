@@ -91,7 +91,7 @@
     else {
         header = [oAuth oAuthHeaderForMethod:@"POST" andUrl:[postURL absoluteString] andParams:tweetParameters];
         [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        postData = [[postString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+        postData = [[[postString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy] autorelease];
         [postRequest setValue:[NSString stringWithFormat:@"%d", [postData length]] forHTTPHeaderField:@"Content-Length"];
     }
     
@@ -112,24 +112,24 @@
 
 - (void)sendFailedToDelegate
 {
-    if ([self.delegate respondsToSelector:@selector(tweetFailed)]) {
-        [self.delegate tweetFailed];
+    if ([self.delegate respondsToSelector:@selector(tweetFailed:)]) {
+        [self.delegate tweetFailed:self];
     }
 }
 
 
 - (void)sendFailedAuthenticationToDelegate
 {
-    if ([self.delegate respondsToSelector:@selector(tweetFailedAuthentication)]) {
-        [self.delegate tweetFailedAuthentication];
+    if ([self.delegate respondsToSelector:@selector(tweetFailedAuthentication:)]) {
+        [self.delegate tweetFailedAuthentication:self];
     }
 }
 
 
 - (void)sendSuccessToDelegate
 {
-    if ([self.delegate respondsToSelector:@selector(tweetSucceeded)]) {
-        [self.delegate tweetSucceeded];
+    if ([self.delegate respondsToSelector:@selector(tweetSucceeded:)]) {
+        [self.delegate tweetSucceeded:self];
     }
 }
 
