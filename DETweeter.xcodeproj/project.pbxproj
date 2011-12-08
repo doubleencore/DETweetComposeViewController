@@ -36,6 +36,7 @@
 		699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A29BA1459B3960046B260 /* DETweetPoster.m */; };
 		69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E70E891484BAD5004A66CA /* DEHTTPRequest.m */; };
 		69EC1CC114885748002DB78F /* UIApplication+DETweetComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */; };
+		69ED66BA14908CC4009602F5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69ED66B914908CC4009602F5 /* Settings.bundle */; };
 		69F126411489A81C00343C3D /* YawkeyBusinessDog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */; };
 		B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F06981486F0C000CE3BD6 /* icon@2x.png */; };
 		B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */; };
@@ -137,6 +138,7 @@
 		69E70E891484BAD5004A66CA /* DEHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHTTPRequest.m; sourceTree = "<group>"; };
 		69EC1CBF14885748002DB78F /* UIApplication+DETweetComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+DETweetComposeViewController.h"; path = "DETweetComposeViewController/UIApplication+DETweetComposeViewController.h"; sourceTree = SOURCE_ROOT; };
 		69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+DETweetComposeViewController.m"; path = "DETweetComposeViewController/UIApplication+DETweetComposeViewController.m"; sourceTree = SOURCE_ROOT; };
+		69ED66B914908CC4009602F5 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyBusinessDog.jpg; sourceTree = "<group>"; };
 		B60F06981486F0C000CE3BD6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon~ipad.png"; path = "../icon~ipad.png"; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 		B6A1311E145768DB00500180 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				69ED66B914908CC4009602F5 /* Settings.bundle */,
 				B639E5281486EF9B0054AE8F /* icon.png */,
 				B60F06981486F0C000CE3BD6 /* icon@2x.png */,
 				B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */,
@@ -518,6 +521,7 @@
 				B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */,
 				69F126411489A81C00343C3D /* YawkeyBusinessDog.jpg in Resources */,
 				B6634191148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg in Resources */,
+				69ED66BA14908CC4009602F5 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
