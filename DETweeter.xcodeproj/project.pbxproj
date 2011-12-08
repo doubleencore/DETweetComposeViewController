@@ -53,6 +53,7 @@
 		B655DE041458C5F000F513E1 /* DETweetURLAttachment.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */; };
 		B655DE051458C5F000F513E1 /* DETweetURLAttachment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DE011458C5F000F513E1 /* DETweetURLAttachment@2x.png */; };
 		B6634191148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B6634190148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg */; };
+		B68527C0148F1DB900B18D5D /* DETweetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B68527BF148F1DB900B18D5D /* DETweetLabel.m */; };
 		B69AB9B414869A5C00652DDF /* DETweetGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B69AB9B314869A5C00652DDF /* DETweetGradientView.m */; };
 		B69C605A14894F4D00A18C1B /* DETweetRuledView.m in Sources */ = {isa = PBXBuildFile; fileRef = B69C605914894F4D00A18C1B /* DETweetRuledView.m */; };
 		B6A13118145768DB00500180 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13117145768DB00500180 /* UIKit.framework */; };
@@ -149,6 +150,8 @@
 		B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetURLAttachment.png; path = DETweetComposeViewController/Resources/DETweetURLAttachment.png; sourceTree = SOURCE_ROOT; };
 		B655DE011458C5F000F513E1 /* DETweetURLAttachment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetURLAttachment@2x.png"; path = "DETweetComposeViewController/Resources/DETweetURLAttachment@2x.png"; sourceTree = SOURCE_ROOT; };
 		B6634190148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyCleanTeeth.jpg; sourceTree = "<group>"; };
+		B68527BE148F1DB900B18D5D /* DETweetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DETweetLabel.h; sourceTree = "<group>"; };
+		B68527BF148F1DB900B18D5D /* DETweetLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DETweetLabel.m; sourceTree = "<group>"; };
 		B69AB9B214869A5C00652DDF /* DETweetGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetGradientView.h; path = DETweetComposeViewController/DETweetGradientView.h; sourceTree = SOURCE_ROOT; };
 		B69AB9B314869A5C00652DDF /* DETweetGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetGradientView.m; path = DETweetComposeViewController/DETweetGradientView.m; sourceTree = SOURCE_ROOT; };
 		B69C605814894F4D00A18C1B /* DETweetRuledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetRuledView.h; path = DETweetComposeViewController/DETweetRuledView.h; sourceTree = SOURCE_ROOT; };
@@ -382,6 +385,8 @@
 				B6FD55AC1463A6E100739469 /* DETweetTextView.m */,
 				B69C605814894F4D00A18C1B /* DETweetRuledView.h */,
 				B69C605914894F4D00A18C1B /* DETweetRuledView.m */,
+				B68527BE148F1DB900B18D5D /* DETweetLabel.h */,
+				B68527BF148F1DB900B18D5D /* DETweetLabel.m */,
 				699A29B91459B3960046B260 /* DETweetPoster.h */,
 				699A29BA1459B3960046B260 /* DETweetPoster.m */,
 				60C6B2EC1471D4700090278C /* OAuth+DEExtensions.h */,
@@ -540,6 +545,7 @@
 				69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */,
 				B69AB9B414869A5C00652DDF /* DETweetGradientView.m in Sources */,
 				B69C605A14894F4D00A18C1B /* DETweetRuledView.m in Sources */,
+				B68527C0148F1DB900B18D5D /* DETweetLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
