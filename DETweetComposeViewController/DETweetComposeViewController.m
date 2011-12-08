@@ -12,8 +12,12 @@
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
 #import <QuartzCore/QuartzCore.h>
+#import <Accounts/Accounts.h>
 #import "UIApplication+DETweetComposeViewController.h"
 #import "UIDevice+DETweetComposeViewController.h"
+#import <Twitter/TWRequest.h>
+
+static BOOL waitingForAccess = NO;
 
 @interface DETweetComposeViewController ()
 
@@ -66,7 +70,6 @@
 @synthesize previousStatusBarStyle = _previousStatusBarStyle;
 @synthesize backgroundView = _backgroundView;
 
-
 NSInteger const DETweetMaxLength = 140;
 NSInteger const DETweetURLLength = 21;  // https://dev.twitter.com/docs/tco-url-wrapper
 NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but not today.
@@ -78,7 +81,25 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 + (BOOL)canSendTweet
 {
-    return [OAuth isTwitterAuthorized];
+    if ([UIApplication isIOS5]) {
+        ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
+        ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        
+        [accountStore requestAccessToAccountsWithType:twitterAccountType withCompletionHandler:^(BOOL granted, NSError *error) {
+            waitingForAccess = NO;
+        }];
+        waitingForAccess = YES;
+        
+        while (waitingForAccess) {
+            sleep(1);
+        }
+        
+        NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
+        return [twitterAccounts count] < 1 ? NO : YES;
+    }
+    else {
+        return [OAuth isTwitterAuthorized];
+    }
 }
 
 
