@@ -609,7 +609,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 #pragma mark - DETweetPosterDelegate
 
-- (void)tweetFailed
+- (void)tweetFailed:(DETweetPoster *)tweetPoster
 {
     [[[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
                                  message:[NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text]
@@ -619,7 +619,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
-- (void)tweetFailedAuthentication
+- (void)tweetFailedAuthentication:(DETweetPoster *)tweetPoster
 {
     // Clear existing credentials
     [OAuth clearCrendentials];
@@ -633,7 +633,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
-- (void)tweetSucceeded
+- (void)tweetSucceeded:(DETweetPoster *)tweetPoster
 {
     CGFloat yOffset = -(self.view.bounds.size.height + CGRectGetMaxY(self.cardView.frame) + 10.0f);
     

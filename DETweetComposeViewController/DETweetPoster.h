@@ -19,8 +19,9 @@
 @protocol DETweetPosterDelegate <NSObject>
 
 @optional
-- (void)tweetSucceeded;
-- (void)tweetFailed;
-- (void)tweetFailedAuthentication;
+
+- (void)tweetSucceeded:(DETweetPoster *)tweetPoster;
+- (void)tweetFailed:(DETweetPoster *)tweetPoster;
+- (void)tweetFailedAuthentication:(DETweetPoster *)tweetPoster;
 
 @end

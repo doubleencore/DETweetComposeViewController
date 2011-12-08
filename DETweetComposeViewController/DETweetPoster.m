@@ -112,24 +112,24 @@
 
 - (void)sendFailedToDelegate
 {
-    if ([self.delegate respondsToSelector:@selector(tweetFailed)]) {
-        [self.delegate tweetFailed];
+    if ([self.delegate respondsToSelector:@selector(tweetFailed:)]) {
+        [self.delegate tweetFailed:self];
     }
 }
 
 
 - (void)sendFailedAuthenticationToDelegate
 {
-    if ([self.delegate respondsToSelector:@selector(tweetFailedAuthentication)]) {
-        [self.delegate tweetFailedAuthentication];
+    if ([self.delegate respondsToSelector:@selector(tweetFailedAuthentication:)]) {
+        [self.delegate tweetFailedAuthentication:self];
     }
 }
 
 
 - (void)sendSuccessToDelegate
 {
-    if ([self.delegate respondsToSelector:@selector(tweetSucceeded)]) {
-        [self.delegate tweetSucceeded];
+    if ([self.delegate respondsToSelector:@selector(tweetSucceeded:)]) {
+        [self.delegate tweetSucceeded:self];
     }
 }
 
