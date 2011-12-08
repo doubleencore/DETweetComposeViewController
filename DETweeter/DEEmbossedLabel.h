@@ -1,5 +1,5 @@
 //
-//  OAuth+DEExtensions.h
+//  DEEmbossedLabel.h
 //  DETweeter
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
@@ -16,15 +16,6 @@
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-@class OAuth;
-
-@interface OAuth (OAuth_DEExtensions)
-
-- (void) loadOAuthContext;
-- (void) saveOAuthContext;
-- (void) saveOAuthContext:(OAuth *)oAuthContext;
-
-+ (BOOL) isTwitterAuthorized;
-+ (void) clearCrendentials;
+@interface DEEmbossedLabel : UILabel
 
 @end

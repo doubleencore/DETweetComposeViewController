@@ -1,19 +1,19 @@
 //
-//  DETweetLabel.m
+//  DEEmbossedLabel.m
 //  DETweeter
 //
 //  Created by Dave Batton on 12/6/11.
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
 //
 
-#import "DETweetLabel.h"
-#import <CoreText/CoreText.h>
+#import "DEEmbossedLabel.h"
 
 
-@interface DETweetLabel ()
+@interface DEEmbossedLabel ()
 
 @property (nonatomic, retain) NSAttributedString *attString;
 
+- (void)embossedLabelInit;
 - (void)drawTextInContext:(CGContextRef)context;
 UIImage *blackSquare(CGSize size);
 CGImageRef createMask(CGSize size, void (^shapeBlock)(void));
@@ -27,15 +27,37 @@ void drawWithInnerShadow(CGRect rect,
 @end
 
 
-@implementation DETweetLabel
+@implementation DEEmbossedLabel
 
 @synthesize attString = _attString;
 
 
-#pragma mark - Class Methods
-
-
 #pragma mark - Setup & Teardown
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self embossedLabelInit];
+    }
+    return self;
+}
+
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self embossedLabelInit];
+    }
+    return self;
+}
+
+
+- (void)embossedLabelInit
+{
+    self.shadowColor = nil;  // We'll always draw a shadow. Don't bother the superclass with this.
+}
 
 
 #pragma mark - Superclass Overrides
@@ -58,7 +80,7 @@ void drawWithInnerShadow(CGRect rect,
                         ^ {
                             CGContextRef blockContext = UIGraphicsGetCurrentContext();
                             CGContextSetFillColorWithColor(blockContext, self.textColor.CGColor);
-                            CGContextSetShadowWithColor(context, CGSizeZero, 1.0f, [UIColor colorWithWhite:1.0f alpha:1.0f].CGColor);
+                            CGContextSetShadowWithColor(context, CGSizeMake(0.0f, 1.0f), 1.0f, [UIColor colorWithWhite:1.0f alpha:0.5f].CGColor);
                             [self drawTextInContext:blockContext];
                         });    
 }
