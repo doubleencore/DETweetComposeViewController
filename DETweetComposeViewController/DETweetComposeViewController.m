@@ -35,7 +35,6 @@ static BOOL waitingForAccess = NO;
 - (void)updateCharacterCount;
 - (NSInteger)attachmentsCount;
 - (void)updateAttachments;
-- (void)deTweetPost:(NSString *)tweet withImage:(NSArray *)images;
 
 @end
 
@@ -682,48 +681,11 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         tweet = [tweet stringByAppendingString:urlString];
     }
     
-    if ([UIApplication isIOS5]) {
-        ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
-        ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-        NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
-        
-        TWRequest *twRequest = nil;
-        if ([twitterAccounts count] > 0) {
-            // Just use the first account until we get the UI to choose accounts in place.
-            twRequest.account = [twitterAccounts objectAtIndex:0];
-            if ([self.images count] > 0) {
-                twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:@"https://upload.twitter.com/1/statuses/update_with_media.json"]
-                                                parameters:nil requestMethod:TWRequestMethodPOST];
-                
-                [self.images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    UIImage *image = (UIImage *)obj;
-                    [twRequest addMultiPartData:UIImagePNGRepresentation(image) withName:@"DETweetComposeViewController" type:@"photo"];
-                }];
-            }
-            else {
-                twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"]
-                                                parameters:nil requestMethod:TWRequestMethodPOST];
-            }
-            [twRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                NSLog(@"%@", urlResponse);
-            }];
-        }
-        else {
-            [self deTweetPost:tweet withImage:self.images];
-        }
-    }
-    else {
-        [self deTweetPost:tweet withImage:self.images];
-    }
-}
-
-
-- (void)deTweetPost:(NSString *)tweet withImage:(NSArray *)images
-{
     DETweetPoster *tweetPoster = [[[DETweetPoster alloc] init] autorelease];
     tweetPoster.delegate = self;
     [tweetPoster postTweet:tweet withImages:self.images];
 }
+
 
 - (IBAction)cancel
 {
