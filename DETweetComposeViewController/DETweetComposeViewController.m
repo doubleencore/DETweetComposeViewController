@@ -633,6 +633,8 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
                                 delegate:self
                        cancelButtonTitle:@"Cancel"
                        otherButtonTitles:@"Try Again", nil] autorelease] show];
+
+    self.sendButton.enabled = YES;
 }
 
 
