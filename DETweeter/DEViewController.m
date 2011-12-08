@@ -12,7 +12,7 @@
 #import "OAuthConsumerCredentials.h"
 #import <Twitter/Twitter.h>
 #import <QuartzCore/QuartzCore.h>  // Just for testing
-
+#import "UIDevice+DETweetComposeViewController.h"
 
 @interface DEViewController ()
 
@@ -72,7 +72,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([UIDevice isPhone]) {
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     }
     else {
@@ -85,7 +85,7 @@
 {
     CGRect frame = self.buttonView.frame;
     frame.origin.x = trunc((self.view.bounds.size.width - frame.size.width) / 2);
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([UIDevice isPhone]) {
         frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 306.0f : 210.0f;
     }
     else {

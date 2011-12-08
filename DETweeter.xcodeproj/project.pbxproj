@@ -31,10 +31,11 @@
 		6925A8301459105500011DA0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6925A82F1459105500011DA0 /* libz.dylib */; };
 		695D657C1466093D0002D720 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D657B1466093D0002D720 /* Default.png */; };
 		695D657E146609430002D720 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D657D146609430002D720 /* Default@2x.png */; };
+		697FE2CF14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697FE2CE14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m */; };
 		699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A29BA1459B3960046B260 /* DETweetPoster.m */; };
 		69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E70E891484BAD5004A66CA /* DEHTTPRequest.m */; };
-		69F126411489A81C00343C3D /* YawkeyBusinessDog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */; };
 		69EC1CC114885748002DB78F /* UIApplication+DETweetComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */; };
+		69F126411489A81C00343C3D /* YawkeyBusinessDog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */; };
 		B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F06981486F0C000CE3BD6 /* icon@2x.png */; };
 		B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */; };
 		B639E5261486D2DA0054AE8F /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E5251486D2DA0054AE8F /* background.png */; };
@@ -125,14 +126,16 @@
 		6925A82F1459105500011DA0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		695D657B1466093D0002D720 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		695D657D146609430002D720 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		697FE2CD14903C750045B8C7 /* UIDevice+DETweetComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+DETweetComposeViewController.h"; path = "DETweetComposeViewController/UIDevice+DETweetComposeViewController.h"; sourceTree = SOURCE_ROOT; };
+		697FE2CE14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+DETweetComposeViewController.m"; path = "DETweetComposeViewController/UIDevice+DETweetComposeViewController.m"; sourceTree = SOURCE_ROOT; };
 		6980DB8714738CF4002282CB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		699A29B91459B3960046B260 /* DETweetPoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetPoster.h; path = ../DETweetComposeViewController/DETweetPoster.h; sourceTree = "<group>"; };
 		699A29BA1459B3960046B260 /* DETweetPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetPoster.m; path = ../DETweetComposeViewController/DETweetPoster.m; sourceTree = "<group>"; };
 		69E70E881484BAD5004A66CA /* DEHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEHTTPRequest.h; sourceTree = "<group>"; };
 		69E70E891484BAD5004A66CA /* DEHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHTTPRequest.m; sourceTree = "<group>"; };
-		69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyBusinessDog.jpg; sourceTree = "<group>"; };
 		69EC1CBF14885748002DB78F /* UIApplication+DETweetComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+DETweetComposeViewController.h"; path = "DETweetComposeViewController/UIApplication+DETweetComposeViewController.h"; sourceTree = SOURCE_ROOT; };
 		69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+DETweetComposeViewController.m"; path = "DETweetComposeViewController/UIApplication+DETweetComposeViewController.m"; sourceTree = SOURCE_ROOT; };
+		69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyBusinessDog.jpg; sourceTree = "<group>"; };
 		B60F06981486F0C000CE3BD6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon~ipad.png"; path = "../icon~ipad.png"; sourceTree = "<group>"; };
 		B639E5251486D2DA0054AE8F /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -394,6 +397,8 @@
 				B6B6CCF214586015005B93A1 /* Images */,
 				69EC1CBF14885748002DB78F /* UIApplication+DETweetComposeViewController.h */,
 				69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */,
+				697FE2CD14903C750045B8C7 /* UIDevice+DETweetComposeViewController.h */,
+				697FE2CE14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m */,
 			);
 			name = DETweetComposeViewController;
 			path = DETweeter;
@@ -546,6 +551,7 @@
 				B69AB9B414869A5C00652DDF /* DETweetGradientView.m in Sources */,
 				B69C605A14894F4D00A18C1B /* DETweetRuledView.m in Sources */,
 				69EC1CC114885748002DB78F /* UIApplication+DETweetComposeViewController.m in Sources */,
+				697FE2CF14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
