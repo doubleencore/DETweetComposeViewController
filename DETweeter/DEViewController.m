@@ -119,17 +119,32 @@
 
 - (void)tweetUs
 {
+    DETweetComposeViewControllerCompletionHandler completionHandler = ^(DETweetComposeViewControllerResult result) {
+        switch (result) {
+            case DETweetComposeViewControllerResultCancelled:
+                NSLog(@"Twitter Result: canceled");
+                break;
+            case DETweetComposeViewControllerResultDone:
+                NSLog(@"Twitter Result: sent");
+                break;
+            default:
+                NSLog(@"Twitter Result: default");
+                break;
+        }
+        [self dismissModalViewControllerAnimated:YES];
+    };
+
     DETweetComposeViewController *tcvc = [[[DETweetComposeViewController alloc] init] autorelease];
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self addTweetContent:tcvc];
+    tcvc.completionHandler = completionHandler;
     [self presentModalViewController:tcvc animated:YES];
 }
 
 
 - (void)tweetThem
 {
-    TWTweetComposeViewControllerCompletionHandler 
-    completionHandler = ^(TWTweetComposeViewControllerResult result) {
+    TWTweetComposeViewControllerCompletionHandler completionHandler = ^(TWTweetComposeViewControllerResult result) {
         switch (result) {
             case TWTweetComposeViewControllerResultCancelled:
                 NSLog(@"Twitter Result: canceled");
@@ -147,7 +162,7 @@
     TWTweetComposeViewController *tcvc = [[[TWTweetComposeViewController alloc] init] autorelease];
     if (tcvc) {
         [self addTweetContent:tcvc];
-        [tcvc setCompletionHandler:completionHandler];
+        tcvc.completionHandler = completionHandler;
         [self presentModalViewController:tcvc animated:YES];
     }
 }
