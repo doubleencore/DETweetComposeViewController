@@ -45,6 +45,7 @@ static BOOL waitingForAccess = NO;
 - (void)updateCharacterCount;
 - (NSInteger)attachmentsCount;
 - (void)updateAttachments;
++ (NSArray *)systemTwitterAccounts;
 
 @end
 
@@ -107,7 +108,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
         
         if ([twitterAccounts count] < 1) {
-            return [OAuth isTwitterAuthorized];
+            return NO;
         }
         else {
             return YES;
@@ -121,22 +122,22 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 + (void)displayNoTwitterAccountsAlert
 {
-    [[[[UIAlertView alloc] initWithTitle:@"No Twitter Account"
-                                 message:@"There are no Twitter accounts configured."
-                                delegate:nil
-                       cancelButtonTitle:@"OK"
-                       otherButtonTitles:nil] autorelease] show];
+    [self displayNoTwitterAccountsAlert];
 }
 
 
-+ (void)displayNoTwitterAccountsAlertWithTarget:(id)target action:(SEL)selector
-    // Eventually this will trigger an action if the taps the Configure button.
+- (void)displayNoTwitterAccountsAlert
 {
-    [[[[UIAlertView alloc] initWithTitle:@"No Twitter Account"
-                                 message:@"There is no Twitter account configured. Would you like to add a Twitter account now?"
-                                delegate:self
-                       cancelButtonTitle:@"Configure"  // The iOS5 apps mix up cancel and the action, so we do it too.
-                       otherButtonTitles:@"Cancel", nil] autorelease] show];
+    [[[[UIAlertView alloc] initWithTitle:@"No Twitter Accounts"
+                                 message:@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings."
+                                delegate:self cancelButtonTitle:@"Settings" otherButtonTitles:@"Cancel", nil] autorelease] show];
+}
+
++ (NSArray *)systemTwitterAccounts
+{
+    ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
+    ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    return [accountStore accountsWithAccountType:twitterAccountType];
 }
 
 
@@ -249,6 +250,12 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
     [self updateCharacterCount];
     [self updateAttachments];
+    
+    if ([UIApplication isIOS5]) {
+        if ([[DETweetComposeViewController systemTwitterAccounts] count] < 1) {
+            [self displayNoTwitterAccountsAlert];
+        }
+    }
 }
 
 
@@ -722,24 +729,29 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 #pragma mark - UIAlertViewDelegate
 
-+ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
     // Notice this is a class method since we're displaying the alert from a class method.
     // This is not the real code. Put real code here.
 {
     if (buttonIndex == 0) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs://Twitter"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=TWITTER"]];
+    }
+    else {
+        if ([[DETweetComposeViewController systemTwitterAccounts] count] < 1) {
+            
+        }
     }
 }
 
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-    // This gets called if there's an error sending the tweet.
-{
-    if (buttonIndex == 1) {
-            // The user wants to try again.
-        [self send];
-    }
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//    // This gets called if there's an error sending the tweet.
+//{
+//    if (buttonIndex == 1) {
+//            // The user wants to try again.
+//        [self send];
+//    }
+//}
 
 
 @end

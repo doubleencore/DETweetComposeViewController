@@ -13,6 +13,7 @@
 #import <Twitter/Twitter.h>
 #import <QuartzCore/QuartzCore.h>  // Just for testing
 #import "UIDevice+DETweetComposeViewController.h"
+#import "UIApplication+DETweetComposeViewController.h"
 
 @interface DEViewController ()
 
@@ -141,7 +142,7 @@
 #pragma mark - Private
 
 - (void)tweetUs
-{
+{    
     DETweetComposeViewControllerCompletionHandler completionHandler = ^(DETweetComposeViewControllerResult result) {
         switch (result) {
             case DETweetComposeViewControllerResultCancelled:
@@ -202,17 +203,28 @@
 
 - (IBAction)tweetUs:(id)sender
 {    
-    // check for saved credentials
-    if ([DETweetComposeViewController canSendTweet]) {
+    if ([UIApplication isIOS5]) {
         [self tweetUs];
     }
     else {
-        self.oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
-        TwitterDialog *td = [[[TwitterDialog alloc] init] autorelease];
-        td.twitterOAuth = self.oAuth;
-        td.delegate = self;
-        td.logindelegate = self;
-        [td show];
+        // check for saved credentials
+        if ([DETweetComposeViewController canSendTweet]) {
+            [self tweetUs];
+        }
+        else {
+            if ([UIApplication isIOS5]) {
+                [self tweetUs];
+                [DETweetComposeViewController displayNoTwitterAccountsAlert];
+            }
+            else {
+                self.oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
+                TwitterDialog *td = [[[TwitterDialog alloc] init] autorelease];
+                td.twitterOAuth = self.oAuth;
+                td.delegate = self;
+                td.logindelegate = self;
+                [td show];
+            }
+        }
     }
 }
 

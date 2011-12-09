@@ -40,7 +40,6 @@
 
     // Public
 + (void)displayNoTwitterAccountsAlert;
-+ (void)displayNoTwitterAccountsAlertWithTarget:(id)target action:(SEL)selector;
 
 - (IBAction)send;
 - (IBAction)cancel;
