@@ -145,13 +145,10 @@
     DETweetComposeViewControllerCompletionHandler completionHandler = ^(DETweetComposeViewControllerResult result) {
         switch (result) {
             case DETweetComposeViewControllerResultCancelled:
-                NSLog(@"Twitter Result: canceled");
+                NSLog(@"Twitter Result: Cancelled");
                 break;
             case DETweetComposeViewControllerResultDone:
-                NSLog(@"Twitter Result: sent");
-                break;
-            default:
-                NSLog(@"Twitter Result: default");
+                NSLog(@"Twitter Result: Sent");
                 break;
         }
         [self dismissModalViewControllerAnimated:YES];
@@ -170,13 +167,10 @@
     TWTweetComposeViewControllerCompletionHandler completionHandler = ^(TWTweetComposeViewControllerResult result) {
         switch (result) {
             case TWTweetComposeViewControllerResultCancelled:
-                NSLog(@"Twitter Result: canceled");
+                NSLog(@"Twitter Result: Cancelled");
                 break;
             case TWTweetComposeViewControllerResultDone:
-                NSLog(@"Twitter Result: sent");
-                break;
-            default:
-                NSLog(@"Twitter Result: default");
+                NSLog(@"Twitter Result: Sent");
                 break;
         }
         [self dismissModalViewControllerAnimated:YES];
