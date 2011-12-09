@@ -2,8 +2,10 @@
 //  DEEmbossedLabel.m
 //  DETweeter
 //
-//  Created by Dave Batton on 12/6/11.
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
+//
+//  Portions of this class are based on code by Marcel Ruegenberg.
+//  https://github.com/mruegenberg/objc-utils/tree/master/UIKitAdditions
 //
 
 #import "DEEmbossedLabel.h"
