@@ -59,7 +59,7 @@
 		B6634191148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B6634190148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg */; };
 		B68527C0148F1DB900B18D5D /* DEEmbossedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B68527BF148F1DB900B18D5D /* DEEmbossedLabel.m */; };
 		B69AB9B414869A5C00652DDF /* DETweetGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B69AB9B314869A5C00652DDF /* DETweetGradientView.m */; };
-		B69C605A14894F4D00A18C1B /* DETweetRuledView.m in Sources */ = {isa = PBXBuildFile; fileRef = B69C605914894F4D00A18C1B /* DETweetRuledView.m */; };
+		B69C605A14894F4D00A18C1B /* DERuledView.m in Sources */ = {isa = PBXBuildFile; fileRef = B69C605914894F4D00A18C1B /* DERuledView.m */; };
 		B6A13118145768DB00500180 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13117145768DB00500180 /* UIKit.framework */; };
 		B6A1311A145768DB00500180 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13119145768DB00500180 /* Foundation.framework */; };
 		B6A1311C145768DB00500180 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A1311B145768DB00500180 /* CoreGraphics.framework */; };
@@ -164,8 +164,8 @@
 		B68527BF148F1DB900B18D5D /* DEEmbossedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEEmbossedLabel.m; sourceTree = "<group>"; };
 		B69AB9B214869A5C00652DDF /* DETweetGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetGradientView.h; path = DETweetComposeViewController/DETweetGradientView.h; sourceTree = SOURCE_ROOT; };
 		B69AB9B314869A5C00652DDF /* DETweetGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetGradientView.m; path = DETweetComposeViewController/DETweetGradientView.m; sourceTree = SOURCE_ROOT; };
-		B69C605814894F4D00A18C1B /* DETweetRuledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetRuledView.h; path = DETweetComposeViewController/DETweetRuledView.h; sourceTree = SOURCE_ROOT; };
-		B69C605914894F4D00A18C1B /* DETweetRuledView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetRuledView.m; path = DETweetComposeViewController/DETweetRuledView.m; sourceTree = SOURCE_ROOT; };
+		B69C605814894F4D00A18C1B /* DERuledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DERuledView.h; path = DETweetComposeViewController/DERuledView.h; sourceTree = SOURCE_ROOT; };
+		B69C605914894F4D00A18C1B /* DERuledView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DERuledView.m; path = DETweetComposeViewController/DERuledView.m; sourceTree = SOURCE_ROOT; };
 		B6A13113145768DB00500180 /* DETweeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DETweeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A13117145768DB00500180 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B6A13119145768DB00500180 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -397,8 +397,8 @@
 				B6A1314714577D5A00500180 /* DETweetSheetCardView.m */,
 				B6FD55AB1463A6E100739469 /* DETweetTextView.h */,
 				B6FD55AC1463A6E100739469 /* DETweetTextView.m */,
-				B69C605814894F4D00A18C1B /* DETweetRuledView.h */,
-				B69C605914894F4D00A18C1B /* DETweetRuledView.m */,
+				B69C605814894F4D00A18C1B /* DERuledView.h */,
+				B69C605914894F4D00A18C1B /* DERuledView.m */,
 				B68527BE148F1DB900B18D5D /* DEEmbossedLabel.h */,
 				B68527BF148F1DB900B18D5D /* DEEmbossedLabel.m */,
 				699A29B91459B3960046B260 /* DETweetPoster.h */,
@@ -563,7 +563,7 @@
 				60C6B2EE1471D47D0090278C /* OAuth+DEExtensions.m in Sources */,
 				69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */,
 				B69AB9B414869A5C00652DDF /* DETweetGradientView.m in Sources */,
-				B69C605A14894F4D00A18C1B /* DETweetRuledView.m in Sources */,
+				B69C605A14894F4D00A18C1B /* DERuledView.m in Sources */,
 				B68527C0148F1DB900B18D5D /* DEEmbossedLabel.m in Sources */,
 				69EC1CC114885748002DB78F /* UIApplication+DETweetComposeViewController.m in Sources */,
 				697FE2CF14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m in Sources */,
