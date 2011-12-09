@@ -17,19 +17,25 @@ As you can see they look very similar.
   
 ## How do you use it?
 
-1. Add all the files from the DETweetComposeViewController to your project.
-2. Add all the files from the unofficial-twitter-sdk to your project. Thanks [lloydsparkes](https://github.com/lloydsparkes)
-3. Set your Twitter OAuth Consumer Key and Secret in OAuthConsumerCredentials.h
-4. Use it almost just like you would a TWTweetComposeViewController
+1. Add all the files from the DETweetComposeViewController/DETweetComposeViewController folder to your project.
+2. From the unofficial-twitter-sdk add the following files
+    1. JSON/
+    2. OAuth/
+    3. tclose.png
+    4. ticon.png
+    5. TwitterDialog.h
+    6. TwitterDialog.m
+3. Link you project against the Accounts.framework and Twitter.framework.
+4. Set your Twitter OAuth Consumer Key and Secret in OAuthConsumerCredentials.h
+5. Use it almost just like you would a TWTweetComposeViewController
 
 ```
 #import "DETweetComposeViewController.h"
 ...
 DETweetComposeViewController *tcvc = [[[DETweetComposeViewController alloc] init] autorelease];
-[tcvc addImage:[UIImage imageNamed:@"Buzz.jpeg"]];
+[tcvc addImage:[UIImage imageNamed:@"YawkeyBusinessDog.jpg"]];
 [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
 [tcvc addURL:[NSURL URLWithString:@"http://www.apple.com/ios/features.html#twitter"]];
-[tcvc addURL:[NSURL URLWithString:@"http://www.twitter.com/"]];
 self.modalPresentationStyle = UIModalPresentationCurrentContext;
 [self presentModalViewController:tcvc animated:YES];
 ```
@@ -47,3 +53,8 @@ Then call the OAuth ```- (void) loadOAuthContextFromUserDefaults;``` method.
 ## What's next?
 
 We have some TODO items in [github Issues](https://github.com/doubleencore/DETweetComposeViewController/issues). Please send us your feature requests, patches and pull requests.
+
+## Credits
+
+1. unofficial-twitter-sdk [lloydsparkes](https://github.com/lloydsparkes)
+2. InnerShadowDrawing [mruegenberg](https://github.com/mruegenberg/objc-utils/tree/master/UIKitAdditions)
