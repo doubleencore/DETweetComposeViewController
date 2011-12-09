@@ -105,7 +105,13 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         }
         
         NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
-        return [twitterAccounts count] < 1 ? NO : YES;
+        
+        if ([twitterAccounts count] < 1) {
+            return [OAuth isTwitterAuthorized];
+        }
+        else {
+            return YES;
+        }
     }
     else {
         return [OAuth isTwitterAuthorized];
