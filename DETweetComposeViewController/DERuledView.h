@@ -1,5 +1,5 @@
 //
-//  DETweetRuledView.h
+//  DERuledView.h
 //  DETweeter
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
@@ -16,7 +16,7 @@
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-@interface DETweetRuledView : UIView
+@interface DERuledView : UIView
 
 @property (nonatomic) CGFloat rowHeight;
 @property (nonatomic) CGFloat lineWidth;

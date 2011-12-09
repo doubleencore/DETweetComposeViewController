@@ -16,12 +16,12 @@
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "DETweetTextView.h"
-#import "DETweetRuledView.h"
+#import "DERuledView.h"
 
 
 @interface DETweetTextView ()
 
-@property (nonatomic, retain) DETweetRuledView *ruledView;
+@property (nonatomic, retain) DERuledView *ruledView;
 
 - (void)textViewInit;
 - (CGRect)ruledViewFrame;
@@ -63,7 +63,7 @@
 {   
     self.clipsToBounds = NO;  // So the rules can extend outside of the view.
 
-    _ruledView = [[DETweetRuledView alloc] initWithFrame:[self ruledViewFrame]];
+    _ruledView = [[DERuledView alloc] initWithFrame:[self ruledViewFrame]];
     _ruledView.lineColor = [UIColor colorWithWhite:0.5f alpha:0.15f];
     _ruledView.lineWidth = 1.0f;
     _ruledView.rowHeight = self.font.lineHeight;

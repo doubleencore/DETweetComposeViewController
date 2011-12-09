@@ -1,5 +1,5 @@
 //
-//  DETweetRuledView.m
+//  DERuledView.m
 //  DETweeter
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
@@ -15,17 +15,17 @@
 //  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "DETweetRuledView.h"
+#import "DERuledView.h"
 
 
-@interface DETweetRuledView ()
+@interface DERuledView ()
 
 - (void)tweetRuledViewInit;
 
 @end
 
 
-@implementation DETweetRuledView
+@implementation DERuledView
 
 @synthesize rowHeight = _rowHeight;
 @synthesize lineWidth = _lineWidth;
