@@ -677,7 +677,13 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
                          self.paperClipView.frame = CGRectOffset(self.paperClipView.frame, 0.0f, yOffset);
                      }];
     
-    [self dismissModalViewControllerAnimated:YES];
+    
+    if (self.completionHandler) {
+        self.completionHandler(DETweetComposeViewControllerResultDone);
+    }
+    else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 
@@ -705,7 +711,12 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (IBAction)cancel
 {
-    [self dismissModalViewControllerAnimated:YES];
+    if (self.completionHandler) {
+        self.completionHandler(DETweetComposeViewControllerResultCancelled);
+    }
+    else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 
