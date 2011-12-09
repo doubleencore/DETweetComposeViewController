@@ -53,7 +53,10 @@ typedef enum DETweetComposeViewControllerResult DETweetComposeViewControllerResu
     // Completion handler for DETweetComposeViewController
 typedef void (^DETweetComposeViewControllerCompletionHandler)(DETweetComposeViewControllerResult result); 
 
-    // Returns if Twitter is accessible and at least one account has been setup.
+    // Returns YES if the user has granted our app access to the Twitter accounts.
++ (BOOL)canAccessTwitterAccounts;
+
+    // Returns YES if Twitter is accessible and at least one account has been setup.
 + (BOOL)canSendTweet;
 
     // Sets the initial text to be tweeted. Returns NO if the specified text will
