@@ -122,7 +122,6 @@
 		6925A80E14590EB400011DA0 /* ticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ticon.png; path = "unofficial-twitter-sdk/unoffical-twitter-sdk/ticon.png"; sourceTree = "<group>"; };
 		6925A80F14590EB400011DA0 /* TwitterDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwitterDialog.h; path = "unofficial-twitter-sdk/unoffical-twitter-sdk/TwitterDialog.h"; sourceTree = "<group>"; };
 		6925A81014590EB400011DA0 /* TwitterDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TwitterDialog.m; path = "unofficial-twitter-sdk/unoffical-twitter-sdk/TwitterDialog.m"; sourceTree = "<group>"; };
-		6925A82814590F4300011DA0 /* OAuthConsumerCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumerCredentials.h; sourceTree = "<group>"; };
 		6925A82914590F6400011DA0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6925A82B1459103700011DA0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6925A82D1459104200011DA0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -141,6 +140,7 @@
 		69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+DETweetComposeViewController.m"; path = "DETweetComposeViewController/UIApplication+DETweetComposeViewController.m"; sourceTree = SOURCE_ROOT; };
 		69ED66B914908CC4009602F5 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyBusinessDog.jpg; sourceTree = "<group>"; };
+		7B821E4A14928C35006FDD64 /* OAuthConsumerCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumerCredentials.h; path = "DETweeter/unofficial-twitter-sdk/unoffical-twitter-sdk/OAuth/OAuthConsumerCredentials.h"; sourceTree = "<group>"; };
 		B60F06981486F0C000CE3BD6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon~ipad.png"; path = "../icon~ipad.png"; sourceTree = "<group>"; };
 		B639E5251486D2DA0054AE8F /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -227,6 +227,7 @@
 				6925A81014590EB400011DA0 /* TwitterDialog.m */,
 			);
 			name = "unofficial-twitter-sdk";
+			path = DETweeter;
 			sourceTree = "<group>";
 		};
 		6925A7D414590EB400011DA0 /* JSON */ = {
@@ -314,7 +315,9 @@
 		B6A13108145768DB00500180 = {
 			isa = PBXGroup;
 			children = (
+				7B821E4A14928C35006FDD64 /* OAuthConsumerCredentials.h */,
 				6980DB8714738CF4002282CB /* README.markdown */,
+				6925A7D214590E6E00011DA0 /* unofficial-twitter-sdk */,
 				B6A1311D145768DB00500180 /* Demo App */,
 				B6A131371457690300500180 /* DETweetComposeViewController */,
 				B6A13116145768DB00500180 /* Frameworks */,
@@ -355,8 +358,6 @@
 				B6A1312A145768DB00500180 /* DEViewController.m */,
 				B6A1312C145768DB00500180 /* DEViewController_iPhone.xib */,
 				B6A1312F145768DB00500180 /* DEViewController_iPad.xib */,
-				6925A82814590F4300011DA0 /* OAuthConsumerCredentials.h */,
-				6925A7D214590E6E00011DA0 /* unofficial-twitter-sdk */,
 				B63C1FCB1461B68000DF52F7 /* Test Images */,
 				B6A1311E145768DB00500180 /* Supporting Files */,
 			);
