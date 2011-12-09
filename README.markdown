@@ -1,11 +1,11 @@
 DETweetComposeViewController
 ============================
 
-DETweetComposeViewController uses git submodules to pull in some outside code. Be sure to run 
-```git submodule update --init```
+DETweetComposeViewController uses git submodules to pull in the [unoffical-twitter-sdk](https://github.com/doubleencore/unoffical-twitter-sdk). Be sure to run 
+```git submodule update --init``` on your DETweetComposeViewController  clone before proceeding.
 
 ## What is it?
-DETweetComposeViewController is and iOS 4 compatible version of the TWTweetComposeView controller. Otherwise known as the Tweet Sheet.
+DETweetComposeViewController is an iOS 4 compatible version of the TWTweetComposeView controller. Otherwise known as the Tweet Sheet.
 
 ## Why did we make it?
 The iOS 5 TWTweetComposeViewController makes it really simple to integrate Twitter posting into you applications. However we still need to support iOS 4 in many of our applications. Having something that looks and acts like the built in Tweet Sheet allows us to have a consistent user interface across iOS versions.
@@ -18,16 +18,19 @@ As you can see they look very similar.
 ## How do you use it?
 
 1. Add all the files from the DETweetComposeViewController/DETweetComposeViewController folder to your project.
-2. From the unofficial-twitter-sdk add the following files
+2. From DETweetComposeViewController/DETweeter/unofficial-twitter-sdk/unoffical-twitter-sdk, add the following to a group in your project named unoffical-twitter-sdk:
     1. JSON/
     2. OAuth/
     3. tclose.png
     4. ticon.png
     5. TwitterDialog.h
     6. TwitterDialog.m
-3. Link you project against the Accounts.framework and Twitter.framework.
-4. Set your Twitter OAuth Consumer Key and Secret in OAuthConsumerCredentials.h
-5. Use it almost just like you would a TWTweetComposeViewController
+3. Link you project against the follwoing frameworks:
+    1. Accounts.framework
+    2. Twitter.framework.
+4. Set your Twitter OAuth Consumer Key and Consumer Secret in OAuthConsumerCredentials.h in your project, you will find this file in unoffical-twitter-sdk/OAuth. Don't have an OAuth consumer key and secret? Go to developer.twitter.com to create an app.
+5. You will notice there is an #error in OAuthConsumerCredentials.h to help ensure you remember to add your Twitter OAuth credentials, remember to delete this #error after you have added your OAuth credentials.
+6. Use it almost just like you would a TWTweetComposeViewController
 
 ```
 #import "DETweetComposeViewController.h"
