@@ -17,6 +17,7 @@
 @interface DEViewController ()
 
 @property (nonatomic, retain) OAuth *oAuth;
+@property (nonatomic, retain) NSArray *tweets;
 
 - (void)addTweetContent:(id)tcvc;
 
@@ -30,6 +31,7 @@
 @synthesize twTweetButton = _twTweetButton;
 @synthesize backgroundView = _backgroundView;
 @synthesize buttonView = _buttonView;
+@synthesize tweets = _tweets;
 
     // Private
 @synthesize oAuth = _oAuth;
@@ -47,6 +49,7 @@
     
         // Private
     [_oAuth release], _oAuth = nil;
+    [_tweets release], _tweets = nil;
 
     [super dealloc];
 }
@@ -67,6 +70,23 @@
     [self.deTweetButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0.0f];
+    
+    self.tweets = [NSArray arrayWithObjects:
+                   @"Step into my office.",
+                   @"Please take a seat, I suppose you're wondering why I called you all here…",
+                   @"You eyeballin' me son!",
+                   @"I'm going to make him an offer he can't refuse.",
+                   @"You talkin' to me?",
+                   @"who's in charge here?",
+                   @"I swear, the cat was alive when I left.",
+                   @"I will never get into the trash ever again.  I swear.",
+                   @"Somebody throw me a bone here!",
+                   @"really? another meeting?",
+                   @"Type faster.",
+                   @"How was I supposed to know you didn't leave the trash out for me?",
+                   @"It's been a ruff day for all of us.",
+                   @"The maple kind, yeah?",
+                   @"", nil];
 }
 
 
@@ -110,6 +130,7 @@
     
         // Private
     self.oAuth = nil;
+    self.tweets = nil;
     
     [super viewDidUnload];
 }
@@ -161,7 +182,8 @@
     accepted = [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
     accepted = [tcvc addURL:[NSURL URLWithString:@"http://www.apple.com/ios/features.html#twitter"]];
     accepted = [tcvc addURL:[NSURL URLWithString:@"http://www.twitter.com/"]];  // This won't work either. Only three URLs allowed, just like Apple's implementation.
-    accepted = [tcvc setInitialText:@"This is a test of the emergency broadcast system. Don't panic."];
+    NSString *tweetText = [self.tweets objectAtIndex:arc4random() % [self.tweets count]];
+    accepted = [tcvc setInitialText:tweetText];
 }
 
 
