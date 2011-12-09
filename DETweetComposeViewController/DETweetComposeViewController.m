@@ -21,13 +21,15 @@
 #import "DETweetGradientView.h"
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
-#import <QuartzCore/QuartzCore.h>
-#import <Accounts/Accounts.h>
 #import "UIApplication+DETweetComposeViewController.h"
 #import "UIDevice+DETweetComposeViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import <Accounts/Accounts.h>
 #import <Twitter/TWRequest.h>
 
+
 static BOOL waitingForAccess = NO;
+
 
 @interface DETweetComposeViewController ()
 
@@ -45,7 +47,7 @@ static BOOL waitingForAccess = NO;
 - (void)updateCharacterCount;
 - (NSInteger)attachmentsCount;
 - (void)updateAttachments;
-+ (NSArray *)systemTwitterAccounts;
+- (void)displayNoTwitterAccountsAlert;
 
 @end
 
@@ -81,6 +83,12 @@ static BOOL waitingForAccess = NO;
 @synthesize previousStatusBarStyle = _previousStatusBarStyle;
 @synthesize backgroundView = _backgroundView;
 
+
+enum {
+    DETweetComposeViewControllerNoAccountsAlert = 1,
+    DETweetComposeViewControllerCannotSendAlert
+};
+
 NSInteger const DETweetMaxLength = 140;
 NSInteger const DETweetURLLength = 21;  // https://dev.twitter.com/docs/tco-url-wrapper
 NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but not today.
@@ -90,48 +98,63 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 #pragma mark - Class Methods
 
-+ (BOOL)canSendTweet
++ (BOOL)canAccessTwitterAccounts
 {
     if ([UIApplication isIOS5]) {
         ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
         ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
         
-        [accountStore requestAccessToAccountsWithType:twitterAccountType withCompletionHandler:^(BOOL granted, NSError *error) {
-            waitingForAccess = NO;
-        }];
+        __block BOOL accessGranted = NO;
+        [accountStore requestAccessToAccountsWithType:twitterAccountType
+                                withCompletionHandler:^(BOOL granted, NSError *error) {
+                                    accessGranted = granted;
+                                    waitingForAccess = NO;
+                                }];
         waitingForAccess = YES;
-        
         while (waitingForAccess) {
             sleep(1);
         }
         
-        NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
-        
-        if ([twitterAccounts count] < 1) {
-            return NO;
-        }
-        else {
-            return YES;
+        return accessGranted;
+    }
+
+    return YES;
+}
+
+
++ (BOOL)canSendTweet
+{
+    BOOL canSendTweet = NO;
+    
+    if ([UIApplication isIOS5]) {
+        if ([[self class] canAccessTwitterAccounts]) {
+            ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
+            ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+            NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
+            if ([twitterAccounts count] > 0) {
+                return YES;
+            }
         }
     }
     else {
-        return [OAuth isTwitterAuthorized];
+        canSendTweet = [OAuth isTwitterAuthorized];
     }
+    return canSendTweet;
 }
 
 
 + (void)displayNoTwitterAccountsAlert
+    // We have an instance method that's identical to this. Make sure it stays identical.
 {
-    [self displayNoTwitterAccountsAlert];
+    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"No Twitter Accounts"
+                                                         message:@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings."
+                                                        delegate:self
+                                               cancelButtonTitle:@"Settings"
+                                               otherButtonTitles:@"Cancel", nil] autorelease];
+    alertView.tag = DETweetComposeViewControllerNoAccountsAlert;
+    [alertView show];
 }
 
-
-- (void)displayNoTwitterAccountsAlert
-{
-    [[[[UIAlertView alloc] initWithTitle:@"No Twitter Accounts"
-                                 message:@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings."
-                                delegate:self cancelButtonTitle:@"Settings" otherButtonTitles:@"Cancel", nil] autorelease] show];
-}
 
 + (NSArray *)systemTwitterAccounts
 {
@@ -250,12 +273,6 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
     [self updateCharacterCount];
     [self updateAttachments];
-    
-    if ([UIApplication isIOS5]) {
-        if ([[DETweetComposeViewController systemTwitterAccounts] count] < 1) {
-            [self displayNoTwitterAccountsAlert];
-        }
-    }
 }
 
 
@@ -285,6 +302,16 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
         // This updates the rects of all of our objects.
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0.0f];
+    
+        // Make sure we have a Twitter account to work with.
+    if ([UIApplication isIOS5]) {
+        if ([[self class] canAccessTwitterAccounts] == NO) {
+            [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:self afterDelay:1.0f];
+        }
+        else if ([[self class] canSendTweet] == NO) {
+            [self displayNoTwitterAccountsAlert];
+        }
+    }
 }
 
 
@@ -638,6 +665,19 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
+- (void)displayNoTwitterAccountsAlert
+    // A private instance version of the class method with the same name.
+{
+    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"No Twitter Accounts"
+                                                         message:@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings."
+                                                        delegate:self
+                                               cancelButtonTitle:@"Settings"
+                                               otherButtonTitles:@"Cancel", nil] autorelease];
+    alertView.tag = DETweetComposeViewControllerNoAccountsAlert;
+    [alertView show];
+}
+
+
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView
@@ -650,11 +690,13 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (void)tweetFailed:(DETweetPoster *)tweetPoster
 {
-    [[[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
-                                 message:[NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text]
-                                delegate:self
-                       cancelButtonTitle:@"Cancel"
-                       otherButtonTitles:@"Try Again", nil] autorelease] show];
+    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
+                                                         message:[NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text]
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                               otherButtonTitles:@"Try Again", nil] autorelease];
+    alertView.tag = DETweetComposeViewControllerCannotSendAlert;
+    [alertView show];
 
     self.sendButton.enabled = YES;
 }
@@ -662,15 +704,14 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (void)tweetFailedAuthentication:(DETweetPoster *)tweetPoster
 {
-    // Clear existing credentials
     [OAuth clearCrendentials];
     [self dismissModalViewControllerAnimated:YES];
 
     [[[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
-                                 message:[NSString stringWithFormat:@"Unable to login to Twitter with existing credentials.  Try again with new credentials", self.textView.text]
+                                 message:@"Unable to login to Twitter with existing credentials. Try again with new credentials."
                                 delegate:nil
-                       cancelButtonTitle:nil
-                       otherButtonTitles:@"OK", nil] autorelease] show];
+                       cancelButtonTitle:@"OK"
+                       otherButtonTitles:nil] autorelease] show];
 }
 
 
@@ -729,29 +770,33 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 #pragma mark - UIAlertViewDelegate
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
++ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
     // Notice this is a class method since we're displaying the alert from a class method.
-    // This is not the real code. Put real code here.
 {
-    if (buttonIndex == 0) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=TWITTER"]];
-    }
-    else {
-        if ([[DETweetComposeViewController systemTwitterAccounts] count] < 1) {
-            
+    if (alertView.tag == DETweetComposeViewControllerNoAccountsAlert) {
+        if (buttonIndex == 0) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=TWITTER"]];
         }
     }
 }
 
 
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//    // This gets called if there's an error sending the tweet.
-//{
-//    if (buttonIndex == 1) {
-//            // The user wants to try again.
-//        [self send];
-//    }
-//}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+    // This gets called if there's an error sending the tweet.
+{
+    if (alertView.tag == DETweetComposeViewControllerNoAccountsAlert) {
+        [self dismissModalViewControllerAnimated:YES];
+        if (buttonIndex == 0) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=TWITTER"]];
+        }
+    }
+    else if (alertView.tag == DETweetComposeViewControllerCannotSendAlert) {
+        if (buttonIndex == 1) {
+                // The user wants to try again.
+            [self send];
+        }
+    }
+}
 
 
 @end
