@@ -32,12 +32,22 @@ As you can see they look very similar.
 ```
 #import "DETweetComposeViewController.h"
 ...
+if ([DETweetComposeViewController canSendTweet]) {
 DETweetComposeViewController *tcvc = [[[DETweetComposeViewController alloc] init] autorelease];
-[tcvc addImage:[UIImage imageNamed:@"YawkeyBusinessDog.jpg"]];
-[tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
-[tcvc addURL:[NSURL URLWithString:@"http://www.apple.com/ios/features.html#twitter"]];
-self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [tcvc addImage:[UIImage imageNamed:@"YawkeyBusinessDog.jpg"]];
+    [tcvc addURL:[NSURL URLWithString:@"http://www.DoubleEncore.com/"]];
+    [tcvc addURL:[NSURL URLWithString:@"http://www.apple.com/ios/features.html#twitter"]];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
 [self presentModalViewController:tcvc animated:YES];
+} 
+else {
+    self.oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
+    TwitterDialog *td = [[[TwitterDialog alloc] init] autorelease];
+    td.twitterOAuth = self.oAuth;
+    td.delegate = self;
+    td.logindelegate = self;
+    [td show];
+}
 ```
 
 ## What if I don't want to use the unofficial-twitter-sdk?
