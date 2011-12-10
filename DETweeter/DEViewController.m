@@ -61,26 +61,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     if ([TWTweetComposeViewController class] == nil) {
         self.twTweetButton.enabled = NO;
         [self.twTweetButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     }
-    UIImage *buttonImage = [[UIImage imageNamed:@"DETweetSendButtonPortrait.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:0];
-    [self.twTweetButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [self.deTweetButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0.0f];
     
     self.tweets = [NSArray arrayWithObjects:
                    @"Step into my office.",
                    @"Please take a seat, I suppose you're wondering why I called you all here…",
-                   @"You eyeballin' me son!",
+                   @"You eyeballin' me son?!",
                    @"I'm going to make him an offer he can't refuse.",
                    @"You talkin' to me?",
-                   @"who's in charge here?",
+                   @"Who's in charge here?",
                    @"I swear, the cat was alive when I left.",
-                   @"I will never get into the trash ever again.  I swear.",
+                   @"I will never get into the trash ever again. I swear.",
                    @"Somebody throw me a bone here!",
                    @"really? another meeting?",
                    @"Type faster.",
