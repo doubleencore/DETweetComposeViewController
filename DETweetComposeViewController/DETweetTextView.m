@@ -102,8 +102,9 @@
 - (CGRect)ruledViewFrame
 {
     CGFloat extraForBounce = 200.0f;
+    CGFloat width = 700;  // Needs to be at least as wide as we might make the Tweet sheet.
     CGFloat textAlignmentOffset = -2.0f;  // To center the text between the lines. May want to find a way to determine this procedurally eventually.
-    return CGRectMake(0.0f, -extraForBounce + textAlignmentOffset, 500.0f, self.contentSize.height + (2 * extraForBounce));
+    return CGRectMake(0.0f, -extraForBounce + textAlignmentOffset, width, self.contentSize.height + (2 * extraForBounce));
 }
 
 

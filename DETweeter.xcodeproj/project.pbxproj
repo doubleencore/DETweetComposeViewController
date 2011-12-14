@@ -407,11 +407,11 @@
 				60C6B2ED1471D47D0090278C /* OAuth+DEExtensions.m */,
 				60C6B2E81471CBD90090278C /* OAuth+DEUserDefaults.h */,
 				60C6B2EA1471CBEE0090278C /* OAuth+DEUserDefaults.m */,
-				B6B6CCF214586015005B93A1 /* Images */,
 				69EC1CBF14885748002DB78F /* UIApplication+DETweetComposeViewController.h */,
 				69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */,
 				697FE2CD14903C750045B8C7 /* UIDevice+DETweetComposeViewController.h */,
 				697FE2CE14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m */,
+				B6B6CCF214586015005B93A1 /* Images */,
 			);
 			name = DETweetComposeViewController;
 			path = DETweeter;
