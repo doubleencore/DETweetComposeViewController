@@ -10,10 +10,10 @@
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
 #import "OAuthConsumerCredentials.h"
-#import <Twitter/Twitter.h>
-#import <QuartzCore/QuartzCore.h>  // Just for testing
 #import "UIDevice+DETweetComposeViewController.h"
 #import "UIApplication+DETweetComposeViewController.h"
+#import <Twitter/Twitter.h>
+
 
 @interface DEViewController ()
 
@@ -71,7 +71,7 @@
     
     self.tweets = [NSArray arrayWithObjects:
                    @"Step into my office.",
-                   @"Please take a seat, I suppose you're wondering why I called you all here…",
+                   @"Please take a seat. I suppose you're wondering why I called you all here…",
                    @"You eyeballin' me son?!",
                    @"I'm going to make him an offer he can't refuse.",
                    @"You talkin' to me?",
@@ -79,14 +79,14 @@
                    @"I swear, the cat was alive when I left.",
                    @"I will never get into the trash ever again. I swear.",
                    @"Somebody throw me a bone here!",
-                   @"really? another meeting?",
-                   @"Type faster.",
+                   @"Really? Another meeting?",
+                   @"Type faster!",
                    @"How was I supposed to know you didn't leave the trash out for me?",
                    @"It's been a ruff day for all of us.",
                    @"The maple kind, yeah?",
                    @"Unless you brought enough biscuits for everyone I suggest you leave.",
                    @"@Would you file a new TPS report for 1 Scooby Snack? How about 2?",
-                   @"", nil];
+                   nil];
 }
 
 
@@ -243,7 +243,7 @@
 
 - (void)twitterDidNotLogin:(BOOL)cancelled
 {
-//    Show Error UIAlertView
+        // Oddly this is not an optional method in the protocol.
 }
 
 

@@ -90,7 +90,7 @@ enum {
 };
 
 NSInteger const DETweetMaxLength = 140;
-NSInteger const DETweetURLLength = 21;  // https://dev.twitter.com/docs/tco-url-wrapper
+NSInteger const DETweetURLLength = 20;  // https://dev.twitter.com/docs/tco-url-wrapper
 NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but not today.
 
 #define degreesToRadians(x) (M_PI * x / 180.0f)
@@ -519,7 +519,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         return NO;  // Only three allowed.
     }
     
-    if (([self charactersAvailable] - DETweetURLLength) < 0) {
+    if (([self charactersAvailable] - (DETweetURLLength + 1)) < 0) {  // Add one for the space character.
         return NO;
     }
     
@@ -562,7 +562,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         return NO;  // Only three allowed.
     }
 
-    if (([self charactersAvailable] - DETweetURLLength) < 0) {
+    if (([self charactersAvailable] - (DETweetURLLength + 1)) < 0) {  // Add one for the space character.
         return NO;
     }
 
@@ -593,9 +593,14 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 - (NSInteger)charactersAvailable
 {
     NSInteger available = DETweetMaxLength;
-    available -= DETweetURLLength * [self.images count];
-    available -= DETweetURLLength * [self.urls count];
+    available -= (DETweetURLLength + 1) * [self.images count];
+    available -= (DETweetURLLength + 1) * [self.urls count];
     available -= [self.textView.text length];
+
+    if ( (available < DETweetMaxLength) && ([self.textView.text length] == 0) ) {
+        available += 1;  // The space we added for the first URL isn't needed.
+    }
+    
     return available;
 }
 
