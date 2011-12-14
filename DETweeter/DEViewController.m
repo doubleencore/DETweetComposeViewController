@@ -20,6 +20,7 @@
 @property (nonatomic, retain) OAuth *oAuth;
 @property (nonatomic, retain) NSArray *tweets;
 
+- (void)updateFramesForOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)addTweetContent:(id)tcvc;
 
 @end
@@ -67,7 +68,7 @@
         [self.twTweetButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     }
     
-    [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0.0f];
+    [self updateFramesForOrientation:self.interfaceOrientation];
     
     self.tweets = [NSArray arrayWithObjects:
                    @"Step into my office.",
@@ -103,20 +104,7 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
-    CGRect frame = self.buttonView.frame;
-    frame.origin.x = trunc((self.view.bounds.size.width - frame.size.width) / 2);
-    if ([UIDevice isPhone]) {
-        frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 306.0f : 210.0f;
-    }
-    else {
-        frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 722.0f : 535.0f;
-    }
-    self.buttonView.frame = frame;
-        
-    frame = self.backgroundView.frame;
-    frame.origin.x = trunc((self.view.bounds.size.width - frame.size.width) / 2);
-    frame.origin.y = trunc((self.view.bounds.size.height - frame.size.height) / 2) - 10.0f;
-    self.backgroundView.frame = frame;
+    [self updateFramesForOrientation:interfaceOrientation];
 }
 
 
@@ -137,6 +125,25 @@
 
 
 #pragma mark - Private
+
+- (void)updateFramesForOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    CGRect frame = self.buttonView.frame;
+    frame.origin.x = trunc((self.view.bounds.size.width - frame.size.width) / 2);
+    if ([UIDevice isPhone]) {
+        frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 306.0f : 210.0f;
+    }
+    else {
+        frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 722.0f : 535.0f;
+    }
+    self.buttonView.frame = frame;
+    
+    frame = self.backgroundView.frame;
+    frame.origin.x = trunc((self.view.bounds.size.width - frame.size.width) / 2);
+    frame.origin.y = trunc((self.view.bounds.size.height - frame.size.height) / 2) - 10.0f;
+    self.backgroundView.frame = frame;
+}
+
 
 - (void)tweetUs
 {    
