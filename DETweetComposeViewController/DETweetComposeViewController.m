@@ -145,6 +145,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 + (void)displayNoTwitterAccountsAlert
     // We have an instance method that's identical to this. Make sure it stays identical.
+    // This duplicates the message and buttons displayed in Apple's TWTweetComposeViewController alert message.
 {
     UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"No Twitter Accounts"
                                                          message:@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings."
@@ -672,6 +673,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (void)displayNoTwitterAccountsAlert
     // A private instance version of the class method with the same name.
+    // This duplicates the message and buttons displayed in Apple's TWTweetComposeViewController alert message.
 {
     UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"No Twitter Accounts"
                                                          message:@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings."
