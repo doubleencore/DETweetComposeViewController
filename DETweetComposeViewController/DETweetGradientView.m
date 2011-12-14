@@ -17,6 +17,14 @@
 
 #import "DETweetGradientView.h"
 
+
+@interface DETweetGradientView ()
+
+- (void)tweetGradientViewInit;
+
+@end
+
+
 @implementation DETweetGradientView
 
 @synthesize centerOffset = _centerOffset;
@@ -28,11 +36,27 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
-        self.opaque = NO;
-        self.contentMode = UIViewContentModeRedraw;
+        [self tweetGradientViewInit];
     }
     return self;
+}
+
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self tweetGradientViewInit];
+    }
+    return self;
+}
+
+
+- (void)tweetGradientViewInit
+{
+    self.backgroundColor = [UIColor clearColor];
+    self.opaque = NO;
+    self.contentMode = UIViewContentModeRedraw;
 }
 
 
