@@ -19,7 +19,7 @@
 
 @interface UIDevice (DETweetComposeViewController)
 
-+ (BOOL)isPad;
-+ (BOOL)isPhone;
++ (BOOL)de_isPad;
++ (BOOL)de_isPhone;
 
 @end

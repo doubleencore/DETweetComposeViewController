@@ -19,12 +19,12 @@
 
 @implementation UIDevice (DETweetComposeViewController)
 
-+ (BOOL)isPad
++ (BOOL)de_isPad
 {
     return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? YES : NO;
 }
 
-+ (BOOL)isPhone
++ (BOOL)de_isPhone
 {
     return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? YES : NO;
 }

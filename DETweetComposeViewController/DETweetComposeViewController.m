@@ -334,7 +334,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([UIDevice isPhone]) {
+    if ([UIDevice de_isPhone]) {
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     }
     else {
@@ -496,7 +496,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     CGFloat titleLabelFontSize, titleLabelTop;
     CGFloat characterCountLeft, characterCountTop;
     
-    if ([UIDevice isPhone]) {
+    if ([UIDevice de_isPhone]) {
         cardWidth = CGRectGetWidth(self.view.bounds) - 10.0f;
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
             cardTop = 25.0f;
@@ -579,7 +579,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
     characterCountLeft = CGRectGetWidth(self.cardView.frame) - CGRectGetWidth(self.characterCountLabel.frame) - 12.0f;
     characterCountTop = CGRectGetHeight(self.cardView.frame) - CGRectGetHeight(self.characterCountLabel.frame) - 8.0f;
-    if ([UIDevice isPhone]) {
+    if ([UIDevice de_isPhone]) {
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
             characterCountTop -= 5.0f;
             if ([self attachmentsCount] > 0) {

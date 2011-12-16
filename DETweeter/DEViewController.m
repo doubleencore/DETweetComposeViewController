@@ -93,7 +93,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([UIDevice isPhone]) {
+    if ([UIDevice de_isPhone]) {
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     }
     else {
@@ -130,7 +130,7 @@
 {
     CGRect frame = self.buttonView.frame;
     frame.origin.x = trunc((self.view.bounds.size.width - frame.size.width) / 2);
-    if ([UIDevice isPhone]) {
+    if ([UIDevice de_isPhone]) {
         frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 306.0f : 210.0f;
     }
     else {
