@@ -65,8 +65,8 @@ NSString * const twitterStatusKey = @"status";
         TWRequest *twRequest = nil;
         if ([twitterAccounts count] > 0) {
             if ([images count] > 0) {
-                twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostWithImagesURLString]
-                                                parameters:nil requestMethod:TWRequestMethodPOST];
+                twRequest = [[[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostWithImagesURLString]
+                                                parameters:nil requestMethod:TWRequestMethodPOST] autorelease];
                 
                 [images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                     UIImage *image = (UIImage *)obj;
@@ -78,8 +78,8 @@ NSString * const twitterStatusKey = @"status";
             }
             else {
                 NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:tweetText, twitterStatusKey, nil];
-                twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostURLString]
-                                                parameters:parameters requestMethod:TWRequestMethodPOST];
+                twRequest = [[[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostURLString]
+                                                parameters:parameters requestMethod:TWRequestMethodPOST] autorelease];
             }
             // Just use the first account until we get the UI to choose accounts in place.n
             twRequest.account = [twitterAccounts objectAtIndex:0];
