@@ -19,10 +19,17 @@
 
 @implementation UIDevice (DETweetComposeViewController)
 
++ (BOOL)de_isIOS5
+{
+    return (NSClassFromString(@"NSJSONSerialization") != nil);
+}
+
+
 + (BOOL)de_isPad
 {
     return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? YES : NO;
 }
+
 
 + (BOOL)de_isPhone
 {

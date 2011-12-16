@@ -20,7 +20,7 @@
 #import "OAuth+DEExtensions.h"
 #import "OAuthConsumerCredentials.h"
 #import "NSString+URLEncoding.h"
-#import "UIApplication+DETweetComposeViewController.h"
+#import "UIDevice+DETweetComposeViewController.h"
 #import <Accounts/Accounts.h>
 #import <Twitter/TWRequest.h>
 
@@ -57,7 +57,7 @@ NSString * const twitterStatusKey = @"status";
 - (void)postTweet:(NSString *)tweetText withImages:(NSArray *)images
 {
     NSURLRequest *postRequest = nil;
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
         ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
         NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];

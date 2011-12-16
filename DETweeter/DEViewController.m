@@ -11,7 +11,6 @@
 #import "OAuth+DEExtensions.h"
 #import "OAuthConsumerCredentials.h"
 #import "UIDevice+DETweetComposeViewController.h"
-#import "UIApplication+DETweetComposeViewController.h"
 #import <Twitter/Twitter.h>
 
 
@@ -206,7 +205,7 @@
 
 - (IBAction)tweetUs:(id)sender
 {    
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         [self tweetUs];
     }
     else {
@@ -215,7 +214,7 @@
             [self tweetUs];
         }
         else {
-            if ([UIApplication isIOS5]) {
+            if ([UIDevice de_isIOS5]) {
                 [self tweetUs];
                 [DETweetComposeViewController displayNoTwitterAccountsAlert];
             }

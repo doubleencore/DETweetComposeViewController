@@ -35,7 +35,6 @@
 		697FE2DA149040AF0045B8C7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697FE2D9149040AF0045B8C7 /* Accounts.framework */; };
 		699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A29BA1459B3960046B260 /* DETweetPoster.m */; };
 		69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E70E891484BAD5004A66CA /* DEHTTPRequest.m */; };
-		69EC1CC114885748002DB78F /* UIApplication+DETweetComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */; };
 		69ED66BA14908CC4009602F5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69ED66B914908CC4009602F5 /* Settings.bundle */; };
 		69F126411489A81C00343C3D /* YawkeyBusinessDog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */; };
 		B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F06981486F0C000CE3BD6 /* icon@2x.png */; };
@@ -136,8 +135,6 @@
 		699A29BA1459B3960046B260 /* DETweetPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetPoster.m; path = ../DETweetComposeViewController/DETweetPoster.m; sourceTree = "<group>"; };
 		69E70E881484BAD5004A66CA /* DEHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEHTTPRequest.h; sourceTree = "<group>"; };
 		69E70E891484BAD5004A66CA /* DEHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHTTPRequest.m; sourceTree = "<group>"; };
-		69EC1CBF14885748002DB78F /* UIApplication+DETweetComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+DETweetComposeViewController.h"; path = "DETweetComposeViewController/UIApplication+DETweetComposeViewController.h"; sourceTree = SOURCE_ROOT; };
-		69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+DETweetComposeViewController.m"; path = "DETweetComposeViewController/UIApplication+DETweetComposeViewController.m"; sourceTree = SOURCE_ROOT; };
 		69ED66B914908CC4009602F5 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyBusinessDog.jpg; sourceTree = "<group>"; };
 		7B821E4A14928C35006FDD64 /* OAuthConsumerCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumerCredentials.h; path = "DETweeter/unofficial-twitter-sdk/unoffical-twitter-sdk/OAuth/OAuthConsumerCredentials.h"; sourceTree = "<group>"; };
@@ -407,8 +404,6 @@
 				60C6B2ED1471D47D0090278C /* OAuth+DEExtensions.m */,
 				60C6B2E81471CBD90090278C /* OAuth+DEUserDefaults.h */,
 				60C6B2EA1471CBEE0090278C /* OAuth+DEUserDefaults.m */,
-				69EC1CBF14885748002DB78F /* UIApplication+DETweetComposeViewController.h */,
-				69EC1CC014885748002DB78F /* UIApplication+DETweetComposeViewController.m */,
 				697FE2CD14903C750045B8C7 /* UIDevice+DETweetComposeViewController.h */,
 				697FE2CE14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m */,
 				B6B6CCF214586015005B93A1 /* Images */,
@@ -565,7 +560,6 @@
 				B69AB9B414869A5C00652DDF /* DETweetGradientView.m in Sources */,
 				B69C605A14894F4D00A18C1B /* DERuledView.m in Sources */,
 				B68527C0148F1DB900B18D5D /* DEEmbossedLabel.m in Sources */,
-				69EC1CC114885748002DB78F /* UIApplication+DETweetComposeViewController.m in Sources */,
 				697FE2CF14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

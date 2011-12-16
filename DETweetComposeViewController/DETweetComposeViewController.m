@@ -21,7 +21,6 @@
 #import "DETweetGradientView.h"
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
-#import "UIApplication+DETweetComposeViewController.h"
 #import "UIDevice+DETweetComposeViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Accounts/Accounts.h>
@@ -101,7 +100,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 
 + (BOOL)canAccessTwitterAccounts
 {
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
         ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
         
@@ -127,7 +126,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 {
     BOOL canSendTweet = NO;
     
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         if ([[self class] canAccessTwitterAccounts]) {
             ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
             ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
@@ -266,7 +265,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         ((UIImageView *)obj).layer.masksToBounds = YES;
     }];
     
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         self.textView.keyboardType = UIKeyboardTypeTwitter;
     }
     
@@ -283,7 +282,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [super viewWillAppear:animated];
 
         // Now let's fade in a gradient view over the presenting view.
-    UIView *presentingView = [UIApplication isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
+    UIView *presentingView = [UIDevice de_isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
     CGRect frame = CGRectMake(0.0f,
                               0.0f,
                               presentingView.bounds.size.width,
@@ -305,7 +304,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [self updateFramesForOrientation:self.interfaceOrientation];
     
         // Make sure we have a Twitter account to work with.
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         if ([[self class] canAccessTwitterAccounts] == NO) {
             [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:self afterDelay:1.0f];
         }
