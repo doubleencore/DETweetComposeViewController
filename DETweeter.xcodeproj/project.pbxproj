@@ -40,6 +40,8 @@
 		69F126411489A81C00343C3D /* YawkeyBusinessDog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */; };
 		B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F06981486F0C000CE3BD6 /* icon@2x.png */; };
 		B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */; };
+		B61501FA149BFF7000C4A719 /* DETweetCardAccountLine.png in Resources */ = {isa = PBXBuildFile; fileRef = B61501F8149BFF7000C4A719 /* DETweetCardAccountLine.png */; };
+		B61501FB149BFF7000C4A719 /* DETweetCardAccountLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61501F9149BFF7000C4A719 /* DETweetCardAccountLine@2x.png */; };
 		B639E5261486D2DA0054AE8F /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E5251486D2DA0054AE8F /* background.png */; };
 		B639E5291486EF9B0054AE8F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E5281486EF9B0054AE8F /* icon.png */; };
 		B639E52B1486F04A0054AE8F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E52A1486F04A0054AE8F /* Default-Landscape~ipad.png */; };
@@ -58,6 +60,7 @@
 		B655DE051458C5F000F513E1 /* DETweetURLAttachment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DE011458C5F000F513E1 /* DETweetURLAttachment@2x.png */; };
 		B6634191148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B6634190148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg */; };
 		B68527C0148F1DB900B18D5D /* DEEmbossedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B68527BF148F1DB900B18D5D /* DEEmbossedLabel.m */; };
+		B68728AB14A10C0200593E39 /* DETweetAccountSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68728AA14A10C0200593E39 /* DETweetAccountSelectorViewController.m */; };
 		B69AB9B414869A5C00652DDF /* DETweetGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B69AB9B314869A5C00652DDF /* DETweetGradientView.m */; };
 		B69C605A14894F4D00A18C1B /* DERuledView.m in Sources */ = {isa = PBXBuildFile; fileRef = B69C605914894F4D00A18C1B /* DERuledView.m */; };
 		B6A13118145768DB00500180 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13117145768DB00500180 /* UIKit.framework */; };
@@ -143,6 +146,8 @@
 		7B821E4A14928C35006FDD64 /* OAuthConsumerCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumerCredentials.h; path = "DETweeter/unofficial-twitter-sdk/unoffical-twitter-sdk/OAuth/OAuthConsumerCredentials.h"; sourceTree = "<group>"; };
 		B60F06981486F0C000CE3BD6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon~ipad.png"; path = "../icon~ipad.png"; sourceTree = "<group>"; };
+		B61501F8149BFF7000C4A719 /* DETweetCardAccountLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardAccountLine.png; path = DETweetComposeViewController/Resources/DETweetCardAccountLine.png; sourceTree = SOURCE_ROOT; };
+		B61501F9149BFF7000C4A719 /* DETweetCardAccountLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCardAccountLine@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCardAccountLine@2x.png"; sourceTree = SOURCE_ROOT; };
 		B639E5251486D2DA0054AE8F /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B639E5281486EF9B0054AE8F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		B639E52A1486F04A0054AE8F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
@@ -162,6 +167,8 @@
 		B6634190148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyCleanTeeth.jpg; sourceTree = "<group>"; };
 		B68527BE148F1DB900B18D5D /* DEEmbossedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DEEmbossedLabel.h; path = ../DETweetComposeViewController/DEEmbossedLabel.h; sourceTree = "<group>"; };
 		B68527BF148F1DB900B18D5D /* DEEmbossedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DEEmbossedLabel.m; path = ../DETweetComposeViewController/DEEmbossedLabel.m; sourceTree = "<group>"; };
+		B68728A914A10C0200593E39 /* DETweetAccountSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetAccountSelectorViewController.h; path = DETweetComposeViewController/DETweetAccountSelectorViewController.h; sourceTree = SOURCE_ROOT; };
+		B68728AA14A10C0200593E39 /* DETweetAccountSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetAccountSelectorViewController.m; path = DETweetComposeViewController/DETweetAccountSelectorViewController.m; sourceTree = SOURCE_ROOT; };
 		B69AB9B214869A5C00652DDF /* DETweetGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetGradientView.h; path = DETweetComposeViewController/DETweetGradientView.h; sourceTree = SOURCE_ROOT; };
 		B69AB9B314869A5C00652DDF /* DETweetGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetGradientView.m; path = DETweetComposeViewController/DETweetGradientView.m; sourceTree = SOURCE_ROOT; };
 		B69C605814894F4D00A18C1B /* DERuledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DERuledView.h; path = DETweetComposeViewController/DERuledView.h; sourceTree = SOURCE_ROOT; };
@@ -397,6 +404,8 @@
 				B6A1314714577D5A00500180 /* DETweetSheetCardView.m */,
 				B6FD55AB1463A6E100739469 /* DETweetTextView.h */,
 				B6FD55AC1463A6E100739469 /* DETweetTextView.m */,
+				B68728A914A10C0200593E39 /* DETweetAccountSelectorViewController.h */,
+				B68728AA14A10C0200593E39 /* DETweetAccountSelectorViewController.m */,
 				B69C605814894F4D00A18C1B /* DERuledView.h */,
 				B69C605914894F4D00A18C1B /* DERuledView.m */,
 				B68527BE148F1DB900B18D5D /* DEEmbossedLabel.h */,
@@ -424,6 +433,8 @@
 				B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */,
 				B6DEB61714631499009FD33C /* DETweetCardHeaderLine.png */,
 				B6DEB61814631499009FD33C /* DETweetCardHeaderLine@2x.png */,
+				B61501F8149BFF7000C4A719 /* DETweetCardAccountLine.png */,
+				B61501F9149BFF7000C4A719 /* DETweetCardAccountLine@2x.png */,
 				B655DDF01458C43C00F513E1 /* DETweetCancelButtonPortrait.png */,
 				B655DDF11458C43C00F513E1 /* DETweetCancelButtonPortrait@2x.png */,
 				B6DEB60E14630B2E009FD33C /* DETweetCancelButtonLandscape.png */,
@@ -528,6 +539,8 @@
 				69F126411489A81C00343C3D /* YawkeyBusinessDog.jpg in Resources */,
 				B6634191148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg in Resources */,
 				69ED66BA14908CC4009602F5 /* Settings.bundle in Resources */,
+				B61501FA149BFF7000C4A719 /* DETweetCardAccountLine.png in Resources */,
+				B61501FB149BFF7000C4A719 /* DETweetCardAccountLine@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +580,7 @@
 				B68527C0148F1DB900B18D5D /* DEEmbossedLabel.m in Sources */,
 				69EC1CC114885748002DB78F /* UIApplication+DETweetComposeViewController.m in Sources */,
 				697FE2CF14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m in Sources */,
+				B68728AB14A10C0200593E39 /* DETweetAccountSelectorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@
 //  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
 //  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
 
 #import "OAuth.h"
 #import "OAuth+DEUserDefaults.h"
@@ -23,7 +24,8 @@
 
 // The following tasks should really be done using keychain in a real app. But we will use userDefaults
 // for the sake of clarity and brevity of this example app. Do think about security for your own real use.
-- (void) loadOAuthContextFromUserDefaults 
+
+- (void)loadOAuthContextFromUserDefaults 
 {
 	self.oauth_token = [[NSUserDefaults standardUserDefaults] stringForKey:@"detwitter_oauth_token"];
 	self.oauth_token_secret = [[NSUserDefaults standardUserDefaults] stringForKey:@"detwitter_oauth_token_secret"];
@@ -31,13 +33,13 @@
 }
 
 
-- (void) saveOAuthContextToUserDefaults 
+- (void)saveOAuthContextToUserDefaults 
 {
 	[self saveOAuthContextToUserDefaults:self];
 }
 
 
-- (void) saveOAuthContextToUserDefaults:(OAuth *)_oAuth 
+- (void)saveOAuthContextToUserDefaults:(OAuth *)_oAuth 
 {
 	[[NSUserDefaults standardUserDefaults] setObject:_oAuth.oauth_token forKey:@"detwitter_oauth_token"];
 	[[NSUserDefaults standardUserDefaults] setObject:_oAuth.oauth_token_secret forKey:@"detwitter_oauth_token_secret"];
@@ -46,7 +48,7 @@
 }
 
 
-+ (BOOL) isTwitterAuthorizedFromUserDefaults
++ (BOOL)isTwitterAuthorizedFromUserDefaults
 {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"detwitter_oauth_token"] &&
         [[NSUserDefaults standardUserDefaults] objectForKey:@"detwitter_oauth_token_secret"] &&
@@ -59,7 +61,7 @@
 }
 
 
-+ (void) clearCrendentialsFromUserDefaults 
++ (void)clearCrendentialsFromUserDefaults 
 {
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"detwitter_oauth_token"];
 	[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"detwitter_oauth_token_secret"];

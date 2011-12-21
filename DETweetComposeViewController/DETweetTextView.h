@@ -16,6 +16,18 @@
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+@protocol DETweetTextViewDelegate;
+
 @interface DETweetTextView : UITextView
+
+@property (nonatomic, copy) NSString *accountName;
+@property (nonatomic, readonly) CGRect fromButtonFrame;  // So the popover can be displayed from this rect.
+
+@end
+
+
+@protocol DETweetTextViewDelegate <NSObject>
+
+- (void)tweetTextViewAccountButtonWasTouched:(DETweetTextView *)tweetTextView;
 
 @end

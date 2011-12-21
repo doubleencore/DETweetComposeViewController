@@ -1,5 +1,5 @@
 //
-//  UIDevice+DETweetComposeViewController.m
+//  DETweetAccountSelectorViewController.h
 //  DETweeter
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
@@ -16,34 +16,21 @@
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "UIDevice+DETweetComposeViewController.h"
+#import <Accounts/Accounts.h>
+
+@protocol DETweetAccountSelectorViewControllerDelegate;
+
+@interface DETweetAccountSelectorViewController : UITableViewController
+
+@property (nonatomic, assign) id<DETweetAccountSelectorViewControllerDelegate> delegate;
+@property (nonatomic, retain) ACAccount *selectedAccount;
+
+@end
 
 
-@implementation UIDevice (DETweetComposeViewController)
+@protocol DETweetAccountSelectorViewControllerDelegate <NSObject>
 
-
-+ (BOOL)isPad
-{
-    return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? YES : NO;
-}
-
-
-+ (BOOL)isPhone
-{
-    return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? YES : NO;
-}
-
-
-+ (BOOL)isRetinaDisplay
-{
-    UIScreen* screen = [UIScreen mainScreen];
-    if ([screen respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
-        [screen respondsToSelector:@selector(scale)]) {
-        return screen.scale == 2.0f;
-    }
-    
-    return NO;
-}
-
+@optional
+- (void)tweetAccountSelectorViewController:(DETweetAccountSelectorViewController *)viewController didSelectAccount:(ACAccount *)account;
 
 @end

@@ -25,7 +25,7 @@ As you can see they look very similar.
     4. ticon.png
     5. TwitterDialog.h
     6. TwitterDialog.m
-3. Link you project against the follwoing frameworks:
+3. Link your project against the follwoing frameworks:
     1. Accounts.framework
     2. Twitter.framework.
 4. Set your Twitter OAuth Consumer Key and Consumer Secret in OAuthConsumerCredentials.h in your project, you will find this file in unoffical-twitter-sdk/OAuth. Don't have an OAuth consumer key and secret? Go to developer.twitter.com to create an app.

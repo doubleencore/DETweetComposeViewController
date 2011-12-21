@@ -20,11 +20,11 @@
 
 @interface OAuth (OAuth_DEExtensions)
 
-- (void) loadOAuthContext;
-- (void) saveOAuthContext;
-- (void) saveOAuthContext:(OAuth *)oAuthContext;
++ (BOOL)isTwitterAuthorized;
++ (void)clearCrendentials;
 
-+ (BOOL) isTwitterAuthorized;
-+ (void) clearCrendentials;
+- (void)loadOAuthContext;
+- (void)saveOAuthContext;
+- (void)saveOAuthContext:(OAuth *)oAuthContext;
 
 @end

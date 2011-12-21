@@ -20,11 +20,11 @@
 
 @interface OAuth (OAuth_DEUserDefaults)
 
-- (void) loadOAuthContextFromUserDefaults;
-- (void) saveOAuthContextToUserDefaults;
-- (void) saveOAuthContextToUserDefaults:(OAuth *)oAuthContext;
++ (BOOL)isTwitterAuthorizedFromUserDefaults;
++ (void)clearCrendentialsFromUserDefaults;
 
-+ (BOOL) isTwitterAuthorizedFromUserDefaults;
-+ (void) clearCrendentialsFromUserDefaults;
+- (void)loadOAuthContextFromUserDefaults;
+- (void)saveOAuthContextToUserDefaults;
+- (void)saveOAuthContextToUserDefaults:(OAuth *)oAuthContext;
 
 @end

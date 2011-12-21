@@ -86,7 +86,7 @@
                    @"It's been a ruff day for all of us.",
                    @"The maple kind, yeah?",
                    @"Unless you brought enough biscuits for everyone I suggest you leave.",
-                   @"@Would you file a new TPS report for 1 Scooby Snack? How about 2?",
+                   @"Would you file a new TPS report for 1 Scooby Snack? How about 2?",
                    nil];
 }
 

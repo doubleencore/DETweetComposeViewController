@@ -22,7 +22,12 @@
 
 @property (nonatomic, assign) id<DETweetPosterDelegate> delegate;
 
+    // Class Methods
++ (NSArray *)accounts;
+
+    // Public
 - (void)postTweet:(NSString *)tweetText withImages:(NSArray *)images;
+- (void)postTweet:(NSString *)tweetText withImages:(NSArray *)images fromAccount:(id)account;
 
 @end
 
@@ -30,7 +35,6 @@
 @protocol DETweetPosterDelegate <NSObject>
 
 @optional
-
 - (void)tweetSucceeded:(DETweetPoster *)tweetPoster;
 - (void)tweetFailed:(DETweetPoster *)tweetPoster;
 - (void)tweetFailedAuthentication:(DETweetPoster *)tweetPoster;

@@ -14,10 +14,12 @@
 //  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
 //  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
 
 #import "DETweetComposeViewController.h"
 #import "DETweetPoster.h"
 #import "DETweetSheetCardView.h"
+#import "DETweetTextView.h"
 #import "DETweetGradientView.h"
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
@@ -40,6 +42,9 @@ static BOOL waitingForAccess = NO;
 @property (nonatomic, retain) NSArray *attachmentImageViews;
 @property (nonatomic) UIStatusBarStyle previousStatusBarStyle;
 @property (nonatomic, retain) DETweetGradientView *backgroundView;
+@property (nonatomic, retain) UIPickerView *accountPickerView;
+@property (nonatomic, retain) UIPopoverController *accountPickerPopoverController;
+@property (nonatomic, retain) id twitterAccount;  // iOS 5 use only.
 
 - (void)tweetComposeViewControllerInit;
 - (void)updateFramesForOrientation:(UIInterfaceOrientation)interfaceOrientation;
@@ -48,7 +53,9 @@ static BOOL waitingForAccess = NO;
 - (void)updateCharacterCount;
 - (NSInteger)attachmentsCount;
 - (void)updateAttachments;
+- (void)selectTwitterAccount;
 - (void)displayNoTwitterAccountsAlert;
+- (void)presentAccountPicker;
 
 @end
 
@@ -83,6 +90,9 @@ static BOOL waitingForAccess = NO;
 @synthesize attachmentImageViews = _attachmentImageViews;
 @synthesize previousStatusBarStyle = _previousStatusBarStyle;
 @synthesize backgroundView = _backgroundView;
+@synthesize accountPickerView = _accountPickerView;
+@synthesize accountPickerPopoverController = _accountPickerPopoverController;
+@synthesize twitterAccount = _twitterAccount;
 
 
 enum {
@@ -93,6 +103,7 @@ enum {
 NSInteger const DETweetMaxLength = 140;
 NSInteger const DETweetURLLength = 20;  // https://dev.twitter.com/docs/tco-url-wrapper
 NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but not today.
+static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdentifier";
 
 #define degreesToRadians(x) (M_PI * x / 180.0f)
 
@@ -225,6 +236,9 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     [_attachmentFrameViews release], _attachmentFrameViews = nil;
     [_attachmentImageViews release], _attachmentImageViews = nil;
     [_backgroundView release], _backgroundView = nil;
+    [_accountPickerView release], _accountPickerView = nil;
+    [_accountPickerPopoverController release], _accountPickerPopoverController = nil;
+    [_twitterAccount release], _twitterAccount = nil;
     
     [super dealloc];
 }
@@ -313,6 +327,18 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
             [self displayNoTwitterAccountsAlert];
         }
     }
+    
+    [self selectTwitterAccount];  // Set or verify our default account.
+
+        // Like TWTweetComposeViewController, we'll let the user change the account only if
+        // we're in portrait orientation on iPhone. iPad can do it in any orientation.
+    if ([[DETweetPoster accounts] count] > 1
+            && ([UIDevice isPad] || UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) ) {
+        self.textView.accountName = ((ACAccount *)self.twitterAccount).accountDescription;
+    }
+    else {
+        self.textView.accountName = nil;
+    }
 }
 
 
@@ -346,6 +372,18 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
     [self updateFramesForOrientation:interfaceOrientation];
+    self.accountPickerView.alpha = 0.0f;
+}
+
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self.accountPickerView removeFromSuperview];
+    self.accountPickerView = nil;  // Easier to recreate it next time rather than resize it.
+    
+    if (self.accountPickerPopoverController) {
+        [self presentAccountPicker];
+    }
 }
 
 
@@ -356,6 +394,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
         //  _text
         //  _images
         //  _urls
+        //  _twitterAccount
 
         // Save the text.
     self.text = self.textView.text;
@@ -381,6 +420,8 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     self.attachmentFrameViews = nil;
     self.attachmentImageViews = nil;
     self.backgroundView = nil;
+    self.accountPickerView = nil;
+    self.accountPickerPopoverController = nil;
 
     [super viewDidUnload];
 }
@@ -552,7 +593,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
     CGFloat textWidth = CGRectGetWidth(self.cardView.bounds);
     if ([self attachmentsCount] > 0) {
-        textWidth -= CGRectGetWidth(self.attachment1FrameView.frame);  // Got to measure frame 1, because it's not rotated. Other frames are funky.
+        textWidth -= CGRectGetWidth(self.attachment1FrameView.frame) + 10.0f;  // Got to measure frame 1, because it's not rotated. Other frames are funky.
     }
     CGFloat textTop = CGRectGetMaxY(self.cardHeaderLineView.frame) - 1.0f;
     CGFloat textHeight = self.cardView.bounds.size.height - textTop - 30.0f;
@@ -677,6 +718,48 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
+- (void)selectTwitterAccount
+    // Picks the iOS 5 Twitter account to use.
+    // If one is already selected, makes sure it's still valid.
+    // If not, another is picked.
+{
+    if ([UIApplication isIOS5] == NO) {
+        return;
+    }
+
+    NSArray *accounts = [DETweetPoster accounts];
+    
+    if ([accounts count] == 0) {
+        self.twitterAccount = nil;
+        return;
+    }
+    
+    NSString *accountIdentifier = [[NSUserDefaults standardUserDefaults] stringForKey:DETweetLastAccountIdentifier];
+    if (self.twitterAccount) {
+        accountIdentifier = ((ACAccount *)self.twitterAccount).identifier;
+    }
+    
+    if ([accountIdentifier length] > 0) {
+        NSUInteger index = [accounts indexOfObjectPassingTest:^BOOL(ACAccount *account, NSUInteger idx, BOOL *stop) {
+            *stop = [account.identifier isEqualToString:accountIdentifier];
+            return *stop;
+        }];
+        if (index != NSNotFound) {
+            self.twitterAccount = [accounts objectAtIndex:index];
+        }
+        else {
+            self.twitterAccount = nil;  // Clear out the invalid account.
+        }
+    }
+    
+    if (self.twitterAccount == nil) {
+        self.twitterAccount = [accounts objectAtIndex:0];  // Safe, since we tested for [accounts count] == 0 above.
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:((ACAccount *)self.twitterAccount).identifier forKey:DETweetLastAccountIdentifier];
+}
+
+
 - (void)displayNoTwitterAccountsAlert
     // A private instance version of the class method with the same name.
     // This duplicates the message and buttons displayed in Apple's TWTweetComposeViewController alert message.
@@ -691,11 +774,97 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
 }
 
 
+- (void)presentAccountPicker
+{
+    if ([UIDevice isPhone]) {
+        if (self.accountPickerView == nil) {
+            self.accountPickerView = [[[UIPickerView alloc] init] autorelease];
+            CGRect frame = self.accountPickerView.frame;
+            frame.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.accountPickerView.frame);
+            self.accountPickerView.frame = frame;
+            self.accountPickerView.dataSource = self;
+            self.accountPickerView.delegate = self;
+            self.accountPickerView.showsSelectionIndicator = YES;
+            [self.view addSubview:self.accountPickerView];
+        }
+        self.accountPickerView.alpha = 1.0f;
+        [self.textView resignFirstResponder];
+    }
+    
+    else {  // iPad
+        if (self.accountPickerPopoverController == nil) {
+            DETweetAccountSelectorViewController *contentViewController = [[[DETweetAccountSelectorViewController alloc] init] autorelease];
+            contentViewController.delegate = self;
+            contentViewController.selectedAccount = self.twitterAccount;
+            self.accountPickerPopoverController = [[[UIPopoverController alloc] initWithContentViewController:contentViewController] autorelease];
+            self.accountPickerPopoverController.delegate = self;
+        }
+        CGRect presentFromRect = [self.view convertRect:self.textView.fromButtonFrame fromView:self.textView];
+        [self.accountPickerPopoverController presentPopoverFromRect:presentFromRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp | UIPopoverArrowDirectionDown animated:YES];
+    }
+}
+
+
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView
 {
     [self updateCharacterCount];
+}
+
+
+#pragma mark - DETweetTextViewDelegate
+
+- (void)tweetTextViewAccountButtonWasTouched:(DETweetTextView *)tweetTextView
+{
+    [self presentAccountPicker];
+}
+
+
+#pragma mark - UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    NSArray *accounts = [DETweetPoster accounts];
+    return [accounts count];
+}
+
+
+#pragma mark - UIPickerViewDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    ACAccount *account = [[DETweetPoster accounts] objectAtIndex:row];
+    
+    if ([account.accountDescription isEqualToString:@"Primary Account"]) {
+        [self.accountPickerView selectRow:row inComponent:0 animated:NO];
+    }
+    
+    return account.accountDescription;
+}
+
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.twitterAccount = [[DETweetPoster accounts] objectAtIndex:row];
+    self.textView.accountName = ((ACAccount *)self.twitterAccount).accountDescription;
+}
+
+
+
+#pragma mark - DETweetAccountSelectorViewControllerDelegate
+
+- (void)tweetAccountSelectorViewController:(DETweetAccountSelectorViewController *)viewController didSelectAccount:(ACAccount *)account
+{
+    self.twitterAccount = account;
+    self.textView.accountName = ((ACAccount *)self.twitterAccount).accountDescription;
+    [self.accountPickerPopoverController dismissPopoverAnimated:YES];
 }
 
 
@@ -766,7 +935,7 @@ NSInteger const DETweetMaxImages = 1;  // We'll get this dynamically later, but 
     
     DETweetPoster *tweetPoster = [[[DETweetPoster alloc] init] autorelease];
     tweetPoster.delegate = self;
-    [tweetPoster postTweet:tweet withImages:self.images];
+    [tweetPoster postTweet:tweet withImages:self.images fromAccount:self.twitterAccount];
 }
 
 
