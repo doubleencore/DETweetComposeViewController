@@ -20,8 +20,9 @@
 
 @interface UIDevice (DETweetComposeViewController)
 
-+ (BOOL)isPad;
-+ (BOOL)isPhone;
-+ (BOOL)isRetinaDisplay;
++ (BOOL)de_isIOS5;
++ (BOOL)de_isPad;
++ (BOOL)de_isPhone;
++ (BOOL)de_isRetinaDisplay;
 
 @end

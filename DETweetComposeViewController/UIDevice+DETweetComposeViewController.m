@@ -21,20 +21,25 @@
 
 @implementation UIDevice (DETweetComposeViewController)
 
++ (BOOL)de_isIOS5
+{
+    return (NSClassFromString(@"NSJSONSerialization") != nil);
+}
 
-+ (BOOL)isPad
+
++ (BOOL)de_isPad
 {
     return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? YES : NO;
 }
 
 
-+ (BOOL)isPhone
++ (BOOL)de_isPhone
 {
     return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? YES : NO;
 }
 
 
-+ (BOOL)isRetinaDisplay
++ (BOOL)de_isRetinaDisplay
 {
     UIScreen* screen = [UIScreen mainScreen];
     if ([screen respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&

@@ -21,7 +21,7 @@
 #import "OAuth+DEExtensions.h"
 #import "OAuthConsumerCredentials.h"
 #import "NSString+URLEncoding.h"
-#import "UIApplication+DETweetComposeViewController.h"
+#import "UIDevice+DETweetComposeViewController.h"
 #import <Accounts/Accounts.h>
 #import <Twitter/TWRequest.h>
 
@@ -72,7 +72,7 @@ NSString * const twitterStatusKey = @"status";
     // Posts the tweet with the first available account on iOS 5.
 {
     id account = nil;  // An ACAccount. But that didn't exist on iOS 4.
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         NSArray *twitterAccounts = [[self class] accounts];
         if ([twitterAccounts count] > 0) {
             account = [twitterAccounts objectAtIndex:0];
@@ -91,7 +91,7 @@ NSString * const twitterStatusKey = @"status";
 - (void)postTweet:(NSString *)tweetText withImages:(NSArray *)images fromAccount:(id)account
 {
     NSURLRequest *postRequest = nil;
-    if ([UIApplication isIOS5] && account != nil) {        
+    if ([UIDevice de_isIOS5] && account != nil) {        
         TWRequest *twRequest = nil;
         if ([images count] > 0) {
             twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostWithImagesURLString]

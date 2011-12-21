@@ -28,7 +28,7 @@ As you can see they look very similar.
 3. Link your project against the follwoing frameworks:
     1. Accounts.framework
     2. Twitter.framework.
-4. Set your Twitter OAuth Consumer Key and Consumer Secret in OAuthConsumerCredentials.h in your project, you will find this file in unoffical-twitter-sdk/OAuth. Don't have an OAuth consumer key and secret? Go to developer.twitter.com to create an app.
+4. Set your Twitter OAuth Consumer Key and Consumer Secret in OAuthConsumerCredentials.h in your project, you will find this file in unoffical-twitter-sdk/OAuth. Don't have an OAuth consumer key and secret? Go to developer.twitter.com to create an app. Make sure your app's Access is set to 'Read and Write' and a Callback URL is defined. Both of these configurations can be found under the Settings of your Twitter app.
 5. You will notice there is an #error in OAuthConsumerCredentials.h to help ensure you remember to add your Twitter OAuth credentials, remember to delete this #error after you have added your OAuth credentials.
 6. Use it almost just like you would a TWTweetComposeViewController
 

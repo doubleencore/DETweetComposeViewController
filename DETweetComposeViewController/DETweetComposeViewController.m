@@ -23,7 +23,6 @@
 #import "DETweetGradientView.h"
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
-#import "UIApplication+DETweetComposeViewController.h"
 #import "UIDevice+DETweetComposeViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Accounts/Accounts.h>
@@ -112,7 +111,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 
 + (BOOL)canAccessTwitterAccounts
 {
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
         ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
         
@@ -138,7 +137,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 {
     BOOL canSendTweet = NO;
     
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         if ([[self class] canAccessTwitterAccounts]) {
             ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
             ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
@@ -280,7 +279,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         ((UIImageView *)obj).layer.masksToBounds = YES;
     }];
     
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         self.textView.keyboardType = UIKeyboardTypeTwitter;
     }
     
@@ -297,7 +296,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     [super viewWillAppear:animated];
 
         // Now let's fade in a gradient view over the presenting view.
-    UIView *presentingView = [UIApplication isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
+    UIView *presentingView = [UIDevice de_isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
     CGRect frame = CGRectMake(0.0f,
                               0.0f,
                               presentingView.bounds.size.width,
@@ -319,7 +318,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     [self updateFramesForOrientation:self.interfaceOrientation];
     
         // Make sure we have a Twitter account to work with.
-    if ([UIApplication isIOS5]) {
+    if ([UIDevice de_isIOS5]) {
         if ([[self class] canAccessTwitterAccounts] == NO) {
             [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:self afterDelay:1.0f];
         }
@@ -333,7 +332,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         // Like TWTweetComposeViewController, we'll let the user change the account only if
         // we're in portrait orientation on iPhone. iPad can do it in any orientation.
     if ([[DETweetPoster accounts] count] > 1
-            && ([UIDevice isPad] || UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) ) {
+            && ([UIDevice de_isPad] || UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) ) {
         self.textView.accountName = ((ACAccount *)self.twitterAccount).accountDescription;
     }
     else {
@@ -360,7 +359,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([UIDevice isPhone]) {
+    if ([UIDevice de_isPhone]) {
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     }
     else {
@@ -537,7 +536,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     CGFloat titleLabelFontSize, titleLabelTop;
     CGFloat characterCountLeft, characterCountTop;
     
-    if ([UIDevice isPhone]) {
+    if ([UIDevice de_isPhone]) {
         cardWidth = CGRectGetWidth(self.view.bounds) - 10.0f;
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
             cardTop = 25.0f;
@@ -620,7 +619,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     
     characterCountLeft = CGRectGetWidth(self.cardView.frame) - CGRectGetWidth(self.characterCountLabel.frame) - 12.0f;
     characterCountTop = CGRectGetHeight(self.cardView.frame) - CGRectGetHeight(self.characterCountLabel.frame) - 8.0f;
-    if ([UIDevice isPhone]) {
+    if ([UIDevice de_isPhone]) {
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
             characterCountTop -= 5.0f;
             if ([self attachmentsCount] > 0) {
@@ -723,7 +722,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     // If one is already selected, makes sure it's still valid.
     // If not, another is picked.
 {
-    if ([UIApplication isIOS5] == NO) {
+    if ([UIDevice de_isIOS5] == NO) {
         return;
     }
 
@@ -776,7 +775,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 
 - (void)presentAccountPicker
 {
-    if ([UIDevice isPhone]) {
+    if ([UIDevice de_isPhone]) {
         if (self.accountPickerView == nil) {
             self.accountPickerView = [[[UIPickerView alloc] init] autorelease];
             CGRect frame = self.accountPickerView.frame;
