@@ -49,6 +49,9 @@ NSString * const twitterStatusKey = @"status";
 
 + (NSArray *)accounts
 {
+    if (![UIDevice de_isIOS5]) {
+        return nil;
+    }
     ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
     ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
