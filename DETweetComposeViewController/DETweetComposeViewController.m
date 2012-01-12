@@ -143,13 +143,14 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
             ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
             NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
             if ([twitterAccounts count] > 0) {
-                return YES;
+                canSendTweet = YES;
             }
         }
     }
-    else {
-        canSendTweet = [OAuth isTwitterAuthorized];
-    }
+    
+    if ([OAuth isTwitterAuthorized]) {
+        canSendTweet = YES;
+    } 
     return canSendTweet;
 }
 
