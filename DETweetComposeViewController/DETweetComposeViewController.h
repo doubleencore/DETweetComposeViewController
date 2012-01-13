@@ -2,7 +2,7 @@
 //  DETweetComposeViewController.h
 //  DETweeter
 //
-//  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
+//  Copyright (c) 2011-2012 Double Encore, Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -18,13 +18,14 @@
 
 #import "DETweetPoster.h"
 #import "DETweetAccountSelectorViewController.h"
+#import "TwitterDialog.h"
 
 @class DETweetSheetCardView;
 @class DETweetTextView;
 
 @interface DETweetComposeViewController : UIViewController <UITextViewDelegate, UIAlertViewDelegate,
 UIPickerViewDataSource, UIPickerViewDelegate, UIPopoverControllerDelegate, DETweetAccountSelectorViewControllerDelegate,
-DETweetPosterDelegate>
+DETweetPosterDelegate, TwitterDialogDelegate, TwitterLoginDialogDelegate>
 
 @property (retain, nonatomic) IBOutlet DETweetSheetCardView *cardView;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
@@ -60,7 +61,9 @@ typedef void (^DETweetComposeViewControllerCompletionHandler)(DETweetComposeView
     // Returns YES if the user has granted our app access to the Twitter accounts.
 + (BOOL)canAccessTwitterAccounts;
 
-    // Returns YES if Twitter is accessible and at least one account has been setup.
+    // Returns YES if Twitter is accessible and at least one account has been setup in
+    // iOS5 Twitter settings.  Will also return YES if DE Twitter OAuth credentials have
+    // been set.
 + (BOOL)canSendTweet;
 
     // Sets the initial text to be tweeted. Returns NO if the specified text will
@@ -94,5 +97,10 @@ typedef void (^DETweetComposeViewControllerCompletionHandler)(DETweetComposeView
     // Specify a block to be called when the user is finished. This block is not guaranteed
     // to be called on any particular thread.
 @property (nonatomic, copy) DETweetComposeViewControllerCompletionHandler completionHandler;
+
+    // On iOS5+, set to YES to prevent from using built in Twitter credentials.
+    // Set to NO by default.
+@property (assign, nonatomic) BOOL alwaysUseDETwitterCredentials;
+
 
 @end

@@ -2,7 +2,7 @@
 //  DETweetComposeViewController.m
 //  DETweeter
 //
-//  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
+//  Copyright (c) 2011-2012 Double Encore, Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -23,6 +23,7 @@
 #import "DETweetGradientView.h"
 #import "OAuth.h"
 #import "OAuth+DEExtensions.h"
+#import "OAuthConsumerCredentials.h"
 #import "UIDevice+DETweetComposeViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Accounts/Accounts.h>
@@ -44,6 +45,7 @@ static BOOL waitingForAccess = NO;
 @property (nonatomic, retain) UIPickerView *accountPickerView;
 @property (nonatomic, retain) UIPopoverController *accountPickerPopoverController;
 @property (nonatomic, retain) id twitterAccount;  // iOS 5 use only.
+@property (nonatomic, retain) OAuth *oAuth;
 
 - (void)tweetComposeViewControllerInit;
 - (void)updateFramesForOrientation:(UIInterfaceOrientation)interfaceOrientation;
@@ -55,6 +57,7 @@ static BOOL waitingForAccess = NO;
 - (void)selectTwitterAccount;
 - (void)displayNoTwitterAccountsAlert;
 - (void)presentAccountPicker;
+- (void)checkTwitterCredentials;
 
 @end
 
@@ -80,6 +83,7 @@ static BOOL waitingForAccess = NO;
 
     // Public
 @synthesize completionHandler = _completionHandler;
+@synthesize alwaysUseDETwitterCredentials = _alwaysUseDETwitterCredentials;
 
     // Private
 @synthesize text = _text;
@@ -92,7 +96,7 @@ static BOOL waitingForAccess = NO;
 @synthesize accountPickerView = _accountPickerView;
 @synthesize accountPickerPopoverController = _accountPickerPopoverController;
 @synthesize twitterAccount = _twitterAccount;
-
+@synthesize oAuth = _oAuth;
 
 enum {
     DETweetComposeViewControllerNoAccountsAlert = 1,
@@ -137,20 +141,19 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 {
     BOOL canSendTweet = NO;
     
-    if ([UIDevice de_isIOS5]) {
-        if ([[self class] canAccessTwitterAccounts]) {
-            ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
-            ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-            NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
-            if ([twitterAccounts count] > 0) {
-                canSendTweet = YES;
-            }
+    if ([UIDevice de_isIOS5] && [[self class] canAccessTwitterAccounts]) {
+        ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
+        ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
+        if ([twitterAccounts count] > 0) {
+            canSendTweet = YES;
         }
     }
-    
+
     if ([OAuth isTwitterAuthorized]) {
         canSendTweet = YES;
-    } 
+    }
+    
     return canSendTweet;
 }
 
@@ -239,7 +242,8 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     [_accountPickerView release], _accountPickerView = nil;
     [_accountPickerPopoverController release], _accountPickerPopoverController = nil;
     [_twitterAccount release], _twitterAccount = nil;
-    
+    [_oAuth release], _oAuth = nil;
+
     [super dealloc];
 }
 
@@ -318,15 +322,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     
     [self updateFramesForOrientation:self.interfaceOrientation];
     
-        // Make sure we have a Twitter account to work with.
-    if ([UIDevice de_isIOS5]) {
-        if ([[self class] canAccessTwitterAccounts] == NO) {
-            [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:self afterDelay:1.0f];
-        }
-        else if ([[self class] canSendTweet] == NO) {
-            [self displayNoTwitterAccountsAlert];
-        }
-    }
+    [self checkTwitterCredentials];
     
     [self selectTwitterAccount];  // Set or verify our default account.
 
@@ -422,6 +418,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     self.backgroundView = nil;
     self.accountPickerView = nil;
     self.accountPickerPopoverController = nil;
+    self.oAuth = nil;
 
     [super viewDidUnload];
 }
@@ -723,7 +720,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     // If one is already selected, makes sure it's still valid.
     // If not, another is picked.
 {
-    if ([UIDevice de_isIOS5] == NO) {
+    if ([UIDevice de_isIOS5] == NO || self.alwaysUseDETwitterCredentials == YES) {
         return;
     }
 
@@ -801,6 +798,35 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         }
         CGRect presentFromRect = [self.view convertRect:self.textView.fromButtonFrame fromView:self.textView];
         [self.accountPickerPopoverController presentPopoverFromRect:presentFromRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp | UIPopoverArrowDirectionDown animated:YES];
+    }
+}
+
+
+- (void)checkTwitterCredentials
+{
+    if (self.alwaysUseDETwitterCredentials == NO && [UIDevice de_isIOS5]) {
+        // Try using iOS5 Twitter credentials
+        if ([[self class] canAccessTwitterAccounts]) {
+            ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
+            ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+            NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
+            if ([twitterAccounts count] < 1) {
+                [self displayNoTwitterAccountsAlert];
+            }
+        } else {
+            [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:self afterDelay:1.0f];
+        }
+    } else {
+        // Present Twitter OAuth login if necessary
+        if (![OAuth isTwitterAuthorized]) {
+            self.oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
+            TwitterDialog *td = [[[TwitterDialog alloc] init] autorelease];
+            td.twitterOAuth = self.oAuth;
+            td.delegate = self;
+            td.logindelegate = self;
+            [self.textView resignFirstResponder];
+            [td show];
+        }
     }
 }
 
@@ -980,5 +1006,20 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     }
 }
 
+
+#pragma mark - TwitterLoginDialogDelegate
+
+- (void)twitterDidLogin
+{
+    [self.oAuth saveOAuthContext];
+    [self.textView becomeFirstResponder];
+}
+
+
+- (void)twitterDidNotLogin:(BOOL)cancelled
+{
+    // Oddly this is not an optional method in the protocol.
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 @end

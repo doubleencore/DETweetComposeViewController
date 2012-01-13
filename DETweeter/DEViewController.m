@@ -2,21 +2,17 @@
 //  DEViewController.m
 //  DETweeter
 //
-//  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
+//  Copyright (c) 2011-2012 Double Encore, Inc. All rights reserved.
 //
 
 #import "DEViewController.h"
 #import "DETweetComposeViewController.h"
-#import "OAuth.h"
-#import "OAuth+DEExtensions.h"
-#import "OAuthConsumerCredentials.h"
 #import "UIDevice+DETweetComposeViewController.h"
 #import <Twitter/Twitter.h>
 
 
 @interface DEViewController ()
 
-@property (nonatomic, retain) OAuth *oAuth;
 @property (nonatomic, retain) NSArray *tweets;
 
 - (void)updateFramesForOrientation:(UIInterfaceOrientation)interfaceOrientation;
@@ -35,7 +31,6 @@
 @synthesize tweets = _tweets;
 
     // Private
-@synthesize oAuth = _oAuth;
 
 
 #pragma mark - Setup & Teardown
@@ -49,7 +44,6 @@
     [_buttonView release], _buttonView = nil;
     
         // Private
-    [_oAuth release], _oAuth = nil;
     [_tweets release], _tweets = nil;
 
     [super dealloc];
@@ -116,7 +110,6 @@
     self.buttonView = nil;
     
         // Private
-    self.oAuth = nil;
     self.tweets = nil;
     
     [super viewDidUnload];
@@ -162,6 +155,10 @@
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self addTweetContent:tcvc];
     tcvc.completionHandler = completionHandler;
+    
+    // Optionally, set alwaysUseDETwitterCredentials to YES to prevent using
+    //  iOS5 Twitter credentials.
+//    tcvc.alwaysUseDETwitterCredentials = YES;
     [self presentModalViewController:tcvc animated:YES];
 }
 
@@ -205,50 +202,13 @@
 
 - (IBAction)tweetUs:(id)sender
 {    
-    if ([UIDevice de_isIOS5]) {
-        [self tweetUs];
-    }
-    else {
-        // check for saved credentials
-        if ([DETweetComposeViewController canSendTweet]) {
-            [self tweetUs];
-        }
-        else {
-            if ([UIDevice de_isIOS5]) {
-                [self tweetUs];
-                [DETweetComposeViewController displayNoTwitterAccountsAlert];
-            }
-            else {
-                self.oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
-                TwitterDialog *td = [[[TwitterDialog alloc] init] autorelease];
-                td.twitterOAuth = self.oAuth;
-                td.delegate = self;
-                td.logindelegate = self;
-                [td show];
-            }
-        }
-    }
+    [self tweetUs];
 }
 
 
 - (IBAction)tweetThem:(id)sender
 {    
     [self tweetThem];
-}
-
-
-#pragma mark - TwitterLoginDialogDelegate
-
-- (void)twitterDidLogin
-{
-    [self.oAuth saveOAuthContext];
-    [self tweetUs:nil];
-}
-
-
-- (void)twitterDidNotLogin:(BOOL)cancelled
-{
-        // Oddly this is not an optional method in the protocol.
 }
 
 
