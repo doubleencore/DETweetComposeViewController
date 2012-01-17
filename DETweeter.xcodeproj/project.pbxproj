@@ -20,7 +20,6 @@
 		6925A82014590EB400011DA0 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7FE14590EB400011DA0 /* OAHMAC_SHA1SignatureProvider.m */; };
 		6925A82114590EB400011DA0 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 6925A80014590EB400011DA0 /* sha1.c */; };
 		6925A82214590EB400011DA0 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A80314590EB400011DA0 /* NSString+URLEncoding.m */; };
-		6925A82314590EB400011DA0 /* OAuth+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A80514590EB400011DA0 /* OAuth+UserDefaults.m */; };
 		6925A82414590EB400011DA0 /* OAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A80714590EB400011DA0 /* OAuth.m */; };
 		6925A82514590EB400011DA0 /* tclose.png in Resources */ = {isa = PBXBuildFile; fileRef = 6925A80D14590EB400011DA0 /* tclose.png */; };
 		6925A82614590EB400011DA0 /* ticon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6925A80E14590EB400011DA0 /* ticon.png */; };
@@ -113,8 +112,6 @@
 		6925A80114590EB400011DA0 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
 		6925A80214590EB400011DA0 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		6925A80314590EB400011DA0 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
-		6925A80414590EB400011DA0 /* OAuth+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+UserDefaults.h"; sourceTree = "<group>"; };
-		6925A80514590EB400011DA0 /* OAuth+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+UserDefaults.m"; sourceTree = "<group>"; };
 		6925A80614590EB400011DA0 /* OAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuth.h; sourceTree = "<group>"; };
 		6925A80714590EB400011DA0 /* OAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuth.m; sourceTree = "<group>"; };
 		6925A80A14590EB400011DA0 /* OAuthTwitterCallbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthTwitterCallbacks.h; sourceTree = "<group>"; };
@@ -273,8 +270,6 @@
 				6925A7F814590EB400011DA0 /* Crypto */,
 				6925A80214590EB400011DA0 /* NSString+URLEncoding.h */,
 				6925A80314590EB400011DA0 /* NSString+URLEncoding.m */,
-				6925A80414590EB400011DA0 /* OAuth+UserDefaults.h */,
-				6925A80514590EB400011DA0 /* OAuth+UserDefaults.m */,
 				6925A80614590EB400011DA0 /* OAuth.h */,
 				6925A80714590EB400011DA0 /* OAuth.m */,
 			);
@@ -562,7 +557,6 @@
 				6925A82014590EB400011DA0 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				6925A82114590EB400011DA0 /* sha1.c in Sources */,
 				6925A82214590EB400011DA0 /* NSString+URLEncoding.m in Sources */,
-				6925A82314590EB400011DA0 /* OAuth+UserDefaults.m in Sources */,
 				6925A82414590EB400011DA0 /* OAuth.m in Sources */,
 				6925A82714590EB400011DA0 /* TwitterDialog.m in Sources */,
 				699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */,
