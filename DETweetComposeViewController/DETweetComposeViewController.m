@@ -41,7 +41,7 @@ static BOOL waitingForAccess = NO;
 @property (nonatomic, retain) NSArray *attachmentFrameViews;
 @property (nonatomic, retain) NSArray *attachmentImageViews;
 @property (nonatomic) UIStatusBarStyle previousStatusBarStyle;
-@property (nonatomic, assign) UIViewController *presentingViewController;
+@property (nonatomic, assign) UIViewController *fromViewController;
 @property (nonatomic, retain) UIImageView *backgroundImageView;
 @property (nonatomic, retain) DETweetGradientView *gradientView;
 @property (nonatomic, retain) UIPickerView *accountPickerView;
@@ -95,7 +95,7 @@ static BOOL waitingForAccess = NO;
 @synthesize attachmentFrameViews = _attachmentFrameViews;
 @synthesize attachmentImageViews = _attachmentImageViews;
 @synthesize previousStatusBarStyle = _previousStatusBarStyle;
-@synthesize presentingViewController = _presentingViewController;
+@synthesize fromViewController = _fromViewController;
 @synthesize backgroundImageView = _backgroundImageView;
 @synthesize gradientView = _gradientView;
 @synthesize accountPickerView = _accountPickerView;
@@ -278,11 +278,11 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     self.textView.backgroundColor = [UIColor clearColor];
     
     if ([UIDevice de_isIOS5]) {
-        self.presentingViewController = self.presentingViewController;
+        self.fromViewController = self.presentingViewController;
         self.textView.keyboardType = UIKeyboardTypeTwitter;
     }
     else {
-        self.presentingViewController = self.parentViewController;
+        self.fromViewController = self.parentViewController;
     }
     
         // Put the attachment frames and image views into arrays so they're easier to work with.
@@ -326,12 +326,12 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         // Take a snapshot of the current view, and make that our background after our view animates into place.
         // This only works if our orientation is the same as the presenting view.
         // If they don't match, just display the gray background.
-    if (self.interfaceOrientation == self.presentingViewController.interfaceOrientation) {
+    if (self.interfaceOrientation == self.fromViewController.interfaceOrientation) {
         UIImage *backgroundImage = [self captureView:[UIApplication sharedApplication].keyWindow];
-        self.backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
+        self.backgroundImageView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
     }
     else {
-        self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.presentingViewController.view.bounds];
+        self.backgroundImageView = [[[UIImageView alloc] initWithFrame:self.fromViewController.view.bounds] autorelease];
     }
     self.backgroundImageView.autoresizingMask = UIViewAutoresizingNone;
     self.backgroundImageView.alpha = 0.0f;
@@ -341,10 +341,10 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         // Now let's fade in a gradient view over the presenting view.
     self.gradientView = [[[DETweetGradientView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds] autorelease];
     self.gradientView.autoresizingMask = UIViewAutoresizingNone;
-    self.gradientView.transform = self.presentingViewController.view.transform;
+    self.gradientView.transform = self.fromViewController.view.transform;
     self.gradientView.alpha = 0.0f;
     self.gradientView.center = [UIApplication sharedApplication].keyWindow.center;
-    [self.presentingViewController.view addSubview:self.gradientView];
+    [self.fromViewController.view addSubview:self.gradientView];
     [UIView animateWithDuration:0.3f
                      animations:^ {
                          self.gradientView.alpha = 1.0f;
@@ -385,7 +385,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 {
     [super viewWillDisappear:animated];
     
-    UIView *presentingView = [UIDevice de_isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
+    UIView *presentingView = [UIDevice de_isIOS5] ? self.fromViewController.view : self.parentViewController.view;
     [presentingView addSubview:self.gradientView];
     
     [self.backgroundImageView removeFromSuperview];
