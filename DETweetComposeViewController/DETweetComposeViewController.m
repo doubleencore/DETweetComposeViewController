@@ -1,20 +1,20 @@
-//
-//  DETweetComposeViewController.m
-//  DETweeter
-//
-//  Copyright (c) 2011-2012 Double Encore, Inc. All rights reserved.
-//
-//  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-//  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-//  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer 
-//  in the documentation and/or other materials provided with the distribution. Neither the name of the Double Encore Inc. nor the names of its 
-//  contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
-//  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS 
-//  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
-//  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
-//  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
+    //
+    //  DETweetComposeViewController.m
+    //  DETweeter
+    //
+    //  Copyright (c) 2011-2012 Double Encore, Inc. All rights reserved.
+    //
+    //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+    //  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    //  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer 
+    //  in the documentation and/or other materials provided with the distribution. Neither the name of the Double Encore Inc. nor the names of its 
+    //  contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+    //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+    //  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS 
+    //  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
+    //  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+    //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    //
 
 #import "DETweetComposeViewController.h"
 #import "DETweetPoster.h"
@@ -41,7 +41,9 @@ static BOOL waitingForAccess = NO;
 @property (nonatomic, retain) NSArray *attachmentFrameViews;
 @property (nonatomic, retain) NSArray *attachmentImageViews;
 @property (nonatomic) UIStatusBarStyle previousStatusBarStyle;
-@property (nonatomic, retain) DETweetGradientView *backgroundView;
+@property (nonatomic, assign) UIViewController *presentingViewController;
+@property (nonatomic, retain) UIImageView *backgroundImageView;
+@property (nonatomic, retain) DETweetGradientView *gradientView;
 @property (nonatomic, retain) UIPickerView *accountPickerView;
 @property (nonatomic, retain) UIPopoverController *accountPickerPopoverController;
 @property (nonatomic, retain) id twitterAccount;  // iOS 5 use only.
@@ -58,6 +60,7 @@ static BOOL waitingForAccess = NO;
 - (void)displayNoTwitterAccountsAlert;
 - (void)presentAccountPicker;
 - (void)checkTwitterCredentials;
+- (UIImage*)captureView:(UIView *)view;
 
 @end
 
@@ -92,7 +95,9 @@ static BOOL waitingForAccess = NO;
 @synthesize attachmentFrameViews = _attachmentFrameViews;
 @synthesize attachmentImageViews = _attachmentImageViews;
 @synthesize previousStatusBarStyle = _previousStatusBarStyle;
-@synthesize backgroundView = _backgroundView;
+@synthesize presentingViewController = _presentingViewController;
+@synthesize backgroundImageView = _backgroundImageView;
+@synthesize gradientView = _gradientView;
 @synthesize accountPickerView = _accountPickerView;
 @synthesize accountPickerPopoverController = _accountPickerPopoverController;
 @synthesize twitterAccount = _twitterAccount;
@@ -132,7 +137,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         
         return accessGranted;
     }
-
+    
     return YES;
 }
 
@@ -149,7 +154,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
             canSendTweet = YES;
         }
     }
-
+    
     if ([OAuth isTwitterAuthorized]) {
         canSendTweet = YES;
     }
@@ -178,6 +183,19 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     return [accountStore accountsWithAccountType:twitterAccountType];
 }
+
+
+- (UIImage*)captureView:(UIView *)view
+{    
+    CGRect rect = [[UIScreen mainScreen] bounds];  
+    UIGraphicsBeginImageContextWithOptions(rect.size, YES, 0.0f);
+    CGContextRef context = UIGraphicsGetCurrentContext();  
+    [view.layer renderInContext:context];  
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();  
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 
 
 #pragma mark - Setup & Teardown
@@ -228,7 +246,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     [_attachment2ImageView release], _attachment2ImageView = nil;
     [_attachment3ImageView release], _attachment3ImageView = nil;
     [_characterCountLabel release], _characterCountLabel = nil;
-
+    
         // Public
     [_completionHandler release], _completionHandler = nil;
     
@@ -238,12 +256,13 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     [_urls release], _urls = nil;
     [_attachmentFrameViews release], _attachmentFrameViews = nil;
     [_attachmentImageViews release], _attachmentImageViews = nil;
-    [_backgroundView release], _backgroundView = nil;
+    [_backgroundImageView release], _backgroundImageView = nil;
+    [_gradientView release], _gradientView = nil;
     [_accountPickerView release], _accountPickerView = nil;
     [_accountPickerPopoverController release], _accountPickerPopoverController = nil;
     [_twitterAccount release], _twitterAccount = nil;
     [_oAuth release], _oAuth = nil;
-
+    
     [super dealloc];
 }
 
@@ -257,7 +276,15 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     self.view.backgroundColor = [UIColor clearColor];
     self.textViewContainer.backgroundColor = [UIColor clearColor];
     self.textView.backgroundColor = [UIColor clearColor];
-
+    
+    if ([UIDevice de_isIOS5]) {
+        self.presentingViewController = self.presentingViewController;
+        self.textView.keyboardType = UIKeyboardTypeTwitter;
+    }
+    else {
+        self.presentingViewController = self.parentViewController;
+    }
+    
         // Put the attachment frames and image views into arrays so they're easier to work with.
         // Order is important, so we can't use IB object arrays. Or at least this is easier.
     self.attachmentFrameViews = [NSArray arrayWithObjects:
@@ -265,13 +292,13 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
                                  self.attachment2FrameView,
                                  self.attachment3FrameView,
                                  nil];
-
+    
     self.attachmentImageViews = [NSArray arrayWithObjects:
                                  self.attachment1ImageView,
                                  self.attachment2ImageView,
                                  self.attachment3ImageView,
                                  nil];
-
+    
         // Now add some angle to attachments 2 and 3.
     self.attachment2FrameView.transform = CGAffineTransformMakeRotation(degreesToRadians(-6.0f));
     self.attachment2ImageView.transform = CGAffineTransformMakeRotation(degreesToRadians(-6.0f));
@@ -279,14 +306,10 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     self.attachment3ImageView.transform = CGAffineTransformMakeRotation(degreesToRadians(-12.0f));
     
         // Mask the corners on the image views so they don't stick out of the frame.
-    [self.self.attachmentImageViews enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
+    [self.attachmentImageViews enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
         ((UIImageView *)obj).layer.cornerRadius = 3.0f;
         ((UIImageView *)obj).layer.masksToBounds = YES;
     }];
-    
-    if ([UIDevice de_isIOS5]) {
-        self.textView.keyboardType = UIKeyboardTypeTwitter;
-    }
     
     self.textView.text = self.text;
     [self.textView becomeFirstResponder];
@@ -299,23 +322,33 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
+        // Take a snapshot of the current view, and make that our background after our view animates into place.
+        // This only works if our orientation is the same as the presenting view.
+        // If they don't match, just display the gray background.
+    if (self.interfaceOrientation == self.presentingViewController.interfaceOrientation) {
+        UIImage *backgroundImage = [self captureView:[UIApplication sharedApplication].keyWindow];
+        self.backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
+    }
+    else {
+        self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.presentingViewController.view.bounds];
+    }
+    self.backgroundImageView.autoresizingMask = UIViewAutoresizingNone;
+    self.backgroundImageView.alpha = 0.0f;
+    self.backgroundImageView.backgroundColor = [UIColor lightGrayColor];
+    [self.view insertSubview:self.backgroundImageView atIndex:0];
+    
         // Now let's fade in a gradient view over the presenting view.
-    UIView *presentingView = [UIDevice de_isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
-    CGRect frame = CGRectMake(0.0f,
-                              0.0f,
-                              presentingView.bounds.size.width,
-                              presentingView.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height);
-    self.backgroundView = [[[DETweetGradientView alloc] initWithFrame:frame] autorelease];
-    self.backgroundView.transform = presentingView.transform;
-    self.backgroundView.alpha = 0.0f;
-    self.backgroundView.center = [UIApplication sharedApplication].keyWindow.center;
-    self.backgroundView.layer.borderColor = [UIColor yellowColor].CGColor;
-    [presentingView addSubview:self.backgroundView];
+    self.gradientView = [[[DETweetGradientView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds] autorelease];
+    self.gradientView.autoresizingMask = UIViewAutoresizingNone;
+    self.gradientView.transform = self.presentingViewController.view.transform;
+    self.gradientView.alpha = 0.0f;
+    self.gradientView.center = [UIApplication sharedApplication].keyWindow.center;
+    [self.presentingViewController.view addSubview:self.gradientView];
     [UIView animateWithDuration:0.3f
                      animations:^ {
-                         self.backgroundView.alpha = 1.0f;
-                     }];
+                         self.gradientView.alpha = 1.0f;
+                     }];    
     
     self.previousStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES]; 
@@ -325,11 +358,11 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     [self checkTwitterCredentials];
     
     [self selectTwitterAccount];  // Set or verify our default account.
-
+    
         // Like TWTweetComposeViewController, we'll let the user change the account only if
         // we're in portrait orientation on iPhone. iPad can do it in any orientation.
     if ([[DETweetPoster accounts] count] > 1
-            && ([UIDevice de_isPad] || UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) ) {
+        && ([UIDevice de_isPad] || UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) ) {
         self.textView.accountName = ((ACAccount *)self.twitterAccount).accountDescription;
     }
     else {
@@ -338,16 +371,32 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 }
 
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.backgroundImageView.alpha = 1.0f;
+    self.backgroundImageView.frame = [self.view convertRect:self.backgroundImageView.frame fromView:[UIApplication sharedApplication].keyWindow];
+    [self.view insertSubview:self.gradientView aboveSubview:self.backgroundImageView];
+}
+
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
+    UIView *presentingView = [UIDevice de_isIOS5] ? self.presentingViewController.view : self.parentViewController.view;
+    [presentingView addSubview:self.gradientView];
+    
+    [self.backgroundImageView removeFromSuperview];
+    self.backgroundImageView = nil;
+    
     [UIView animateWithDuration:0.3f
                      animations:^ {
-                         self.backgroundView.alpha = 0.0f;
+                         self.gradientView.alpha = 0.0f;
                      }
                      completion:^(BOOL finished) {
-                         [self.backgroundView removeFromSuperview];
+                         [self.gradientView removeFromSuperview];
                      }];
     
     [[UIApplication sharedApplication] setStatusBarStyle:self.previousStatusBarStyle animated:YES];
@@ -356,12 +405,15 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    if ([self.parentViewController respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)]) {
+        return [self.parentViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+    }
+    
     if ([UIDevice de_isPhone]) {
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     }
-    else {
-        return YES;
-    }
+
+    return YES;  // Default for iPad.
 }
 
 
@@ -369,6 +421,14 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 {
     [self updateFramesForOrientation:interfaceOrientation];
     self.accountPickerView.alpha = 0.0f;
+    
+        // Our fake background won't rotate properly. Just hide it.
+    if (interfaceOrientation == self.presentedViewController.interfaceOrientation) {
+        self.backgroundImageView.alpha = 1.0f;
+    }
+    else {
+        self.backgroundImageView.alpha = 0.0f;
+    }
 }
 
 
@@ -391,7 +451,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         //  _images
         //  _urls
         //  _twitterAccount
-
+    
         // Save the text.
     self.text = self.textView.text;
     
@@ -411,15 +471,15 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     self.attachment2ImageView = nil;
     self.attachment3ImageView = nil;
     self.characterCountLabel = nil;
-
+    
         // Private
     self.attachmentFrameViews = nil;
     self.attachmentImageViews = nil;
-    self.backgroundView = nil;
+    self.gradientView = nil;
     self.accountPickerView = nil;
     self.accountPickerPopoverController = nil;
     self.oAuth = nil;
-
+    
     [super viewDidUnload];
 }
 
@@ -435,10 +495,10 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     if (([self charactersAvailable] - (NSInteger)[initialText length]) < 0) {
         return NO;
     }
-        
+    
     self.text = initialText;  // Keep a copy in case the view isn't loaded yet.
     self.textView.text = self.text;
-
+    
     return YES;
 }
 
@@ -503,11 +563,11 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     if ([self attachmentsCount] >= 3) {
         return NO;  // Only three allowed.
     }
-
+    
     if (([self charactersAvailable] - (DETweetURLLength + 1)) < 0) {  // Add one for the space character.
         return NO;
     }
-
+    
     [self.urls addObject:url];
     return YES;
 }
@@ -527,7 +587,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 #pragma mark - Private
 
 - (void)updateFramesForOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+{    
     CGFloat buttonHorizontalMargin = 8.0f;
     CGFloat cardWidth, cardTop, cardHeight, cardHeaderLineTop, buttonTop;
     UIImage *cancelButtonImage, *sendButtonImage;
@@ -626,6 +686,8 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         }
     }
     self.characterCountLabel.frame = CGRectMake(characterCountLeft, characterCountTop, self.characterCountLabel.frame.size.width, self.characterCountLabel.frame.size.height);
+    
+    self.gradientView.frame = self.gradientView.superview.bounds;
 }
 
 
@@ -641,7 +703,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     available -= (DETweetURLLength + 1) * [self.images count];
     available -= (DETweetURLLength + 1) * [self.urls count];
     available -= [self.textView.text length];
-
+    
     if ( (available < DETweetMaxLength) && ([self.textView.text length] == 0) ) {
         available += 1;  // The space we added for the first URL isn't needed.
     }
@@ -694,12 +756,12 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     self.attachment1FrameView.hidden = YES;
     self.attachment2FrameView.hidden = YES;
     self.attachment3FrameView.hidden = YES;
-
+    
     if ([attachmentImages count] >= 1) {
         self.paperClipView.hidden = NO;
         self.attachment1FrameView.hidden = NO;
         self.attachment1ImageView.image = [attachmentImages objectAtIndex:0];
-
+        
         if ([attachmentImages count] >= 2) {
             self.paperClipView.hidden = NO;
             self.attachment2FrameView.hidden = NO;
@@ -723,7 +785,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     if ([UIDevice de_isIOS5] == NO || self.alwaysUseDETwitterCredentials == YES) {
         return;
     }
-
+    
     NSArray *accounts = [DETweetPoster accounts];
     
     if ([accounts count] == 0) {
@@ -805,7 +867,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 - (void)checkTwitterCredentials
 {
     if (self.alwaysUseDETwitterCredentials == NO && [UIDevice de_isIOS5]) {
-        // Try using iOS5 Twitter credentials
+            // Try using iOS5 Twitter credentials
         if ([[self class] canAccessTwitterAccounts]) {
             ACAccountStore *accountStore = [[[ACAccountStore alloc] init] autorelease];
             ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
@@ -817,7 +879,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
             [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:self afterDelay:1.0f];
         }
     } else {
-        // Present Twitter OAuth login if necessary
+            // Present Twitter OAuth login if necessary
         if (![OAuth isTwitterAuthorized]) {
             self.oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
             TwitterDialog *td = [[[TwitterDialog alloc] init] autorelease];
@@ -905,7 +967,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
                                                otherButtonTitles:@"Try Again", nil] autorelease];
     alertView.tag = DETweetComposeViewControllerCannotSendAlert;
     [alertView show];
-
+    
     self.sendButton.enabled = YES;
 }
 
@@ -914,7 +976,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 {
     [OAuth clearCrendentials];
     [self dismissModalViewControllerAnimated:YES];
-
+    
     [[[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
                                  message:@"Unable to login to Twitter with existing credentials. Try again with new credentials."
                                 delegate:nil
@@ -1018,7 +1080,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 
 - (void)twitterDidNotLogin:(BOOL)cancelled
 {
-    // Oddly this is not an optional method in the protocol.
+        // Oddly this is not an optional method in the protocol.
     [self dismissModalViewControllerAnimated:YES];
 }
 
