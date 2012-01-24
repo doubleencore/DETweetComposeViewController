@@ -2,7 +2,7 @@
 //  DETweetPoster.h
 //  DETweeter
 //
-//  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
+//  Copyright (c) 2011-2012 Double Encore, Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -16,11 +16,24 @@
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#define kHTTPStatusCodeOK 200
+#define kHTTPStatusCodeUnauthorized 401
+#define kHTTPStatusCodeRequestEntityTooLarge 413
+
 @protocol DETweetPosterDelegate;
+
+enum DETweetImageRepresentation {
+    DETweetImageRepresentationJPEG=0,
+    DETweetImageRepresentationPNG=1
+};
+typedef enum DETweetImageRepresentation DETweetImageRepresentation;
 
 @interface DETweetPoster : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @property (nonatomic, assign) id<DETweetPosterDelegate> delegate;
+@property (nonatomic) NSInteger lastErrorCode;
+@property (nonatomic) DETweetImageRepresentation imageRepresentation;
+@property (nonatomic) CGFloat compressionQuality;
 
     // Class Methods
 + (NSArray *)accounts;

@@ -87,6 +87,8 @@ static BOOL waitingForAccess = NO;
     // Public
 @synthesize completionHandler = _completionHandler;
 @synthesize alwaysUseDETwitterCredentials = _alwaysUseDETwitterCredentials;
+@synthesize imageRepresentation = _imageRepresentation;
+@synthesize compressionQuality = _compressionQuality;
 
     // Private
 @synthesize text = _text;
@@ -225,6 +227,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 {
     _images = [[NSMutableArray alloc] init];
     _urls = [[NSMutableArray alloc] init];
+    _imageRepresentation = DETweetImageRepresentationJPEG;
 }
 
 
@@ -960,13 +963,28 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 
 - (void)tweetFailed:(DETweetPoster *)tweetPoster
 {
-    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
-                                                         message:[NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text]
-                                                        delegate:self
-                                               cancelButtonTitle:@"Cancel"
-                                               otherButtonTitles:@"Try Again", nil] autorelease];
-    alertView.tag = DETweetComposeViewControllerCannotSendAlert;
-    [alertView show];
+    NSString *errorMessage = [NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text];
+    
+    if (tweetPoster != nil && tweetPoster.lastErrorCode == kHTTPStatusCodeRequestEntityTooLarge) {
+        errorMessage = @"Unable to tweet this photo, image file too large to share on Twitter";
+        UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
+                                                             message:errorMessage
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"Close"
+                                                   otherButtonTitles:nil] autorelease];
+        alertView.tag = DETweetComposeViewControllerCannotSendAlert;
+        [alertView show];
+        [self dismissModalViewControllerAnimated:YES];
+        
+    } else {
+        UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
+                                                             message:errorMessage
+                                                            delegate:self
+                                                   cancelButtonTitle:@"Cancel"
+                                                   otherButtonTitles:@"Try Again", nil] autorelease];
+        alertView.tag = DETweetComposeViewControllerCannotSendAlert;
+        [alertView show];
+    }
     
     self.sendButton.enabled = YES;
 }
@@ -1023,6 +1041,8 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     
     DETweetPoster *tweetPoster = [[[DETweetPoster alloc] init] autorelease];
     tweetPoster.delegate = self;
+    tweetPoster.imageRepresentation = self.imageRepresentation;
+    tweetPoster.compressionQuality = self.compressionQuality;
     [tweetPoster postTweet:tweet withImages:self.images fromAccount:self.twitterAccount];
 }
 

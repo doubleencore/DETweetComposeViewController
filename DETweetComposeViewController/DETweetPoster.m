@@ -2,7 +2,7 @@
 //  DETweetPoster.m
 //  DETweeter
 //
-//  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
+//  Copyright (c) 2011-2012 Double Encore, Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -43,7 +43,9 @@ NSString * const twitterPostWithImagesURLString = @"https://upload.twitter.com/1
 NSString * const twitterStatusKey = @"status";
 
 @synthesize delegate = _delegate;
-
+@synthesize lastErrorCode = _lastErrorCode;
+@synthesize imageRepresentation = _imageRepresentation;
+@synthesize compressionQuality = _compressionQuality;
 
 #pragma mark - Class Methods
 
@@ -102,7 +104,14 @@ NSString * const twitterStatusKey = @"status";
             
             [images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 UIImage *image = (UIImage *)obj;
-                [twRequest addMultiPartData:UIImagePNGRepresentation(image) withName:@"media[]" type:@"multipart/form-data"];
+                
+                if (self.imageRepresentation == DETweetImageRepresentationPNG) {
+                    [twRequest addMultiPartData:UIImagePNGRepresentation(image) withName:@"media[]" type:@"multipart/form-data"];
+                } else {
+                    // Use 1.0f compression value if not specified
+                    CGFloat compression = self.compressionQuality == 0.0f ? 1.0f : self.compressionQuality;
+                    [twRequest addMultiPartData:UIImageJPEGRepresentation(image, compression) withName:@"media[]" type:@"multipart/form-data"];
+                }
             }];
             
             [twRequest addMultiPartData:[tweetText dataUsingEncoding:NSUTF8StringEncoding] 
@@ -178,8 +187,16 @@ NSString * const twitterStatusKey = @"status";
         
         for (UIImage *image in images) {
             [postData appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"media[]\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-            [postData appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];            
-            [postData appendData:UIImagePNGRepresentation(image)];
+            [postData appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+            
+            if (self.imageRepresentation == DETweetImageRepresentationPNG) {
+                [postData appendData:UIImagePNGRepresentation(image)];
+            } else {
+                // Use 1.0f compression value if not specified
+                CGFloat compression = self.compressionQuality == 0.0f ? 1.0f : self.compressionQuality;
+                [postData appendData:UIImageJPEGRepresentation(image, compression)];
+            }
+            
             [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
         }
     }
@@ -190,6 +207,7 @@ NSString * const twitterStatusKey = @"status";
         [postRequest setValue:[NSString stringWithFormat:@"%d", [postData length]] forHTTPHeaderField:@"Content-Length"];
     }
     
+    NSLog(@"Sending %i kb of data", [postData length]);
     [postRequest setHTTPBody:postData];
     [postRequest addValue:header forHTTPHeaderField:@"Authorization"];
     
@@ -236,12 +254,13 @@ NSString * const twitterStatusKey = @"status";
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
     NSInteger statusCode = [response statusCode];
+    self.lastErrorCode = statusCode;
     
-    NSRange successRange = NSMakeRange(200, 5);
+    NSRange successRange = NSMakeRange(kHTTPStatusCodeOK, 5);
     if (NSLocationInRange(statusCode, successRange)) {
         [self sendSuccessToDelegate];
     }
-    else if (statusCode == 401) {
+    else if (statusCode == kHTTPStatusCodeUnauthorized) {
         // Failed authentication
         [self sendFailedAuthenticationToDelegate];
     }
