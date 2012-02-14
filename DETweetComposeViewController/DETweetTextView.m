@@ -166,7 +166,7 @@
         if (self.fromButton == nil) {
             self.fromButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [self.fromButton addTarget:self action:@selector(accountButtonTouched) forControlEvents:UIControlEventTouchUpInside];
-            [self.fromButton setTitle:@"From:" forState:UIControlStateNormal];
+            [self.fromButton setTitle:NSLocalizedString(@"From:", @"") forState:UIControlStateNormal];
             self.fromButton.titleLabel.font = [UIFont systemFontOfSize:17.0f];
             [self.fromButton setTitleColor:[UIColor colorWithWhite:0.58f alpha:1.0f] forState:UIControlStateNormal];
             [self.fromButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateHighlighted];

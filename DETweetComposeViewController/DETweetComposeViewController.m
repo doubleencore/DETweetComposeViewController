@@ -167,11 +167,11 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     // We have an instance method that's identical to this. Make sure it stays identical.
     // This duplicates the message and buttons displayed in Apple's TWTweetComposeViewController alert message.
 {
-    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"No Twitter Accounts"
-                                                         message:@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings."
+    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Twitter Accounts", @"")
+                                                         message:NSLocalizedString(@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings.", @"")
                                                         delegate:self
-                                               cancelButtonTitle:@"Settings"
-                                               otherButtonTitles:@"Cancel", nil] autorelease];
+                                               cancelButtonTitle:NSLocalizedString(@"Settings", @"")
+                                               otherButtonTitles:NSLocalizedString(@"Cancel", @""), nil] autorelease];
     alertView.tag = DETweetComposeViewControllerNoAccountsAlert;
     [alertView show];
 }
@@ -823,11 +823,11 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     // A private instance version of the class method with the same name.
     // This duplicates the message and buttons displayed in Apple's TWTweetComposeViewController alert message.
 {
-    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"No Twitter Accounts"
-                                                         message:@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings."
+    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Twitter Accounts", @"")
+                                                         message:NSLocalizedString(@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings.", @"")
                                                         delegate:self
-                                               cancelButtonTitle:@"Settings"
-                                               otherButtonTitles:@"Cancel", nil] autorelease];
+                                               cancelButtonTitle:NSLocalizedString(@"Settings", @"")
+                                               otherButtonTitles:NSLocalizedString(@"Cancel", @""), nil] autorelease];
     alertView.tag = DETweetComposeViewControllerNoAccountsAlert;
     [alertView show];
 }
@@ -960,11 +960,11 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 
 - (void)tweetFailed:(DETweetPoster *)tweetPoster
 {
-    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
-                                                         message:[NSString stringWithFormat:@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", self.textView.text]
+    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Cannot Send Tweet", @"")
+                                                         message:[NSString stringWithFormat:NSLocalizedString(@"The tweet, \"%@\" cannot be sent because the connection to Twitter failed.", @""), self.textView.text]
                                                         delegate:self
-                                               cancelButtonTitle:@"Cancel"
-                                               otherButtonTitles:@"Try Again", nil] autorelease];
+                                               cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                                               otherButtonTitles:NSLocalizedString(@"Try Again", @""), nil] autorelease];
     alertView.tag = DETweetComposeViewControllerCannotSendAlert;
     [alertView show];
     
@@ -977,10 +977,10 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     [OAuth clearCrendentials];
     [self dismissModalViewControllerAnimated:YES];
     
-    [[[[UIAlertView alloc] initWithTitle:@"Cannot Send Tweet"
-                                 message:@"Unable to login to Twitter with existing credentials. Try again with new credentials."
+    [[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Cannot Send Tweet", @"")
+                                 message:NSLocalizedString(@"Unable to login to Twitter with existing credentials. Try again with new credentials.", @"")
                                 delegate:nil
-                       cancelButtonTitle:@"OK"
+                       cancelButtonTitle:NSLocalizedString(@"OK", @"")
                        otherButtonTitles:nil] autorelease] show];
 }
 
