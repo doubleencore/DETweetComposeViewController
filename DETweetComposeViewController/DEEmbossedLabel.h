@@ -18,6 +18,7 @@
 //  Portions of this class are based on code by Marcel Ruegenberg.
 //  https://github.com/mruegenberg/objc-utils/tree/master/UIKitAdditions
 //
+#import <UIKit/UIKit.h>
 
 @interface DEEmbossedLabel : UILabel
 
