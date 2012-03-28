@@ -119,8 +119,8 @@ NSString * const twitterStatusKey = @"status";
         }
         else {
             NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:tweetText, twitterStatusKey, nil];
-            twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostURLString]
-                                            parameters:parameters requestMethod:TWRequestMethodPOST];
+            twRequest = [[[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostURLString]
+                                            parameters:parameters requestMethod:TWRequestMethodPOST] autorelease];
         }
             // There appears to be a bug in iOS 5.0 that gives us trouble if we used our retained account.
             // If we get it again using the identifier then everything works fine.
