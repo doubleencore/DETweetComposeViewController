@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="DETweetComposeViewController : The iOS 4 compatible Tweet Sheet." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>DETweetComposeViewController</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/doubleencore/DETweetComposeViewController">Fork Me on GitHub</a>
+
+          <h1 id="project_title">DETweetComposeViewController</h1>
+          <h2 id="project_tagline">The iOS 4 compatible Tweet Sheet.</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/doubleencore/DETweetComposeViewController/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/doubleencore/DETweetComposeViewController/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>DETweetComposeViewController</h1>
+
+<p>DETweetComposeViewController uses git submodules to pull in the <a href="https://github.com/doubleencore/unoffical-twitter-sdk">unoffical-twitter-sdk</a>. Be sure to run 
+<code>git submodule update --init</code> on your DETweetComposeViewController  clone before proceeding.</p>
+
+<h2>What is it?</h2>
+
+<p>DETweetComposeViewController is an iOS 4 compatible version of the TWTweetComposeView controller. Otherwise known as the Tweet Sheet.</p>
+
+<h2>Why did we make it?</h2>
+
+<p>The iOS 5 TWTweetComposeViewController makes it really simple to integrate Twitter posting into you applications. However we still need to support iOS 4 in many of our applications. Having something that looks and acts like the built in Tweet Sheet allows us to have a consistent user interface across iOS versions.</p>
+
+<h2>What does it look like?</h2>
+
+<p><img src="https://github.com/downloads/doubleencore/DETweetComposeViewController/DETweetComposeViewController.png" alt="DETweetComposeViewController"><img src="https://github.com/downloads/doubleencore/DETweetComposeViewController/TWTweetComposeViewController.png" alt="TWTweetComposeViewController"></p>
+
+<p>As you can see they look very similar.  </p>
+
+<h2>How do you use it?</h2>
+
+<ol>
+<li>Add all the files from the DETweetComposeViewController/DETweetComposeViewController folder to your project.</li>
+<li>From DETweetComposeViewController/DETweeter/unofficial-twitter-sdk/unoffical-twitter-sdk, add the following to a group in your project named unoffical-twitter-sdk:
+
+<ol>
+<li>JSON/</li>
+<li>OAuth/</li>
+<li>tclose.png</li>
+<li>ticon.png</li>
+<li>TwitterDialog.h</li>
+<li>TwitterDialog.m</li>
+</ol>
+</li>
+<li>Link your project against the follwoing frameworks:
+
+<ol>
+<li>Accounts.framework</li>
+<li>Twitter.framework.</li>
+</ol>
+</li>
+<li>Set your Twitter OAuth Consumer Key and Consumer Secret in OAuthConsumerCredentials.h in your project, you will find this file in unoffical-twitter-sdk/OAuth. Don't have an OAuth consumer key and secret? Go to developer.twitter.com to create an app. Make sure your app's Access is set to 'Read and Write' and a Callback URL is defined. Both of these configurations can be found under the Settings of your Twitter app.</li>
+<li>You will notice there is an #error in OAuthConsumerCredentials.h to help ensure you remember to add your Twitter OAuth credentials, remember to delete this #error after you have added your OAuth credentials.</li>
+<li>Use it almost just like you would a TWTweetComposeViewController</li>
+</ol><pre><code>#import "DETweetComposeViewController.h"
+...
+DETweetComposeViewController *tcvc = [[[DETweetComposeViewController alloc] init] autorelease];
+[tcvc addImage:[UIImage imageNamed:@"YawkeyBusinessDog.jpg"]];
+[tcvc addURL:[NSURL URLWithString:@"<a href="http://www.DoubleEncore.com/&quot;]">http://www.DoubleEncore.com/"]</a>];
+[tcvc addURL:[NSURL URLWithString:@"<a href="http://www.apple.com/ios/features.html#twitter&quot;]">http://www.apple.com/ios/features.html#twitter"]</a>];
+self.modalPresentationStyle = UIModalPresentationCurrentContext;
+[self presentModalViewController:tcvc animated:YES];
+</code></pre>
+
+<h2>What if I don't want to use the unofficial-twitter-sdk?</h2>
+
+<p>Just save the necessary OAuth credentils to NSUserDefaults as:</p>
+
+<ul>
+<li>detwitter_oauth_token</li>
+<li>detwitter_oauth_token_secret</li>
+<li>detwitter_oauth_token_authorized</li>
+</ul><p>Then call the OAuth <code>- (void) loadOAuthContextFromUserDefaults;</code> method.</p>
+
+<h2>What's next?</h2>
+
+<p>We have some TODO items in <a href="https://github.com/doubleencore/DETweetComposeViewController/issues">github Issues</a>. Please send us your feature requests, patches and pull requests.</p>
+
+<h2>Credits</h2>
+
+<ol>
+<li>unofficial-twitter-sdk <a href="https://github.com/lloydsparkes">lloydsparkes</a>
+</li>
+<li>InnerShadowDrawing <a href="https://github.com/mruegenberg/objc-utils/tree/master/UIKitAdditions">mruegenberg</a>
+</li>
+</ol>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">DETweetComposeViewController maintained by <a href="https://github.com/doubleencore">doubleencore</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
