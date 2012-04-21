@@ -28,6 +28,8 @@
 
 @interface DETweetPoster ()
 
+@property (nonatomic, retain) NSURLConnection *postConnection;
+
 - (NSURLRequest *)NSURLRequestForTweet:(NSString *)tweetText withImages:(NSArray *)images;
 - (void)sendFailedToDelegate;
 - (void)sendFailedAuthenticationToDelegate;
@@ -43,6 +45,7 @@ NSString * const twitterPostWithImagesURLString = @"https://upload.twitter.com/1
 NSString * const twitterStatusKey = @"status";
 
 @synthesize delegate = _delegate;
+@synthesize postConnection = _postConnection;
 
 
 #pragma mark - Class Methods
@@ -64,7 +67,9 @@ NSString * const twitterStatusKey = @"status";
 - (void)dealloc
 {
     _delegate = nil;
-    
+    [_postConnection cancel];
+    [_postConnection release], _postConnection = nil;
+  
     [super dealloc];
 }
 
@@ -97,8 +102,8 @@ NSString * const twitterStatusKey = @"status";
     if ([UIDevice de_isIOS5] && account != nil) {        
         TWRequest *twRequest = nil;
         if ([images count] > 0) {
-            twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostWithImagesURLString]
-                                            parameters:nil requestMethod:TWRequestMethodPOST];
+            twRequest = [[[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostWithImagesURLString]
+                                            parameters:nil requestMethod:TWRequestMethodPOST] autorelease];
             
             [images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 UIImage *image = (UIImage *)obj;
@@ -110,8 +115,8 @@ NSString * const twitterStatusKey = @"status";
         }
         else {
             NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:tweetText, twitterStatusKey, nil];
-            twRequest = [[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostURLString]
-                                            parameters:parameters requestMethod:TWRequestMethodPOST];
+            twRequest = [[[TWRequest alloc] initWithURL:[NSURL URLWithString:twitterPostURLString]
+                                            parameters:parameters requestMethod:TWRequestMethodPOST] autorelease];
         }
             // There appears to be a bug in iOS 5.0 that gives us trouble if we used our retained account.
             // If we get it again using the identifier then everything works fine.
@@ -124,8 +129,8 @@ NSString * const twitterStatusKey = @"status";
     }
     
     if ([NSURLConnection canHandleRequest:postRequest]) {
-        NSURLConnection *postConnection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
-        [postConnection start];
+        self.postConnection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
+        [self.postConnection start];
     }
     else {
         [self sendFailedToDelegate];
@@ -228,6 +233,8 @@ NSString * const twitterStatusKey = @"status";
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [self sendFailedToDelegate];
+    [_postConnection release];
+    _postConnection = nil;
 }
 
 
@@ -248,6 +255,8 @@ NSString * const twitterStatusKey = @"status";
     else {
         [self sendFailedToDelegate];
     }
+    [_postConnection release];
+    _postConnection = nil;
 }
 
 

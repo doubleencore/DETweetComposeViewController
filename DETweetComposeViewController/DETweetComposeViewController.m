@@ -48,6 +48,7 @@ static BOOL waitingForAccess = NO;
 @property (nonatomic, retain) UIPopoverController *accountPickerPopoverController;
 @property (nonatomic, retain) id twitterAccount;  // iOS 5 use only.
 @property (nonatomic, retain) OAuth *oAuth;
+@property (nonatomic, retain) DETweetPoster *tweetPoster;
 
 - (void)tweetComposeViewControllerInit;
 - (void)updateFramesForOrientation:(UIInterfaceOrientation)interfaceOrientation;
@@ -102,6 +103,7 @@ static BOOL waitingForAccess = NO;
 @synthesize accountPickerPopoverController = _accountPickerPopoverController;
 @synthesize twitterAccount = _twitterAccount;
 @synthesize oAuth = _oAuth;
+@synthesize tweetPoster = _tweetPoster;
 
 enum {
     DETweetComposeViewControllerNoAccountsAlert = 1,
@@ -225,6 +227,8 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 {
     _images = [[NSMutableArray alloc] init];
     _urls = [[NSMutableArray alloc] init];
+    _tweetPoster = [[DETweetPoster alloc] init];
+    _tweetPoster.delegate = self;
 }
 
 
@@ -262,6 +266,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     [_accountPickerPopoverController release], _accountPickerPopoverController = nil;
     [_twitterAccount release], _twitterAccount = nil;
     [_oAuth release], _oAuth = nil;
+    [_tweetPoster release], _tweetPoster = nil;
     
     [super dealloc];
 }
@@ -1021,14 +1026,13 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         tweet = [tweet stringByAppendingString:urlString];
     }
     
-    DETweetPoster *tweetPoster = [[[DETweetPoster alloc] init] autorelease];
-    tweetPoster.delegate = self;
-    [tweetPoster postTweet:tweet withImages:self.images fromAccount:self.twitterAccount];
+    [self.tweetPoster postTweet:tweet withImages:self.images fromAccount:self.twitterAccount];
 }
 
 
 - (IBAction)cancel
 {
+    self.tweetPoster.delegate = nil;
     if (self.completionHandler) {
         self.completionHandler(DETweetComposeViewControllerResultCancelled);
     }
