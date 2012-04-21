@@ -68,8 +68,7 @@ NSString * const twitterStatusKey = @"status";
 {
     _delegate = nil;
     [_postConnection cancel];
-    [_postConnection release];
-    _postConnection = nil;
+    [_postConnection release], _postConnection = nil;
   
     [super dealloc];
 }
