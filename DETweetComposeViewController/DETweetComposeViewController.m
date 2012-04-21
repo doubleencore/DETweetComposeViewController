@@ -1026,13 +1026,13 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         tweet = [tweet stringByAppendingString:urlString];
     }
     
-    [_tweetPoster postTweet:tweet withImages:self.images fromAccount:self.twitterAccount];
+    [self.tweetPoster postTweet:tweet withImages:self.images fromAccount:self.twitterAccount];
 }
 
 
 - (IBAction)cancel
 {
-    _tweetPoster.delegate = nil;
+    self.tweetPoster.delegate = nil;
     if (self.completionHandler) {
         self.completionHandler(DETweetComposeViewControllerResultCancelled);
     }
