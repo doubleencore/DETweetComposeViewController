@@ -28,6 +28,8 @@
 
 @interface DETweetPoster ()
 
+@property (nonatomic, retain) NSURLConnection *postConnection;
+
 - (NSURLRequest *)NSURLRequestForTweet:(NSString *)tweetText withImages:(NSArray *)images;
 - (void)sendFailedToDelegate;
 - (void)sendFailedAuthenticationToDelegate;
@@ -43,6 +45,7 @@ NSString * const twitterPostWithImagesURLString = @"https://upload.twitter.com/1
 NSString * const twitterStatusKey = @"status";
 
 @synthesize delegate = _delegate;
+@synthesize postConnection = _postConnection;
 
 
 #pragma mark - Class Methods
@@ -64,7 +67,10 @@ NSString * const twitterStatusKey = @"status";
 - (void)dealloc
 {
     _delegate = nil;
-    
+    [_postConnection cancel];
+    [_postConnection release];
+    _postConnection = nil;
+  
     [super dealloc];
 }
 
@@ -124,8 +130,8 @@ NSString * const twitterStatusKey = @"status";
     }
     
     if ([NSURLConnection canHandleRequest:postRequest]) {
-        NSURLConnection *postConnection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
-        [postConnection start];
+        self.postConnection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
+        [self.postConnection start];
     }
     else {
         [self sendFailedToDelegate];
@@ -228,6 +234,8 @@ NSString * const twitterStatusKey = @"status";
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [self sendFailedToDelegate];
+    [_postConnection release];
+    _postConnection = nil;
 }
 
 
@@ -248,6 +256,8 @@ NSString * const twitterStatusKey = @"status";
     else {
         [self sendFailedToDelegate];
     }
+    [_postConnection release];
+    _postConnection = nil;
 }
 
 
