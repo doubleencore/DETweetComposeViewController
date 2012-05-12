@@ -106,7 +106,7 @@ void drawWithInnerShadow(CGRect rect,
     CGContextSelectFont(context, [self.font.fontName cStringUsingEncoding:[NSString defaultCStringEncoding]], self.font.pointSize, kCGEncodingMacRoman);
     CGRect textRect = [self textRectForBounds:self.bounds limitedToNumberOfLines:1];
     CGContextSetTextPosition(context, textRect.origin.x, textRect.origin.y + 5.0f);
-    CGContextShowText(context, [self.text UTF8String], strlen([self.text UTF8String]));
+    CGContextShowText(context, [self.text cStringUsingEncoding:[NSString defaultCStringEncoding]], strlen([self.text cStringUsingEncoding:[NSString defaultCStringEncoding]]));
 }
 
 
