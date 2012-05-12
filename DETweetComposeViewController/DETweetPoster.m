@@ -169,7 +169,7 @@ NSString * const twitterStatusKey = @"status";
     
     if ([images count] > 0) {
         header = [oAuth oAuthHeaderForMethod:@"POST" andUrl:[postURL absoluteString] andParams:nil];
-        NSString *stringBoundary = [NSString stringWithString:@"dOuBlEeNcOrEbOuNdArY"];
+        NSString *stringBoundary = @"dOuBlEeNcOrEbOuNdArY";
         [postRequest setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", stringBoundary] forHTTPHeaderField:@"Content-Type"];
         
         postData = [NSMutableData data];
@@ -182,8 +182,8 @@ NSString * const twitterStatusKey = @"status";
         }
         
         for (UIImage *image in images) {
-            [postData appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"media[]\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-            [postData appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];            
+            [postData appendData:[@"Content-Disposition: form-data; name=\"media[]\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+            [postData appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];            
             [postData appendData:UIImagePNGRepresentation(image)];
             [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
         }
