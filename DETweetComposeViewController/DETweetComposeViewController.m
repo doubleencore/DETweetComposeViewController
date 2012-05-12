@@ -172,8 +172,8 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Twitter Accounts", @"")
                                                          message:NSLocalizedString(@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings.", @"")
                                                         delegate:self
-                                               cancelButtonTitle:NSLocalizedString(@"Settings", @"")
-                                               otherButtonTitles:NSLocalizedString(@"Cancel", @""), nil] autorelease];
+                                               cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                               otherButtonTitles:nil] autorelease];
     alertView.tag = DETweetComposeViewControllerNoAccountsAlert;
     [alertView show];
 }
@@ -831,8 +831,8 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Twitter Accounts", @"")
                                                          message:NSLocalizedString(@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings.", @"")
                                                         delegate:self
-                                               cancelButtonTitle:NSLocalizedString(@"Settings", @"")
-                                               otherButtonTitles:NSLocalizedString(@"Cancel", @""), nil] autorelease];
+                                               cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                               otherButtonTitles:nil] autorelease];
     alertView.tag = DETweetComposeViewControllerNoAccountsAlert;
     [alertView show];
 }
@@ -1047,11 +1047,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 + (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
     // Notice this is a class method since we're displaying the alert from a class method.
 {
-    if (alertView.tag == DETweetComposeViewControllerNoAccountsAlert) {
-        if (buttonIndex == 0) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=TWITTER"]];
-        }
-    }
+    // no op
 }
 
 
@@ -1059,10 +1055,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     // This gets called if there's an error sending the tweet.
 {
     if (alertView.tag == DETweetComposeViewControllerNoAccountsAlert) {
-        [self dismissModalViewControllerAnimated:YES];
-        if (buttonIndex == 0) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=TWITTER"]];
-        }
+        // no op
     }
     else if (alertView.tag == DETweetComposeViewControllerCannotSendAlert) {
         if (buttonIndex == 1) {
