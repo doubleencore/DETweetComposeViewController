@@ -880,10 +880,12 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
             if ([twitterAccounts count] < 1) {
                 [self displayNoTwitterAccountsAlert];
             }
-        } else {
+        }
+        else {
             [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:self afterDelay:1.0f];
         }
-    } else {
+    }
+    else {
             // Present Twitter OAuth login if necessary
         if (![OAuth isTwitterAuthorized]) {
             self.oAuth = [[[OAuth alloc] initWithConsumerKey:kDEConsumerKey andConsumerSecret:kDEConsumerSecret] autorelease];
@@ -1055,7 +1057,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     // This gets called if there's an error sending the tweet.
 {
     if (alertView.tag == DETweetComposeViewControllerNoAccountsAlert) {
-        // no op
+        [self dismissModalViewControllerAnimated:YES];
     }
     else if (alertView.tag == DETweetComposeViewControllerCannotSendAlert) {
         if (buttonIndex == 1) {
