@@ -224,9 +224,9 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
             break;
     }
     
-    UIImage *outputImage = [[UIImage alloc] initWithCGImage: image.CGImage
+    UIImage *outputImage = [[[UIImage alloc] initWithCGImage: image.CGImage
                                                       scale: 1.0
-                                                orientation: imageOrientation];
+                                                orientation: imageOrientation] autorelease];
     return outputImage;
 }
 
