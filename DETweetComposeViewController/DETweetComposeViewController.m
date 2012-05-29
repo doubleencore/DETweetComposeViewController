@@ -48,7 +48,6 @@ static BOOL waitingForAccess = NO;
 @property (nonatomic, retain) UIPopoverController *accountPickerPopoverController;
 @property (nonatomic, retain) id twitterAccount;  // iOS 5 use only.
 @property (nonatomic, retain) OAuth *oAuth;
-@property (nonatomic, retain) DETweetPoster *tweetPoster;
 
 - (void)tweetComposeViewControllerInit;
 - (void)updateFramesForOrientation:(UIInterfaceOrientation)interfaceOrientation;
@@ -61,7 +60,7 @@ static BOOL waitingForAccess = NO;
 - (void)displayNoTwitterAccountsAlert;
 - (void)presentAccountPicker;
 - (void)checkTwitterCredentials;
-- (UIImage*)captureView:(UIView *)view;
+- (UIImage*)captureScreen;
 
 @end
 
@@ -103,7 +102,6 @@ static BOOL waitingForAccess = NO;
 @synthesize accountPickerPopoverController = _accountPickerPopoverController;
 @synthesize twitterAccount = _twitterAccount;
 @synthesize oAuth = _oAuth;
-@synthesize tweetPoster = _tweetPoster;
 
 enum {
     DETweetComposeViewControllerNoAccountsAlert = 1,
@@ -186,19 +184,51 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     return [accountStore accountsWithAccountType:twitterAccountType];
 }
 
+- (UIImage *) captureScreen {
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    CGRect rect = [keyWindow bounds];
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    if (![[UIApplication sharedApplication] isStatusBarHidden]) {
+        CGFloat statusBarOffset = -20.0f;
+        if ( UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication]statusBarOrientation]))
+        {
+            CGContextTranslateCTM(context,statusBarOffset, 0.0f);
 
-- (UIImage*)captureView:(UIView *)view
-{    
-    CGRect rect = [[UIScreen mainScreen] bounds];  
-    UIGraphicsBeginImageContextWithOptions(rect.size, YES, 0.0f);
-    CGContextRef context = UIGraphicsGetCurrentContext();  
-    [view.layer renderInContext:context];  
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();  
+        }else
+        {
+            CGContextTranslateCTM(context, 0.0f, statusBarOffset);
+        }
+    }
+    
+    [keyWindow.layer renderInContext:context];   
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return image;
+    
+    UIImageOrientation imageOrientation;
+    switch ([UIApplication sharedApplication].statusBarOrientation) {
+        case UIInterfaceOrientationLandscapeLeft:
+            imageOrientation = UIImageOrientationRight;
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            imageOrientation = UIImageOrientationLeft;
+            break;
+        case UIInterfaceOrientationPortrait:
+            imageOrientation = UIImageOrientationUp;
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            imageOrientation = UIImageOrientationDown;
+            break;
+        default:
+            break;
+    }
+    
+    UIImage *outputImage = [[[UIImage alloc] initWithCGImage: image.CGImage
+                                                      scale: 1.0
+                                                orientation: imageOrientation] autorelease];
+    return outputImage;
 }
-
-
 
 #pragma mark - Setup & Teardown
 
@@ -227,8 +257,6 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 {
     _images = [[NSMutableArray alloc] init];
     _urls = [[NSMutableArray alloc] init];
-    _tweetPoster = [[DETweetPoster alloc] init];
-    _tweetPoster.delegate = self;
 }
 
 
@@ -266,7 +294,6 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     [_accountPickerPopoverController release], _accountPickerPopoverController = nil;
     [_twitterAccount release], _twitterAccount = nil;
     [_oAuth release], _oAuth = nil;
-    [_tweetPoster release], _tweetPoster = nil;
     
     [super dealloc];
 }
@@ -277,7 +304,6 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor clearColor];
     self.textViewContainer.backgroundColor = [UIColor clearColor];
     self.textView.backgroundColor = [UIColor clearColor];
@@ -327,12 +353,12 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
         // Take a snapshot of the current view, and make that our background after our view animates into place.
         // This only works if our orientation is the same as the presenting view.
         // If they don't match, just display the gray background.
     if (self.interfaceOrientation == self.fromViewController.interfaceOrientation) {
-        UIImage *backgroundImage = [self captureView:[UIApplication sharedApplication].keyWindow];
+        UIImage *backgroundImage = [self captureScreen];
         self.backgroundImageView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
     }
     else {
@@ -381,7 +407,7 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     [super viewDidAppear:animated];
     
     self.backgroundImageView.alpha = 1.0f;
-    self.backgroundImageView.frame = [self.view convertRect:self.backgroundImageView.frame fromView:[UIApplication sharedApplication].keyWindow];
+    //self.backgroundImageView.frame = [self.view convertRect:self.backgroundImageView.frame fromView:[UIApplication sharedApplication].keyWindow];
     [self.view insertSubview:self.gradientView aboveSubview:self.backgroundImageView];
 }
 
@@ -1028,13 +1054,14 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
         tweet = [tweet stringByAppendingString:urlString];
     }
     
-    [self.tweetPoster postTweet:tweet withImages:self.images fromAccount:self.twitterAccount];
+    DETweetPoster *tweetPoster = [[[DETweetPoster alloc] init] autorelease];
+    tweetPoster.delegate = self;
+    [tweetPoster postTweet:tweet withImages:self.images fromAccount:self.twitterAccount];
 }
 
 
 - (IBAction)cancel
 {
-    self.tweetPoster.delegate = nil;
     if (self.completionHandler) {
         self.completionHandler(DETweetComposeViewControllerResultCancelled);
     }
