@@ -33,6 +33,7 @@
 		697FE2CF14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697FE2CE14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m */; };
 		697FE2DA149040AF0045B8C7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697FE2D9149040AF0045B8C7 /* Accounts.framework */; };
 		699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A29BA1459B3960046B260 /* DETweetPoster.m */; };
+		69DF263016246B7400AF4614 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DF262F16246B7400AF4614 /* Default-568h@2x.png */; };
 		69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E70E891484BAD5004A66CA /* DEHTTPRequest.m */; };
 		69F126411489A81C00343C3D /* YawkeyBusinessDog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */; };
 		B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F06981486F0C000CE3BD6 /* icon@2x.png */; };
@@ -132,6 +133,7 @@
 		6980DB8714738CF4002282CB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		699A29B91459B3960046B260 /* DETweetPoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetPoster.h; path = ../DETweetComposeViewController/DETweetPoster.h; sourceTree = "<group>"; };
 		699A29BA1459B3960046B260 /* DETweetPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetPoster.m; path = ../DETweetComposeViewController/DETweetPoster.m; sourceTree = "<group>"; };
+		69DF262F16246B7400AF4614 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		69E70E881484BAD5004A66CA /* DEHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEHTTPRequest.h; sourceTree = "<group>"; };
 		69E70E891484BAD5004A66CA /* DEHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHTTPRequest.m; sourceTree = "<group>"; };
 		69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyBusinessDog.jpg; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 		B6A13108145768DB00500180 = {
 			isa = PBXGroup;
 			children = (
+				69DF262F16246B7400AF4614 /* Default-568h@2x.png */,
 				7B821E4A14928C35006FDD64 /* OAuthConsumerCredentials.h */,
 				6980DB8714738CF4002282CB /* README.markdown */,
 				6925A7D214590E6E00011DA0 /* unofficial-twitter-sdk */,
@@ -466,7 +469,7 @@
 		B6A1310A145768DB00500180 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Double Encore, Inc";
 			};
 			buildConfigurationList = B6A1310D145768DB00500180 /* Build configuration list for PBXProject "DETweeter" */;
@@ -527,6 +530,7 @@
 				B6634191148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg in Resources */,
 				B61501FA149BFF7000C4A719 /* DETweetCardAccountLine.png in Resources */,
 				B61501FB149BFF7000C4A719 /* DETweetCardAccountLine@2x.png in Resources */,
+				69DF263016246B7400AF4614 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,6 +667,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DETweeter/DETweeter-Prefix.pch";
 				INFOPLIST_FILE = "DETweeter/DETweeter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -675,6 +680,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DETweeter/DETweeter-Prefix.pch";
 				INFOPLIST_FILE = "DETweeter/DETweeter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
