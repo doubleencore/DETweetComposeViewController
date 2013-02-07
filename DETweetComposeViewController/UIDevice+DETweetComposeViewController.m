@@ -1,5 +1,5 @@
 //
-//  DETweetSheetCardView.h
+//  UIDevice+DETweetComposeViewController.m
 //  DETweeter
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
@@ -15,8 +15,40 @@
 //  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-#import <UIKit/UIKit.h>
 
-@interface DETweetSheetCardView : UIView
+#import "UIDevice+DETweetComposeViewController.h"
+
+
+@implementation UIDevice (DETweetComposeViewController)
+
++ (BOOL)de_isIOS5
+{
+    return (NSClassFromString(@"NSJSONSerialization") != nil);
+}
+
+
++ (BOOL)de_isPad
+{
+    return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? YES : NO;
+}
+
+
++ (BOOL)de_isPhone
+{
+    return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? YES : NO;
+}
+
+
++ (BOOL)de_isRetinaDisplay
+{
+    UIScreen* screen = [UIScreen mainScreen];
+    if ([screen respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+        [screen respondsToSelector:@selector(scale)]) {
+        return screen.scale == 2.0f;
+    }
+    
+    return NO;
+}
+
 
 @end

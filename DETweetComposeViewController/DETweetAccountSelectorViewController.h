@@ -1,5 +1,5 @@
 //
-//  DETweetSheetCardView.h
+//  DETweetAccountSelectorViewController.h
 //  DETweeter
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
@@ -16,7 +16,21 @@
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 #import <UIKit/UIKit.h>
+#import <Accounts/Accounts.h>
 
-@interface DETweetSheetCardView : UIView
+@protocol DETweetAccountSelectorViewControllerDelegate;
+
+@interface DETweetAccountSelectorViewController : UITableViewController
+
+@property (nonatomic, assign) id<DETweetAccountSelectorViewControllerDelegate> delegate;
+@property (nonatomic, retain) ACAccount *selectedAccount;
+
+@end
+
+
+@protocol DETweetAccountSelectorViewControllerDelegate <NSObject>
+
+@optional
+- (void)tweetAccountSelectorViewController:(DETweetAccountSelectorViewController *)viewController didSelectAccount:(ACAccount *)account;
 
 @end

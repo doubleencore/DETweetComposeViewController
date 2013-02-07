@@ -1,5 +1,5 @@
 //
-//  DETweetSheetCardView.m
+//  DERuledView.m
 //  DETweeter
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
@@ -16,22 +16,21 @@
 //  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "DETweetSheetCardView.h"
-#import <QuartzCore/QuartzCore.h>
+#import "DERuledView.h"
 
 
-@interface DETweetSheetCardView ()
+@interface DERuledView ()
 
-@property (nonatomic, retain) UIView *backgroundView;
-
-- (void)tweetSheetCardViewInit;
+- (void)tweetRuledViewInit;
 
 @end
 
 
-@implementation DETweetSheetCardView
+@implementation DERuledView
 
-@synthesize backgroundView = _backgroundView;
+@synthesize rowHeight = _rowHeight;
+@synthesize lineWidth = _lineWidth;
+@synthesize lineColor = _lineColor;
 
 
 #pragma mark - Setup & Teardown
@@ -40,8 +39,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self tweetSheetCardViewInit];
+        [self tweetRuledViewInit];
     }
+    
     return self;
 }
 
@@ -50,39 +50,28 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self tweetSheetCardViewInit];
+        [self tweetRuledViewInit];
     }
+    
     return self;
 }
 
 
-- (void)tweetSheetCardViewInit
+- (void)tweetRuledViewInit
 {
-    self.backgroundColor = [UIColor clearColor];  // So we can use any color in IB.
+    self.backgroundColor = [UIColor clearColor];
+    self.contentMode = UIViewContentModeRedraw;
+    self.userInteractionEnabled = NO;
     
-        // Add a border and a shadow.
-    self.layer.cornerRadius = 12.0f;
-    self.layer.borderWidth = 1.0f;
-    self.layer.borderColor = [UIColor colorWithWhite:0.17f alpha:1.0f].CGColor;
-    self.layer.shadowOpacity = 1.0f;
-    self.layer.shadowOffset = CGSizeMake(0.0f, 3.0f);
-    self.layer.shadowRadius = 5.0f;
-    
-        // Add the background image.
-        // We can't put the image on the root view because we need to clip the
-        // edges, which we can't do if we want the shadow.
-    self.backgroundView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
-    self.backgroundView.layer.masksToBounds = YES;
-    self.backgroundView.layer.cornerRadius = self.layer.cornerRadius + 1.0f;
-    self.backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DETweetCardBackground"]];
-    self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self insertSubview:self.backgroundView atIndex:0];
+    _rowHeight = 20.0f;
+    _lineWidth = 1.0f;
+    _lineColor = [[UIColor colorWithWhite:0.5f alpha:0.15f] retain];
 }
 
 
 - (void)dealloc
 {
-    [_backgroundView release], _backgroundView = nil;
+    [_lineColor release], _lineColor = nil;
     
     [super dealloc];
 }
@@ -90,11 +79,26 @@
 
 #pragma mark - Superclass Overrides
 
-- (void)setFrame:(CGRect)frame
-{
-    [super setFrame:frame];
+- (void)drawRect:(CGRect)rect
+{    
+    CGContextRef context = UIGraphicsGetCurrentContext();
     
-    self.backgroundView.frame = self.bounds;    
+    CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
+    CGContextSetLineWidth(context, self.lineWidth);
+    CGFloat strokeOffset = (self.lineWidth / 2);  // Because lines are drawn between pixels. This moves it back onto the pixel.
+
+    if (self.rowHeight > 0.0f) {
+        CGRect rowRect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, self.rowHeight);
+        NSInteger rowNumber = 1;
+        while (rowRect.origin.y < self.frame.size.height + 100.0f) {            
+            CGContextMoveToPoint(context, rowRect.origin.x + strokeOffset, rowRect.origin.y + strokeOffset);
+            CGContextAddLineToPoint(context, rowRect.origin.x + rowRect.size.width + strokeOffset, rowRect.origin.y + strokeOffset);
+            CGContextDrawPath(context, kCGPathStroke);
+            
+            rowRect.origin.y += self.rowHeight;
+            rowNumber++;
+        }
+    }
 }
 
 

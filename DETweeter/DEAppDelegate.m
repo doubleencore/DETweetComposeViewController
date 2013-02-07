@@ -7,7 +7,7 @@
 
 #import "DEAppDelegate.h"
 #import "DEViewController.h"
-
+#import "UIDevice+DETweetComposeViewController.h"
 
 @implementation DEAppDelegate
 
@@ -36,7 +36,7 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
         // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    if ([UIDevice de_isPhone]) {
         self.viewController = [[[DEViewController alloc] initWithNibName:@"DEViewController_iPhone" bundle:nil] autorelease];
     }
     else {

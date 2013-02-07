@@ -1,5 +1,5 @@
 //
-//  DETweetSheetCardView.h
+//  DERuledView.h
 //  DETweeter
 //
 //  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
@@ -17,6 +17,10 @@
 //
 #import <UIKit/UIKit.h>
 
-@interface DETweetSheetCardView : UIView
+@interface DERuledView : UIView
+
+@property (nonatomic) CGFloat rowHeight;
+@property (nonatomic) CGFloat lineWidth;
+@property (nonatomic, retain) UIColor *lineColor;
 
 @end

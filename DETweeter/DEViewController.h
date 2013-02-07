@@ -2,12 +2,10 @@
 //  DEViewController.h
 //  DETweeter
 //
-//  Copyright (c) 2011 Double Encore, Inc. All rights reserved.
+//  Copyright (c) 2011-2012 Double Encore, Inc. All rights reserved.
 //
 
-#import "TwitterDialog.h"
-
-@interface DEViewController : UIViewController <TwitterDialogDelegate, TwitterLoginDialogDelegate>
+@interface DEViewController : UIViewController
 
 @property (retain, nonatomic) IBOutlet UIButton *deTweetButton;
 @property (retain, nonatomic) IBOutlet UIButton *twTweetButton;

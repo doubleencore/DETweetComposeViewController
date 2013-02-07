@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		609210761471DAFD005B7E87 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 609210741471DAFD005B7E87 /* Default-Landscape.png */; };
-		609210771471DAFD005B7E87 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 609210751471DAFD005B7E87 /* Default-Landscape@2x.png */; };
 		60C6B2EB1471CBEE0090278C /* OAuth+DEUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C6B2EA1471CBEE0090278C /* OAuth+DEUserDefaults.m */; };
 		60C6B2EE1471D47D0090278C /* OAuth+DEExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C6B2ED1471D47D0090278C /* OAuth+DEExtensions.m */; };
 		6925A81114590EB400011DA0 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7D714590EB400011DA0 /* NSObject+SBJSON.m */; };
@@ -22,7 +20,6 @@
 		6925A82014590EB400011DA0 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A7FE14590EB400011DA0 /* OAHMAC_SHA1SignatureProvider.m */; };
 		6925A82114590EB400011DA0 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 6925A80014590EB400011DA0 /* sha1.c */; };
 		6925A82214590EB400011DA0 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A80314590EB400011DA0 /* NSString+URLEncoding.m */; };
-		6925A82314590EB400011DA0 /* OAuth+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A80514590EB400011DA0 /* OAuth+UserDefaults.m */; };
 		6925A82414590EB400011DA0 /* OAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925A80714590EB400011DA0 /* OAuth.m */; };
 		6925A82514590EB400011DA0 /* tclose.png in Resources */ = {isa = PBXBuildFile; fileRef = 6925A80D14590EB400011DA0 /* tclose.png */; };
 		6925A82614590EB400011DA0 /* ticon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6925A80E14590EB400011DA0 /* ticon.png */; };
@@ -31,14 +28,22 @@
 		6925A82C1459103700011DA0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6925A82B1459103700011DA0 /* SystemConfiguration.framework */; };
 		6925A82E1459104200011DA0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6925A82D1459104200011DA0 /* MobileCoreServices.framework */; };
 		6925A8301459105500011DA0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6925A82F1459105500011DA0 /* libz.dylib */; };
-		695D65771466092D0002D720 /* de-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D65761466092D0002D720 /* de-icon.png */; };
-		695D657A146609350002D720 /* de-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D6579146609350002D720 /* de-icon@2x.png */; };
 		695D657C1466093D0002D720 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D657B1466093D0002D720 /* Default.png */; };
 		695D657E146609430002D720 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 695D657D146609430002D720 /* Default@2x.png */; };
+		697FE2CF14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697FE2CE14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m */; };
+		697FE2DA149040AF0045B8C7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697FE2D9149040AF0045B8C7 /* Accounts.framework */; };
 		699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A29BA1459B3960046B260 /* DETweetPoster.m */; };
+		69DF263016246B7400AF4614 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DF262F16246B7400AF4614 /* Default-568h@2x.png */; };
 		69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E70E891484BAD5004A66CA /* DEHTTPRequest.m */; };
-		B655DDEA1458B4A500F513E1 /* Buzz.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDE91458B4A500F513E1 /* Buzz.jpeg */; };
-		B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEC1458B56300F513E1 /* Woody.jpeg */; };
+		69F126411489A81C00343C3D /* YawkeyBusinessDog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */; };
+		B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F06981486F0C000CE3BD6 /* icon@2x.png */; };
+		B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */; };
+		B61501FA149BFF7000C4A719 /* DETweetCardAccountLine.png in Resources */ = {isa = PBXBuildFile; fileRef = B61501F8149BFF7000C4A719 /* DETweetCardAccountLine.png */; };
+		B61501FB149BFF7000C4A719 /* DETweetCardAccountLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61501F9149BFF7000C4A719 /* DETweetCardAccountLine@2x.png */; };
+		B639E5261486D2DA0054AE8F /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E5251486D2DA0054AE8F /* background.png */; };
+		B639E5291486EF9B0054AE8F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E5281486EF9B0054AE8F /* icon.png */; };
+		B639E52B1486F04A0054AE8F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E52A1486F04A0054AE8F /* Default-Landscape~ipad.png */; };
+		B639E52D1486F04F0054AE8F /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B639E52C1486F04F0054AE8F /* Default-Portrait~ipad.png */; };
 		B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */; };
 		B655DDF71458C43C00F513E1 /* DETweetCardBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */; };
 		B655DDF81458C43C00F513E1 /* DETweetCancelButtonPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDF01458C43C00F513E1 /* DETweetCancelButtonPortrait.png */; };
@@ -51,7 +56,11 @@
 		B655DE031458C5F000F513E1 /* DETweetAttachmentFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DDFF1458C5F000F513E1 /* DETweetAttachmentFrame@2x.png */; };
 		B655DE041458C5F000F513E1 /* DETweetURLAttachment.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */; };
 		B655DE051458C5F000F513E1 /* DETweetURLAttachment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B655DE011458C5F000F513E1 /* DETweetURLAttachment@2x.png */; };
+		B6634191148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B6634190148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg */; };
+		B68527C0148F1DB900B18D5D /* DEEmbossedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B68527BF148F1DB900B18D5D /* DEEmbossedLabel.m */; };
+		B68728AB14A10C0200593E39 /* DETweetAccountSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68728AA14A10C0200593E39 /* DETweetAccountSelectorViewController.m */; };
 		B69AB9B414869A5C00652DDF /* DETweetGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B69AB9B314869A5C00652DDF /* DETweetGradientView.m */; };
+		B69C605A14894F4D00A18C1B /* DERuledView.m in Sources */ = {isa = PBXBuildFile; fileRef = B69C605914894F4D00A18C1B /* DERuledView.m */; };
 		B6A13118145768DB00500180 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13117145768DB00500180 /* UIKit.framework */; };
 		B6A1311A145768DB00500180 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A13119145768DB00500180 /* Foundation.framework */; };
 		B6A1311C145768DB00500180 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A1311B145768DB00500180 /* CoreGraphics.framework */; };
@@ -75,8 +84,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		609210741471DAFD005B7E87 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = SOURCE_ROOT; };
-		609210751471DAFD005B7E87 /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = SOURCE_ROOT; };
 		60C6B2E81471CBD90090278C /* OAuth+DEUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OAuth+DEUserDefaults.h"; path = "DETweetComposeViewController/OAuth+DEUserDefaults.h"; sourceTree = SOURCE_ROOT; };
 		60C6B2EA1471CBEE0090278C /* OAuth+DEUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OAuth+DEUserDefaults.m"; path = "DETweetComposeViewController/OAuth+DEUserDefaults.m"; sourceTree = SOURCE_ROOT; };
 		60C6B2EC1471D4700090278C /* OAuth+DEExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OAuth+DEExtensions.h"; path = "DETweetComposeViewController/OAuth+DEExtensions.h"; sourceTree = SOURCE_ROOT; };
@@ -105,8 +112,6 @@
 		6925A80114590EB400011DA0 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
 		6925A80214590EB400011DA0 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		6925A80314590EB400011DA0 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
-		6925A80414590EB400011DA0 /* OAuth+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+UserDefaults.h"; sourceTree = "<group>"; };
-		6925A80514590EB400011DA0 /* OAuth+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+UserDefaults.m"; sourceTree = "<group>"; };
 		6925A80614590EB400011DA0 /* OAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuth.h; sourceTree = "<group>"; };
 		6925A80714590EB400011DA0 /* OAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuth.m; sourceTree = "<group>"; };
 		6925A80A14590EB400011DA0 /* OAuthTwitterCallbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthTwitterCallbacks.h; sourceTree = "<group>"; };
@@ -116,22 +121,31 @@
 		6925A80E14590EB400011DA0 /* ticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ticon.png; path = "unofficial-twitter-sdk/unoffical-twitter-sdk/ticon.png"; sourceTree = "<group>"; };
 		6925A80F14590EB400011DA0 /* TwitterDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwitterDialog.h; path = "unofficial-twitter-sdk/unoffical-twitter-sdk/TwitterDialog.h"; sourceTree = "<group>"; };
 		6925A81014590EB400011DA0 /* TwitterDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TwitterDialog.m; path = "unofficial-twitter-sdk/unoffical-twitter-sdk/TwitterDialog.m"; sourceTree = "<group>"; };
-		6925A82814590F4300011DA0 /* OAuthConsumerCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumerCredentials.h; sourceTree = "<group>"; };
 		6925A82914590F6400011DA0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6925A82B1459103700011DA0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6925A82D1459104200011DA0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6925A82F1459105500011DA0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		695D65761466092D0002D720 /* de-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "de-icon.png"; path = "../de-icon.png"; sourceTree = "<group>"; };
-		695D6579146609350002D720 /* de-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "de-icon@2x.png"; path = "../de-icon@2x.png"; sourceTree = "<group>"; };
 		695D657B1466093D0002D720 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		695D657D146609430002D720 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		697FE2CD14903C750045B8C7 /* UIDevice+DETweetComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+DETweetComposeViewController.h"; path = "DETweetComposeViewController/UIDevice+DETweetComposeViewController.h"; sourceTree = SOURCE_ROOT; };
+		697FE2CE14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+DETweetComposeViewController.m"; path = "DETweetComposeViewController/UIDevice+DETweetComposeViewController.m"; sourceTree = SOURCE_ROOT; };
+		697FE2D9149040AF0045B8C7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		6980DB8714738CF4002282CB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		699A29B91459B3960046B260 /* DETweetPoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetPoster.h; path = ../DETweetComposeViewController/DETweetPoster.h; sourceTree = "<group>"; };
 		699A29BA1459B3960046B260 /* DETweetPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetPoster.m; path = ../DETweetComposeViewController/DETweetPoster.m; sourceTree = "<group>"; };
+		69DF262F16246B7400AF4614 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		69E70E881484BAD5004A66CA /* DEHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEHTTPRequest.h; sourceTree = "<group>"; };
 		69E70E891484BAD5004A66CA /* DEHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHTTPRequest.m; sourceTree = "<group>"; };
-		B655DDE91458B4A500F513E1 /* Buzz.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Buzz.jpeg; sourceTree = "<group>"; };
-		B655DDEC1458B56300F513E1 /* Woody.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Woody.jpeg; sourceTree = "<group>"; };
+		69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyBusinessDog.jpg; sourceTree = "<group>"; };
+		7B821E4A14928C35006FDD64 /* OAuthConsumerCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumerCredentials.h; path = "DETweeter/unofficial-twitter-sdk/unoffical-twitter-sdk/OAuth/OAuthConsumerCredentials.h"; sourceTree = "<group>"; };
+		B60F06981486F0C000CE3BD6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
+		B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon~ipad.png"; path = "../icon~ipad.png"; sourceTree = "<group>"; };
+		B61501F8149BFF7000C4A719 /* DETweetCardAccountLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardAccountLine.png; path = DETweetComposeViewController/Resources/DETweetCardAccountLine.png; sourceTree = SOURCE_ROOT; };
+		B61501F9149BFF7000C4A719 /* DETweetCardAccountLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCardAccountLine@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCardAccountLine@2x.png"; sourceTree = SOURCE_ROOT; };
+		B639E5251486D2DA0054AE8F /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B639E5281486EF9B0054AE8F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		B639E52A1486F04A0054AE8F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		B639E52C1486F04F0054AE8F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		B655DDEE1458C43C00F513E1 /* DETweetCardBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCardBackground.png; path = DETweetComposeViewController/Resources/DETweetCardBackground.png; sourceTree = SOURCE_ROOT; };
 		B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetCardBackground@2x.png"; path = "DETweetComposeViewController/Resources/DETweetCardBackground@2x.png"; sourceTree = SOURCE_ROOT; };
 		B655DDF01458C43C00F513E1 /* DETweetCancelButtonPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetCancelButtonPortrait.png; path = DETweetComposeViewController/Resources/DETweetCancelButtonPortrait.png; sourceTree = SOURCE_ROOT; };
@@ -144,8 +158,15 @@
 		B655DDFF1458C5F000F513E1 /* DETweetAttachmentFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetAttachmentFrame@2x.png"; path = "DETweetComposeViewController/Resources/DETweetAttachmentFrame@2x.png"; sourceTree = SOURCE_ROOT; };
 		B655DE001458C5F000F513E1 /* DETweetURLAttachment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DETweetURLAttachment.png; path = DETweetComposeViewController/Resources/DETweetURLAttachment.png; sourceTree = SOURCE_ROOT; };
 		B655DE011458C5F000F513E1 /* DETweetURLAttachment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DETweetURLAttachment@2x.png"; path = "DETweetComposeViewController/Resources/DETweetURLAttachment@2x.png"; sourceTree = SOURCE_ROOT; };
+		B6634190148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YawkeyCleanTeeth.jpg; sourceTree = "<group>"; };
+		B68527BE148F1DB900B18D5D /* DEEmbossedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DEEmbossedLabel.h; path = ../DETweetComposeViewController/DEEmbossedLabel.h; sourceTree = "<group>"; };
+		B68527BF148F1DB900B18D5D /* DEEmbossedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DEEmbossedLabel.m; path = ../DETweetComposeViewController/DEEmbossedLabel.m; sourceTree = "<group>"; };
+		B68728A914A10C0200593E39 /* DETweetAccountSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetAccountSelectorViewController.h; path = DETweetComposeViewController/DETweetAccountSelectorViewController.h; sourceTree = SOURCE_ROOT; };
+		B68728AA14A10C0200593E39 /* DETweetAccountSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetAccountSelectorViewController.m; path = DETweetComposeViewController/DETweetAccountSelectorViewController.m; sourceTree = SOURCE_ROOT; };
 		B69AB9B214869A5C00652DDF /* DETweetGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DETweetGradientView.h; path = DETweetComposeViewController/DETweetGradientView.h; sourceTree = SOURCE_ROOT; };
 		B69AB9B314869A5C00652DDF /* DETweetGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DETweetGradientView.m; path = DETweetComposeViewController/DETweetGradientView.m; sourceTree = SOURCE_ROOT; };
+		B69C605814894F4D00A18C1B /* DERuledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DERuledView.h; path = DETweetComposeViewController/DERuledView.h; sourceTree = SOURCE_ROOT; };
+		B69C605914894F4D00A18C1B /* DERuledView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DERuledView.m; path = DETweetComposeViewController/DERuledView.m; sourceTree = SOURCE_ROOT; };
 		B6A13113145768DB00500180 /* DETweeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DETweeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A13117145768DB00500180 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B6A13119145768DB00500180 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -181,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				697FE2DA149040AF0045B8C7 /* Accounts.framework in Frameworks */,
 				6925A8301459105500011DA0 /* libz.dylib in Frameworks */,
 				6925A82E1459104200011DA0 /* MobileCoreServices.framework in Frameworks */,
 				6925A82C1459103700011DA0 /* SystemConfiguration.framework in Frameworks */,
@@ -206,6 +228,7 @@
 				6925A81014590EB400011DA0 /* TwitterDialog.m */,
 			);
 			name = "unofficial-twitter-sdk";
+			path = DETweeter;
 			sourceTree = "<group>";
 		};
 		6925A7D414590EB400011DA0 /* JSON */ = {
@@ -247,8 +270,6 @@
 				6925A7F814590EB400011DA0 /* Crypto */,
 				6925A80214590EB400011DA0 /* NSString+URLEncoding.h */,
 				6925A80314590EB400011DA0 /* NSString+URLEncoding.m */,
-				6925A80414590EB400011DA0 /* OAuth+UserDefaults.h */,
-				6925A80514590EB400011DA0 /* OAuth+UserDefaults.m */,
 				6925A80614590EB400011DA0 /* OAuth.h */,
 				6925A80714590EB400011DA0 /* OAuth.m */,
 			);
@@ -284,8 +305,8 @@
 		B63C1FCB1461B68000DF52F7 /* Test Images */ = {
 			isa = PBXGroup;
 			children = (
-				B655DDE91458B4A500F513E1 /* Buzz.jpeg */,
-				B655DDEC1458B56300F513E1 /* Woody.jpeg */,
+				69F126401489A81C00343C3D /* YawkeyBusinessDog.jpg */,
+				B6634190148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg */,
 			);
 			name = "Test Images";
 			sourceTree = "<group>";
@@ -293,7 +314,10 @@
 		B6A13108145768DB00500180 = {
 			isa = PBXGroup;
 			children = (
+				69DF262F16246B7400AF4614 /* Default-568h@2x.png */,
+				7B821E4A14928C35006FDD64 /* OAuthConsumerCredentials.h */,
 				6980DB8714738CF4002282CB /* README.markdown */,
+				6925A7D214590E6E00011DA0 /* unofficial-twitter-sdk */,
 				B6A1311D145768DB00500180 /* Demo App */,
 				B6A131371457690300500180 /* DETweetComposeViewController */,
 				B6A13116145768DB00500180 /* Frameworks */,
@@ -312,6 +336,7 @@
 		B6A13116145768DB00500180 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				697FE2D9149040AF0045B8C7 /* Accounts.framework */,
 				6925A82F1459105500011DA0 /* libz.dylib */,
 				6925A82D1459104200011DA0 /* MobileCoreServices.framework */,
 				6925A82B1459103700011DA0 /* SystemConfiguration.framework */,
@@ -333,8 +358,6 @@
 				B6A1312A145768DB00500180 /* DEViewController.m */,
 				B6A1312C145768DB00500180 /* DEViewController_iPhone.xib */,
 				B6A1312F145768DB00500180 /* DEViewController_iPad.xib */,
-				6925A82814590F4300011DA0 /* OAuthConsumerCredentials.h */,
-				6925A7D214590E6E00011DA0 /* unofficial-twitter-sdk */,
 				B63C1FCB1461B68000DF52F7 /* Test Images */,
 				B6A1311E145768DB00500180 /* Supporting Files */,
 			);
@@ -345,12 +368,14 @@
 		B6A1311E145768DB00500180 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B639E5281486EF9B0054AE8F /* icon.png */,
+				B60F06981486F0C000CE3BD6 /* icon@2x.png */,
+				B60F069B1486F0ED00CE3BD6 /* icon~ipad.png */,
 				695D657B1466093D0002D720 /* Default.png */,
 				695D657D146609430002D720 /* Default@2x.png */,
-				609210741471DAFD005B7E87 /* Default-Landscape.png */,
-				609210751471DAFD005B7E87 /* Default-Landscape@2x.png */,
-				695D65761466092D0002D720 /* de-icon.png */,
-				695D6579146609350002D720 /* de-icon@2x.png */,
+				B639E52C1486F04F0054AE8F /* Default-Portrait~ipad.png */,
+				B639E52A1486F04A0054AE8F /* Default-Landscape~ipad.png */,
+				B639E5251486D2DA0054AE8F /* background.png */,
 				B6A1311F145768DB00500180 /* DETweeter-Info.plist */,
 				B6A13120145768DB00500180 /* InfoPlist.strings */,
 				B6A13123145768DB00500180 /* main.m */,
@@ -362,21 +387,29 @@
 		B6A131371457690300500180 /* DETweetComposeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B69AB9B214869A5C00652DDF /* DETweetGradientView.h */,
-				B69AB9B314869A5C00652DDF /* DETweetGradientView.m */,
 				B6A131381457696000500180 /* DETweetComposeViewController.h */,
 				B6A131391457696000500180 /* DETweetComposeViewController.m */,
 				B6A131411457780A00500180 /* DETweetComposeView.xib */,
+				B69AB9B214869A5C00652DDF /* DETweetGradientView.h */,
+				B69AB9B314869A5C00652DDF /* DETweetGradientView.m */,
 				B6A1314614577D5A00500180 /* DETweetSheetCardView.h */,
 				B6A1314714577D5A00500180 /* DETweetSheetCardView.m */,
 				B6FD55AB1463A6E100739469 /* DETweetTextView.h */,
 				B6FD55AC1463A6E100739469 /* DETweetTextView.m */,
+				B68728A914A10C0200593E39 /* DETweetAccountSelectorViewController.h */,
+				B68728AA14A10C0200593E39 /* DETweetAccountSelectorViewController.m */,
+				B69C605814894F4D00A18C1B /* DERuledView.h */,
+				B69C605914894F4D00A18C1B /* DERuledView.m */,
+				B68527BE148F1DB900B18D5D /* DEEmbossedLabel.h */,
+				B68527BF148F1DB900B18D5D /* DEEmbossedLabel.m */,
 				699A29B91459B3960046B260 /* DETweetPoster.h */,
 				699A29BA1459B3960046B260 /* DETweetPoster.m */,
 				60C6B2EC1471D4700090278C /* OAuth+DEExtensions.h */,
 				60C6B2ED1471D47D0090278C /* OAuth+DEExtensions.m */,
 				60C6B2E81471CBD90090278C /* OAuth+DEUserDefaults.h */,
 				60C6B2EA1471CBEE0090278C /* OAuth+DEUserDefaults.m */,
+				697FE2CD14903C750045B8C7 /* UIDevice+DETweetComposeViewController.h */,
+				697FE2CE14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m */,
 				B6B6CCF214586015005B93A1 /* Images */,
 			);
 			name = DETweetComposeViewController;
@@ -390,6 +423,8 @@
 				B655DDEF1458C43C00F513E1 /* DETweetCardBackground@2x.png */,
 				B6DEB61714631499009FD33C /* DETweetCardHeaderLine.png */,
 				B6DEB61814631499009FD33C /* DETweetCardHeaderLine@2x.png */,
+				B61501F8149BFF7000C4A719 /* DETweetCardAccountLine.png */,
+				B61501F9149BFF7000C4A719 /* DETweetCardAccountLine@2x.png */,
 				B655DDF01458C43C00F513E1 /* DETweetCancelButtonPortrait.png */,
 				B655DDF11458C43C00F513E1 /* DETweetCancelButtonPortrait@2x.png */,
 				B6DEB60E14630B2E009FD33C /* DETweetCancelButtonLandscape.png */,
@@ -434,7 +469,7 @@
 		B6A1310A145768DB00500180 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Double Encore, Inc";
 			};
 			buildConfigurationList = B6A1310D145768DB00500180 /* Build configuration list for PBXProject "DETweeter" */;
@@ -463,8 +498,6 @@
 				B6A1312E145768DB00500180 /* DEViewController_iPhone.xib in Resources */,
 				B6A13131145768DB00500180 /* DEViewController_iPad.xib in Resources */,
 				B6A131421457780A00500180 /* DETweetComposeView.xib in Resources */,
-				B655DDEA1458B4A500F513E1 /* Buzz.jpeg in Resources */,
-				B655DDED1458B56300F513E1 /* Woody.jpeg in Resources */,
 				B655DDF61458C43C00F513E1 /* DETweetCardBackground.png in Resources */,
 				B655DDF71458C43C00F513E1 /* DETweetCardBackground@2x.png in Resources */,
 				B655DDF81458C43C00F513E1 /* DETweetCancelButtonPortrait.png in Resources */,
@@ -485,12 +518,19 @@
 				B6DEB61514630B2E009FD33C /* DETweetSendButtonLandscape@2x.png in Resources */,
 				B6DEB61914631499009FD33C /* DETweetCardHeaderLine.png in Resources */,
 				B6DEB61A14631499009FD33C /* DETweetCardHeaderLine@2x.png in Resources */,
-				695D65771466092D0002D720 /* de-icon.png in Resources */,
-				695D657A146609350002D720 /* de-icon@2x.png in Resources */,
 				695D657C1466093D0002D720 /* Default.png in Resources */,
 				695D657E146609430002D720 /* Default@2x.png in Resources */,
-				609210761471DAFD005B7E87 /* Default-Landscape.png in Resources */,
-				609210771471DAFD005B7E87 /* Default-Landscape@2x.png in Resources */,
+				B639E5261486D2DA0054AE8F /* background.png in Resources */,
+				B639E5291486EF9B0054AE8F /* icon.png in Resources */,
+				B639E52B1486F04A0054AE8F /* Default-Landscape~ipad.png in Resources */,
+				B639E52D1486F04F0054AE8F /* Default-Portrait~ipad.png in Resources */,
+				B60F06991486F0C000CE3BD6 /* icon@2x.png in Resources */,
+				B60F069C1486F0ED00CE3BD6 /* icon~ipad.png in Resources */,
+				69F126411489A81C00343C3D /* YawkeyBusinessDog.jpg in Resources */,
+				B6634191148D9C8C0026DB14 /* YawkeyCleanTeeth.jpg in Resources */,
+				B61501FA149BFF7000C4A719 /* DETweetCardAccountLine.png in Resources */,
+				B61501FB149BFF7000C4A719 /* DETweetCardAccountLine@2x.png in Resources */,
+				69DF263016246B7400AF4614 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,7 +557,6 @@
 				6925A82014590EB400011DA0 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				6925A82114590EB400011DA0 /* sha1.c in Sources */,
 				6925A82214590EB400011DA0 /* NSString+URLEncoding.m in Sources */,
-				6925A82314590EB400011DA0 /* OAuth+UserDefaults.m in Sources */,
 				6925A82414590EB400011DA0 /* OAuth.m in Sources */,
 				6925A82714590EB400011DA0 /* TwitterDialog.m in Sources */,
 				699A29BB1459B3960046B260 /* DETweetPoster.m in Sources */,
@@ -526,6 +565,10 @@
 				60C6B2EE1471D47D0090278C /* OAuth+DEExtensions.m in Sources */,
 				69E70E8A1484BAD5004A66CA /* DEHTTPRequest.m in Sources */,
 				B69AB9B414869A5C00652DDF /* DETweetGradientView.m in Sources */,
+				B69C605A14894F4D00A18C1B /* DERuledView.m in Sources */,
+				B68527C0148F1DB900B18D5D /* DEEmbossedLabel.m in Sources */,
+				697FE2CF14903C750045B8C7 /* UIDevice+DETweetComposeViewController.m in Sources */,
+				B68728AB14A10C0200593E39 /* DETweetAccountSelectorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +607,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=iphoneos*]" = (
+					armv6,
+					armv7,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -574,11 +621,12 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -589,15 +637,23 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"ARCHS[sdk=iphoneos*]" = (
+					armv6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Double Encore, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Double Encore, Inc.";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -607,10 +663,11 @@
 		B6A13135145768DB00500180 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DETweeter/DETweeter-Prefix.pch";
 				INFOPLIST_FILE = "DETweeter/DETweeter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -619,10 +676,11 @@
 		B6A13136145768DB00500180 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DETweeter/DETweeter-Prefix.pch";
 				INFOPLIST_FILE = "DETweeter/DETweeter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
