@@ -123,7 +123,7 @@
     CGRect frame = self.buttonView.frame;
     frame.origin.x = trunc((self.view.bounds.size.width - frame.size.width) / 2);
     if ([UIDevice de_isPhone]) {
-        frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 306.0f : 210.0f;
+        frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 306.0f : 200.0f;
     }
     else {
         frame.origin.y = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? 722.0f : 535.0f;
@@ -209,6 +209,12 @@
 - (IBAction)tweetThem:(id)sender
 {    
     [self tweetThem];
+}
+
+- (IBAction)logout
+{
+    [DETweetComposeViewController logout];
+    [[[[UIAlertView alloc] initWithTitle:@"" message:@"Twitter OAuth Credentials Deleted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
 }
 
 

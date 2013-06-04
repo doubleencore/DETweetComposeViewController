@@ -14,5 +14,6 @@
 
 - (IBAction)tweetUs:(id)sender;
 - (IBAction)tweetThem:(id)sender;
+- (IBAction)logout;
 
 @end
