@@ -66,6 +66,8 @@ typedef void (^DETweetComposeViewControllerCompletionHandler)(DETweetComposeView
     // been set.
 + (BOOL)canSendTweet;
 
++ (void)logout;
+
     // Sets the initial text to be tweeted. Returns NO if the specified text will
     // not fit within the character space currently available, or if the sheet
     // has already been presented to the user.

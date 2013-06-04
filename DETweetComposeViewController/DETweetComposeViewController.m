@@ -162,6 +162,10 @@ static NSString * const DETweetLastAccountIdentifier = @"DETweetLastAccountIdent
     return canSendTweet;
 }
 
++ (void)logout
+{
+    [OAuth clearCrendentials];
+}
 
 + (void)displayNoTwitterAccountsAlert
     // We have an instance method that's identical to this. Make sure it stays identical.
