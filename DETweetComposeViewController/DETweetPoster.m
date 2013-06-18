@@ -40,8 +40,8 @@
 
 @implementation DETweetPoster
 
-NSString * const twitterPostURLString = @"https://api.twitter.com/1/statuses/update.json";
-NSString * const twitterPostWithImagesURLString = @"https://upload.twitter.com/1/statuses/update_with_media.json";
+NSString * const twitterPostURLString = @"https://api.twitter.com/1.1/statuses/update.json";
+NSString * const twitterPostWithImagesURLString = @"https://api.twitter.com/1.1/statuses/update_with_media.json";
 NSString * const twitterStatusKey = @"status";
 
 @synthesize delegate = _delegate;
